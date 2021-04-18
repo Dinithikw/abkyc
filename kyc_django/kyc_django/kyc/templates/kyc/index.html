@@ -18,7 +18,7 @@
 </head>
 
 
-<body style="background: url({% static 'img/1.jpg' %}) no-repeat fixed; background-position: center;background-repeat: no-repeat; background-size: cover;">
+<body style="background: url({% static 'img/6.jpg' %}) no-repeat fixed; background-position: center;background-repeat: no-repeat; background-size: cover;">
     {% for message in messages %}
     <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
         <strong>Message </strong>{{message}}
@@ -106,7 +106,7 @@
 
       </div>
 
-      <div class="col-md-5 personel_info" style="border:1px solid #000; border-radius:25px; height:850px;">
+      <div class="col-md-5 personel_info" style="border:1px solid #000; border-radius:25px; height:920px;">
 
           <form action="insertkyc" method="post">
               {% csrf_token %}
@@ -438,7 +438,7 @@
                     </table>
 
                 </center>
-
+                <br><br><br>
                 <p style="padding-left: 450px;"><button type="submit" class="btn btn-primary" name="submit" onclick="return validate()" >Next</button></p>
           </form>
       </div>
