@@ -1,0 +1,29 @@
+user name: kyc
+password: kyc12345
+
+
+
+#go to kyc_django folder using
+cd kyc_django
+
+#then create virtual environment( env is the virtual environment that can be given by any name)
+python -m venv env
+
+#activate virtual environment
+env\scripts\activate 
+
+virtual\scripts\activate 
+
+#to run server
+Python manage.py runserver
+
+
+to create modeled database
+python manage.py makemigrations kyc_web
+
+to migrate
+python manage.py migrate
+
+
+to check migrated py files
+python manage.py sqlmigrate kyc_web 0002
