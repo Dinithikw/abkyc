@@ -18,7 +18,7 @@
 </head>
 
 
-<body style="background: url({% static 'img/7.jpg' %}) no-repeat fixed; background-position: center;background-repeat: no-repeat; background-size: cover;">
+<body style="background: url({% static 'img/1.jpg' %}) no-repeat fixed; background-position: center;background-repeat: no-repeat; background-size: cover;">
     {% for message in messages %}
     <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
         <strong>Message </strong>{{message}}
@@ -148,19 +148,6 @@
     <div class="col-md-12 title" style="background-color: #f3f3f300;">
        
       <p style="padding-top:10px; padding-left:50px;color:#000"><b>Know Your Customer (KYC) Form</b></p>
-      <table  align="center" width="90%">
-          <tr>
-            <td style="width:60%;" colspan="2">
-                <p style="padding-top:10px; padding-left:50px;color:#000; font-size: 20px;">What is your prefered language? &nbsp; &nbsp;
-            
-                <input type="radio"  name="language" id="Sinhala" value="Sinhala" style="height:15px; width:15px;"> &nbsp; Sinhala &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-             
-                <input type="radio"  name="language" id="English" value="English" style="height:15px; width:15px;"> &nbsp; English &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                <input type="radio"  name="language" id="Tamil" value="Tamil" style="height:15px; width:15px;"> &nbsp; Tamil &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            </td>
-          </tr>
-
-      </table>
       
       
     </div>
@@ -171,7 +158,7 @@
 
       </div>
 
-      <div class="col-md-5 personel_info" style="border:1px solid #000; border-radius:25px; height:1379px;">
+      <div class="col-md-5 personel_info" style="border:1px solid #000; border-radius:25px; height:1279px;">
 
           <form action="insertkyc" method="post">
               {% csrf_token %}
@@ -201,12 +188,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <tr>
-                            <td  colspan="2">
-                                <p class = "IDC">Formal Names</br>
-                                <input class = "fn" type = "text" name = "fn" placeholder = "Formal Names" id="fn"  style="width:95%;">
-                            </td>
-                        </tr>
+                        
                         
                         <tr>
                             <td>
@@ -217,15 +199,7 @@
                             </td>
                         </tr>
                         
-                        <tr>
-                            <td>
-                               
-                                <label for="img">Upload Live video to validate NIC</label>
-                            </td>
-                            <td>
-                                <input type="file" id="img" name="img" accept="image/*">
-                            </td>
-                        </tr>
+                        
                         <td>
                             <p class = "ID_Recognitio">Identity Recognititon
                             <select name="ID_type" id="ID_type" required="" onChange="identity_recognition()">
@@ -370,7 +344,7 @@
                                     <option id="NIC/passport">NIC/passport</option>
                                     <option id="Utilityb_ill">Utility bill</option>
                                     <option id="Driving_licene">Valid Driving licene</option>
-                                    <option id="Letter">Letter from apublic authority</option>
+                                    <option id="Letter">Letter from a public authority</option>
                                     <!-- <option value="Senior Citizen ID">Senior Citizen ID</option> -->
                                    
                                     <option id="Incometax">Income tax receipt/Assesment notice</option>
@@ -379,27 +353,33 @@
                                   </select>
                             
                         </td>
-                        <td>
+                        <td><br>
                             <input type="file" id="img" name="img" accept="image/*">
                         </td>
                     </tr>
                     <tr>
-                        <td style="width:60%;" colspan="2">
-                            <p>PEP (politically exposed person) &nbsp; &nbsp; &nbsp; &nbsp;
-                        
-                            <input type="radio"  name="PEP" id="yes" value="Yes" style="height:15px; width:15px;"> &nbsp; Yes &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        <td>
+                            <p>PEP (politically exposed person) &nbsp; &nbsp; &nbsp; &nbsp; </td>
+                        <td>
+                            <input type="radio"  name="PEP" id="yes" value="Yes" style="height:15px; width:15px;"> &nbsp; Yes  &nbsp; &nbsp; &nbsp;
                          
                             <input type="radio"  name="PEP" id="no" value="No" style="height:15px; width:15px;"> &nbsp; No 
+                       
                         </td>
+                          
                         </tr>
                         <tr>
-                            <td style="width:60%;" colspan="2">
+                            <td>
                                 <p>US citizen &nbsp; &nbsp; &nbsp; &nbsp;
-                            
-                                <input type="radio"  name="US" id="yes" value="Yes" style="height:15px; width:15px;"> &nbsp; Yes &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                </td>
+                                <td>
+                                    <input type="radio"  name="US" id="yes" value="Yes" style="height:15px; width:15px;"> &nbsp; Yes  &nbsp; &nbsp; &nbsp;
                              
-                                <input type="radio"  name="US" id="no" value="No" style="height:15px; width:15px;"> &nbsp; No 
-                            </td>
+                                    <input type="radio"  name="US" id="no" value="No" style="height:15px; width:15px;"> &nbsp; No 
+                                </td>
+                            
+                                
+                            
                             </tr>
                     </table>
       </div>
@@ -494,7 +474,7 @@
                         </tr>
 
                     </table>
-                    <p style="text-align: left; padding-left: 35px;"><i><b>Current Address</b>b></i></p>
+                    <p style="text-align: left; padding-left: 35px;"><i><b>Current Address</b></i></p>
                     <table class="contact" width="90%">
 
                         <tr>
