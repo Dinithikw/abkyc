@@ -18,7 +18,7 @@
 </head>
 
 
-<body style="background: url({% static 'img/6.jpg' %}) no-repeat fixed; background-position: center;background-repeat: no-repeat; background-size: cover;">
+<body style="background: url({% static 'img/1.jpg' %}) no-repeat fixed; background-position: center;background-repeat: no-repeat; background-size: cover;">
     {% for message in messages %}
     <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
         <strong>Message </strong>{{message}}
@@ -44,7 +44,10 @@
             var drive_exp = document.getElementById("drive_exp");
             var passport = document.getElementById("passport");
             var passport_exp = document.getElementById("passport_exp");
-
+            var birthCertificate = document.getElementById("Birth_certificate_number");
+            var postalID = document.getElementById("Postal_ID");
+            var ArmedID = document.getElementById("OAFSC");
+          
             //NIC.disabled = ID_type.value = National_ID ? false : true;
 
             if(document.getElementById("ID_type").value == "National_ID"){
@@ -53,6 +56,9 @@
                 document.getElementById("drlicense").disabled = 'true';
                 document.getElementById("drive_exp").disabled = 'true';
                 document.getElementById("passport_exp").disabled = 'true'; 
+                document.getElementById("birthCertificate").disabled = 'true';
+                document.getElementById("postalID").disabled = 'true';
+                document.getElementById("ArmedID").disabled = 'true'; 
             }
             else if(document.getElementById("ID_type").value == "Passport"){
                 document.getElementById("passport").disabled = '';
@@ -60,6 +66,9 @@
                 document.getElementById("NIC").disabled = 'true';
                 document.getElementById("drlicense").disabled = 'true';
                 document.getElementById("drive_exp").disabled = 'true';
+                document.getElementById("birthCertificate").disabled = 'true';
+                document.getElementById("postalID").disabled = 'true';
+                document.getElementById("ArmedID").disabled = 'true'; 
             }
             else if(document.getElementById("ID_type").value == "Driving_License"){
                 document.getElementById("drlicense").disabled = '';
@@ -67,6 +76,39 @@
                 document.getElementById("NIC").disabled = 'true';
                 document.getElementById("passport").disabled = 'true';
                 document.getElementById("passport_exp").disabled = 'true';
+                document.getElementById("birthCertificate").disabled = 'true';
+                document.getElementById("postalID").disabled = 'true';
+                document.getElementById("ArmedID").disabled = 'true'; 
+            }
+            else if(document.getElementById("ID_type").value == "Birth_certificate_number") {  
+                document.getElementById("NIC").disabled = 'true';
+                document.getElementById("passport").disabled = 'true';
+                document.getElementById("drlicense").disabled = 'true';
+                document.getElementById("drive_exp").disabled = 'true';
+                document.getElementById("passport_exp").disabled = 'true';
+                document.getElementById("birthCertificate").disabled = '';
+                document.getElementById("postalID").disabled = 'true';
+                document.getElementById("ArmedID").disabled = 'true'; 
+            }
+            else if(document.getElementById("ID_type").value == "Postal_ID") {  
+                document.getElementById("NIC").disabled = 'true';
+                document.getElementById("passport").disabled = 'true';
+                document.getElementById("drlicense").disabled = 'true';
+                document.getElementById("drive_exp").disabled = 'true';
+                document.getElementById("passport_exp").disabled = 'true';
+                document.getElementById("birthCertificate").disabled = 'true';
+                document.getElementById("postalID").disabled = '';
+                document.getElementById("ArmedID").disabled = 'true'; 
+            }
+            else if(document.getElementById("ID_type").value == "Official_armed_forces_service_card") {  
+                document.getElementById("NIC").disabled = 'true';
+                document.getElementById("passport").disabled = 'true';
+                document.getElementById("drlicense").disabled = 'true';
+                document.getElementById("drive_exp").disabled = 'true';
+                document.getElementById("passport_exp").disabled = 'true';
+                document.getElementById("birthCertificate").disabled = 'true';
+                document.getElementById("postalID").disabled = 'true';
+                document.getElementById("ArmedID").disabled = ''; 
             }
             else if(document.getElementById("ID_type").value == "Other") {  
                 document.getElementById("NIC").disabled = 'true';
@@ -74,6 +116,9 @@
                 document.getElementById("drlicense").disabled = 'true';
                 document.getElementById("drive_exp").disabled = 'true';
                 document.getElementById("passport_exp").disabled = 'true';
+                document.getElementById("birthCertificate").disabled = 'true';
+                document.getElementById("postalID").disabled = 'true';
+                document.getElementById("ArmedID").disabled = 'true'; 
             }
             else if(document.getElementById("ID_type").value == "default") {  
                 document.getElementById("NIC").disabled = 'true';
@@ -81,6 +126,9 @@
                 document.getElementById("drlicense").disabled = 'true';
                 document.getElementById("drive_exp").disabled = 'true';
                 document.getElementById("passport_exp").disabled = 'true';
+                document.getElementById("birthCertificate").disabled = 'true';
+                document.getElementById("postalID").disabled = 'true';
+                document.getElementById("ArmedID").disabled = 'true'; 
             }
         }
         function select_nationality(){
@@ -91,13 +139,30 @@
                 document.getElementById("type_of_your_visa").disabled = 'true';
                 document.getElementById("foreign_address").disabled = 'true';
                 document.getElementById("visa_exp_other").disabled = 'true';
+                
             }
         }
     </script>
 
   <div class="row">
     <div class="col-md-12 title" style="background-color: #f3f3f300;">
-      <p style="padding-top:10px; padding-left:50px;color:#000; font-size: 30px;"><b>Know Your Customer (KYC) Form</b></p>
+       
+      <p style="padding-top:10px; padding-left:50px;color:#000"><b>Know Your Customer (KYC) Form</b></p>
+      <table  align="center" width="90%">
+          <tr>
+            <td style="width:60%;" colspan="2">
+                <p style="padding-top:10px; padding-left:50px;color:#000; font-size: 20px;">What is your prefered language? &nbsp; &nbsp;
+            
+                <input type="radio"  name="language" id="Sinhala" value="Sinhala" style="height:15px; width:15px;"> &nbsp; Sinhala &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+             
+                <input type="radio"  name="language" id="English" value="English" style="height:15px; width:15px;"> &nbsp; English &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <input type="radio"  name="language" id="Tamil" value="Tamil" style="height:15px; width:15px;"> &nbsp; Tamil &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            </td>
+          </tr>
+
+      </table>
+      
+      
     </div>
   </div>
 
@@ -106,13 +171,15 @@
 
       </div>
 
-      <div class="col-md-5 personel_info" style="border:1px solid #000; border-radius:25px; height:920px;">
+      <div class="col-md-5 personel_info" style="border:1px solid #000; border-radius:25px; height:1379px;">
 
           <form action="insertkyc" method="post">
               {% csrf_token %}
+              <br>
                 <center><h5>Personal Information</h5></center>
             <!--<div class="col-md-5 personel_info" style="border:1px solid #000; border-radius:25px;">-->
                 <table align="center" width="90%">
+                   
                     <tr>
                         <td>
                             <select name="solutation" id="solutation" required="" style="width:100px;">
@@ -134,12 +201,31 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2">
-                            <p class = "name">Former Names<br>
-                            <input class="former_name" type="text" name="former_name" placeholder="Enter your former names if you have any" id="former_name" style="width:95%;">
-                        </td>
-                    </tr>
-                    <tr>
+                        <tr>
+                            <td  colspan="2">
+                                <p class = "IDC">Formal Names</br>
+                                <input class = "fn" type = "text" name = "fn" placeholder = "Formal Names" id="fn"  style="width:95%;">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                <label for="img">Upload Live Selfie to validate NIC</label>
+                            </td>
+                            <td>
+                                <input type="file" id="img" name="img" accept="image/*">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                               
+                                <label for="img">Upload Live video to validate NIC</label>
+                            </td>
+                            <td>
+                                <input type="file" id="img" name="img" accept="image/*">
+                            </td>
+                        </tr>
                         <td>
                             <p class = "ID_Recognitio">Identity Recognititon
                             <select name="ID_type" id="ID_type" required="" onChange="identity_recognition()">
@@ -148,6 +234,12 @@
                                 <option value="Passport" id="op_passport">Passport</option>
                                 <option value="Driving_License" id="op_dl">Driving License</option>
                                 <!-- <option value="Senior Citizen ID">Senior Citizen ID</option> -->
+                               
+                                <option value="Birth_certificate_number" id="op_BCN">Birth certificate number</option>
+                                <option value="Postal_ID" id="op_PID">Postal ID</option>
+                                <option value="Official_armed_forces_service_card" id="op_OAFSC">Official armed forces service card</option>
+                                
+                                <option value="Copy of Visa" id="op_visa">Copy of Visa</option>
                                 <option value="Other" id="op_other">Other</option>
                               </select>
                         </td>
@@ -157,7 +249,7 @@
                             <p class = "NIC">NIC</br>
                             <input class="NIC" type="text" name="NIC" placeholder="NIC (fill only numbers)" id="NIC" onkeypress="isnumber(event)">
                         </td>
-                        <td>
+                        <td class="left_border">
                             <p class = "DOB">Date of Birth <br>
                             <input type="date" id="birthday" name="birthday" required="">
                         </td>
@@ -184,6 +276,33 @@
                         <td class="left_border">
                             <p class = "Exp">Expiration Date</br>
                             <input class="Exp" type="date" name="passport_exp" placeholder="Expire Date" id="passport_exp">
+                        </td>
+                    </tr>
+                   
+                    <tr>
+                        <td >
+                            <p class = "Birth certificate number">Birth certificate No.<br>
+                            <input class="Birth certificate number" type="text" name="Birth certificate number" placeholder="Birth certificate number" id="Birth_certificate_number">
+                        </td>
+                        <td class="left_border">
+                            <p class = "Postal ID">Postal ID<br>
+                            <input class="Postal ID" type="text" name="Postal ID" placeholder="Postal ID" id="Postal_ID">
+                        </td>
+                        
+                    </tr>
+                    <tr > 
+                        <td td colspan="2" style="padding-left: 150px; ">
+                            <p class = "OAFSC">Official armed forces service card<br>
+                            <input class="OAFSC" type="text" name="OAFSC" placeholder="Official armed forces service card" id="OAFSC" style="width: 60%" >
+                        </td>
+                       
+    
+                    <tr>
+                        <td>
+                            <label for="img">Copy of Visa</label>
+                        </td>
+                        <td>
+                            <input type="file" id="img" name="img" accept="image/*">
                         </td>
                     </tr>
                     <tr>
@@ -242,6 +361,47 @@
                         </td>
                     </tr>
                 </table>
+                <hr>
+                <table align="center" width="90%">
+                    <tr>
+                        <td>
+                            <p class = "Verification_address">Availability of verification doc. Address
+                                <select name="Verification_address" id="Verification_address" required="">
+                                    <option id="NIC/passport">NIC/passport</option>
+                                    <option id="Utilityb_ill">Utility bill</option>
+                                    <option id="Driving_licene">Valid Driving licene</option>
+                                    <option id="Letter">Letter from apublic authority</option>
+                                    <!-- <option value="Senior Citizen ID">Senior Citizen ID</option> -->
+                                   
+                                    <option id="Incometax">Income tax receipt/Assesment notice</option>
+                                    <option id="Employment_contract">Employment contract/option>
+                                   
+                                  </select>
+                            
+                        </td>
+                        <td>
+                            <input type="file" id="img" name="img" accept="image/*">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width:60%;" colspan="2">
+                            <p>PEP (politically exposed person) &nbsp; &nbsp; &nbsp; &nbsp;
+                        
+                            <input type="radio"  name="PEP" id="yes" value="Yes" style="height:15px; width:15px;"> &nbsp; Yes &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                         
+                            <input type="radio"  name="PEP" id="no" value="No" style="height:15px; width:15px;"> &nbsp; No 
+                        </td>
+                        </tr>
+                        <tr>
+                            <td style="width:60%;" colspan="2">
+                                <p>US citizen &nbsp; &nbsp; &nbsp; &nbsp;
+                            
+                                <input type="radio"  name="US" id="yes" value="Yes" style="height:15px; width:15px;"> &nbsp; Yes &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                             
+                                <input type="radio"  name="US" id="no" value="No" style="height:15px; width:15px;"> &nbsp; No 
+                            </td>
+                            </tr>
+                    </table>
       </div>
         
 
@@ -251,6 +411,7 @@
             <p style="padding-left: 35px;"><i>Residential Information</i></p>
       </div>-->
             <div class="col-md-5 contact_info" style="border:1px solid #000; border-radius:25px;">
+                <br>
                 <center>
                     <h5>Contact Information</h5>
                 </center><br>
@@ -282,8 +443,9 @@
                             </td>
                         </tr>
                     </table>
+                    
                     <hr>
-                    <p style="text-align: left; padding-left: 35px;"><i>Permanent Address</i></p>
+                    <p style="text-align: left; padding-left: 35px;"><i><b>Permanent Address</b></i></p>
                     <table class="contact" width="90%">
 
                         <tr>
@@ -332,7 +494,7 @@
                         </tr>
 
                     </table>
-                    <p style="text-align: left; padding-left: 35px;"><i>Current Address</i></p>
+                    <p style="text-align: left; padding-left: 35px;"><i><b>Current Address</b>b></i></p>
                     <table class="contact" width="90%">
 
                         <tr>
@@ -438,7 +600,7 @@
                     </table>
 
                 </center>
-                <br><br><br>
+
                 <p style="padding-left: 450px;"><button type="submit" class="btn btn-primary" name="submit" onclick="return validate()" >Next</button></p>
           </form>
       </div>
