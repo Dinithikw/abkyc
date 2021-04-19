@@ -29,10 +29,11 @@ def update(request):
     result = Kyc_Infotemp.objects.filter(blue_flagadd_temp=True)
     result2 = Kyc_Infotemp.objects.filter(blue_flag_temp=True)
     result3 = Kyc_Infotemp.objects.filter(red_flag_temp=True)
+    result4 = Kyc_Infotemp.objects.filter(red_flag_temp=False, blue_flag_temp=False, blue_flagadd_temp=False)
 
     # passing variables to the update.html using dictionary
     return render(request, "kyc/update.html", {"Kyc_Infotemp1": result, "Kyc_Infotemp2": result2,
-                                               "Kyc_Infotemp3": result3})
+                                               "Kyc_Infotemp3": result3, "Kyc_Infotemp4": result4})
 
 
 # defining function to get records using id through the database nad display in editing
@@ -315,7 +316,7 @@ def insertkyc(request):
 
                         red_flag = True
 
-                        submit_kyc = Kyc_Info(full_name=full_name, name_init=name_init, id_type=id_type, nics_no=nics_no,
+                        submit_kyc = Kyc_Infotemp(full_name=full_name, name_init=name_init, id_type=id_type, nics_no=nics_no,
                                   driv_lic=driv_lic,
                                   pass_no=pass_no, nationality=nationality,
                                   nationality_other=nationality_other, house_no=house_no, street=street,

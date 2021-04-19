@@ -217,6 +217,70 @@
         
         <div style="padding: 10px;"></div>
 
+        <div>
+
+            <center>
+                <div><h2>No flags</h2></div>
+                <table class="border" style="margin-top: 10px;">
+                    <tr class="border">
+                        <th id="userid"  class="border">Temp_ID</th>
+                        <th id="full_name"  class="border">Name in full</th>
+                        <th id="Name_inti"  class="border">Name with initials</th>
+                        <th id="Id_num"  class="border">Id number</th>
+                        <th id="Driving_lic"  class="border">Driving licence</th>
+                        <th id="Driving_lic"  class="border">Driving licence expire</th>
+                        <th id="passport"  class="border">Passport number</th>
+                        <th id="passport"  class="border">Passport number expire</th>
+                        <th id="nationality"  class="border">Nationality</th>
+                        <th id="other_nationality"  class="border">Other Nationality</th>
+                        <th id="DOB"  class="border">Date of birth</th>
+                        <th id="Resi_info"  class="border">House number</th>
+                        <th id="Resi_info"  class="border">Street</th>
+                        <th id="Resi_info"  class="border">City</th>
+                        <th id="Resi_info"  class="border">Country</th>
+                        <th id="contact_info" class="border">Mobile number</th>
+                        <th id="contact_info" class="border">Office number</th>
+                        <th id="contact_info" class="border">Home number</th>
+                        <th id="contact_info" class="border">Email address</th>
+                        <th id="contact_info" class="border">Occupation state</th>
+                        <th id="edit1" class="border">Edit</th>
+
+        
+                    </tr>
+
+                    {% for display in Kyc_Infotemp4 %}
+                    <tr class="border">
+                        <td class="border">{{display.id}}</td>
+                        <td class="border">{{display.full_name_temp}}</td>
+                        <td class="border">{{display.name_init_temp}}</td>
+                        <td class="border">{{display.nics_no_temp}}</td>
+                        <td class="border">{{display.driv_lic_temp}}</td>
+                        <td class="border">{{display.driv_exp_temp}}</td>
+                        <td class="border">{{display.pass_no_temp}}</td>
+                        <td class="border">{{display.pass_exp_temp}}</td>
+                        <td class="border">{{display.nationality_temp}}</td>
+                        <td class="border">{{display.nationality_other_temp}}</td>
+                        <td class="border">{{display.date_of_birth_temp}}</td>
+                        <td class="border">{{display.house_no_temp}}</td>
+                        <td class="border">{{display.street_temp}}</td>
+                        <td class="border">{{display.city_temp}}</td>
+                        <td class="border">{{display.country_temp}}</td>
+                        <td class="border">{{display.mob_no_temp}}</td>
+                        <td class="border">{{display.office_num_temp}}</td>
+                        <td class="border">{{display.home_num_temp}}</td>
+                        <td class="border">{{display.email_add_temp}}</td>
+                        <td class="border">{{display.occu_state_temp}}</td>
+                        <td class="border"><a href="/edit/{{display.id}}">edit</a></td>
+
+                    </tr>
+                    {% endfor %}
+                </table>
+
+               
+        
+            </center>
+        </div>
+
     </div>
     
 
