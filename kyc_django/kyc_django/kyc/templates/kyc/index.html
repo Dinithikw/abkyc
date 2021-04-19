@@ -30,13 +30,20 @@
 
     {% endfor %}
     <script type="text/javascript">
-        function EnableDisableTextBox() {
-            var chkNo = document.getElementById("no");
-            var residence_country = document.getElementById("resident");
-            resident.disabled = chkNo.checked ? false : true;
-            if (!resident.disabled) {
-                resident.focus();
-            }
+        // function EnableDisableTextBox() {
+        //     var chkNo = document.getElementById("no");
+        //     var residence_country = document.getElementById("resident");
+        //     residence_country.disabled = chkNo.checked ? false : true;
+        //     if (!residence_country.disabled) {
+        //         residence_country.focus();
+        //     }
+            
+        // }
+        function disable(){
+            document.getElementById("resident").disabled=true;
+        }
+        function enable() {
+        document.getElementById("resident").disabled=false;
         }
         function identity_recognition(){
             var NIC = document.getElementById("NIC");
@@ -44,7 +51,7 @@
             var drive_exp = document.getElementById("drive_exp");
             var passport = document.getElementById("passport");
             var passport_exp = document.getElementById("passport_exp");
-            var birthCertificate = document.getElementById("Birth_certificate_number");
+            var birthCertificate = document.getElementById("BRC");
             var postalID = document.getElementById("Postal_ID");
             var ArmedID = document.getElementById("OAFSC");
           
@@ -53,83 +60,122 @@
             if(document.getElementById("ID_type").value == "National_ID"){
                 document.getElementById("NIC").disabled = '';
                 document.getElementById("passport").disabled = 'true';
+                document.getElementById("birthday").disabled = '';
                 document.getElementById("drlicense").disabled = 'true';
                 document.getElementById("drive_exp").disabled = 'true';
                 document.getElementById("passport_exp").disabled = 'true'; 
-                document.getElementById("birthCertificate").disabled = 'true';
-                document.getElementById("postalID").disabled = 'true';
-                document.getElementById("ArmedID").disabled = 'true'; 
+                document.getElementById("BRC").disabled = 'true';
+                document.getElementById("PID").disabled = 'true';
+                document.getElementById("OAFSC").disabled = 'true'; 
+                document.getElementById("imgVisa").disabled = 'true';
+                document.getElementById("imgOther").disabled = 'true'; 
             }
             else if(document.getElementById("ID_type").value == "Passport"){
                 document.getElementById("passport").disabled = '';
+                document.getElementById("birthday").disabled = 'true';
                 document.getElementById("passport_exp").disabled = '';
                 document.getElementById("NIC").disabled = 'true';
                 document.getElementById("drlicense").disabled = 'true';
                 document.getElementById("drive_exp").disabled = 'true';
-                document.getElementById("birthCertificate").disabled = 'true';
-                document.getElementById("postalID").disabled = 'true';
-                document.getElementById("ArmedID").disabled = 'true'; 
+                document.getElementById("BRC").disabled = 'true';
+                document.getElementById("PID").disabled = 'true';
+                document.getElementById("OAFSC").disabled = 'true'; 
+                document.getElementById("imgOther").disabled = 'true';
+                document.getElementById("imgVisa").disabled = 'true'; 
             }
             else if(document.getElementById("ID_type").value == "Driving_License"){
                 document.getElementById("drlicense").disabled = '';
                 document.getElementById("drive_exp").disabled = '';
+                document.getElementById("birthday").disabled = 'true';
+                document.getElementById("birthday").disabled = 'true';
                 document.getElementById("NIC").disabled = 'true';
                 document.getElementById("passport").disabled = 'true';
                 document.getElementById("passport_exp").disabled = 'true';
-                document.getElementById("birthCertificate").disabled = 'true';
-                document.getElementById("postalID").disabled = 'true';
-                document.getElementById("ArmedID").disabled = 'true'; 
+                document.getElementById("BRC").disabled = 'true';
+                document.getElementById("PID").disabled = 'true';
+                document.getElementById("OAFSC").disabled = 'true'; 
+                document.getElementById("imgVisa").disabled = 'true'; 
+                document.getElementById("imgOther").disabled = 'true';
             }
             else if(document.getElementById("ID_type").value == "Birth_certificate_number") {  
                 document.getElementById("NIC").disabled = 'true';
+                document.getElementById("birthday").disabled = 'true';
                 document.getElementById("passport").disabled = 'true';
                 document.getElementById("drlicense").disabled = 'true';
                 document.getElementById("drive_exp").disabled = 'true';
                 document.getElementById("passport_exp").disabled = 'true';
-                document.getElementById("birthCertificate").disabled = '';
-                document.getElementById("postalID").disabled = 'true';
-                document.getElementById("ArmedID").disabled = 'true'; 
+                document.getElementById("BRC").disabled = '';
+                document.getElementById("PID").disabled = 'true';
+                document.getElementById("OAFSC").disabled = 'true';
+                document.getElementById("imgVisa").disabled = 'true';  
+                document.getElementById("imgOther").disabled = 'true';
             }
             else if(document.getElementById("ID_type").value == "Postal_ID") {  
                 document.getElementById("NIC").disabled = 'true';
                 document.getElementById("passport").disabled = 'true';
+                document.getElementById("birthday").disabled = 'true';
                 document.getElementById("drlicense").disabled = 'true';
                 document.getElementById("drive_exp").disabled = 'true';
                 document.getElementById("passport_exp").disabled = 'true';
-                document.getElementById("birthCertificate").disabled = 'true';
-                document.getElementById("postalID").disabled = '';
-                document.getElementById("ArmedID").disabled = 'true'; 
+                document.getElementById("BRC").disabled = 'true';
+                document.getElementById("PID").disabled = '';
+                document.getElementById("OAFSC").disabled = 'true'; 
+                document.getElementById("imgVisa").disabled = 'true'; 
+                document.getElementById("imgOther").disabled = 'true';
             }
             else if(document.getElementById("ID_type").value == "Official_armed_forces_service_card") {  
                 document.getElementById("NIC").disabled = 'true';
                 document.getElementById("passport").disabled = 'true';
+                document.getElementById("birthday").disabled = 'true';
                 document.getElementById("drlicense").disabled = 'true';
                 document.getElementById("drive_exp").disabled = 'true';
                 document.getElementById("passport_exp").disabled = 'true';
-                document.getElementById("birthCertificate").disabled = 'true';
-                document.getElementById("postalID").disabled = 'true';
-                document.getElementById("ArmedID").disabled = ''; 
+                document.getElementById("BRC").disabled = 'true';
+                document.getElementById("PID").disabled = 'true';
+                document.getElementById("OAFSC").disabled = ''; 
+                document.getElementById("imgVisa").disabled = 'true'; 
+                document.getElementById("imgOther").disabled = 'true';
+            }
+            else if(document.getElementById("ID_type").value == "Copy_of_Visa") {  
+                document.getElementById("NIC").disabled = 'true';
+                document.getElementById("passport").disabled = 'true';
+                document.getElementById("birthday").disabled = 'true';
+                document.getElementById("drlicense").disabled = 'true';
+                document.getElementById("drive_exp").disabled = 'true';
+                document.getElementById("passport_exp").disabled = 'true';
+                document.getElementById("BRC").disabled = 'true';
+                document.getElementById("PID").disabled = 'true';
+                document.getElementById("OAFSC").disabled = 'true'; 
+                document.getElementById("imgVisa").disabled = ''; 
+                document.getElementById("imgOther").disabled = 'true';
             }
             else if(document.getElementById("ID_type").value == "Other") {  
                 document.getElementById("NIC").disabled = 'true';
                 document.getElementById("passport").disabled = 'true';
+                document.getElementById("birthday").disabled = 'true';
                 document.getElementById("drlicense").disabled = 'true';
                 document.getElementById("drive_exp").disabled = 'true';
                 document.getElementById("passport_exp").disabled = 'true';
-                document.getElementById("birthCertificate").disabled = 'true';
-                document.getElementById("postalID").disabled = 'true';
-                document.getElementById("ArmedID").disabled = 'true'; 
+                document.getElementById("BRC").disabled = 'true';
+                document.getElementById("PID").disabled = 'true';
+                document.getElementById("OAFSC").disabled = 'true'; 
+                document.getElementById("imgVisa").disabled = 'true'; 
+                document.getElementById("imgOther").disabled = '';
             }
             else if(document.getElementById("ID_type").value == "default") {  
                 document.getElementById("NIC").disabled = 'true';
                 document.getElementById("passport").disabled = 'true';
+                document.getElementById("birthday").disabled = 'true';
                 document.getElementById("drlicense").disabled = 'true';
                 document.getElementById("drive_exp").disabled = 'true';
                 document.getElementById("passport_exp").disabled = 'true';
-                document.getElementById("birthCertificate").disabled = 'true';
-                document.getElementById("postalID").disabled = 'true';
-                document.getElementById("ArmedID").disabled = 'true'; 
+                document.getElementById("BRC").disabled = 'true';
+                document.getElementById("PID").disabled = 'true';
+                document.getElementById("OAFSC").disabled = 'true'; 
+                document.getElementById("imgVisa").disabled = 'true'; 
+                document.getElementById("imgOther").disabled = 'true';
             }
+            
         }
         function select_nationality(){
             if(document.getElementById("Nationality").value == "Sri Lankan"){
@@ -213,7 +259,7 @@
                                 <option value="Postal_ID" id="op_PID">Postal ID</option>
                                 <option value="Official_armed_forces_service_card" id="op_OAFSC">Official armed forces service card</option>
                                 
-                                <option value="Copy of Visa" id="op_visa">Copy of Visa</option>
+                                <option value="Copy_of_Visa" id="op_visa">Copy of Visa</option>
                                 <option value="Other" id="op_other">Other</option>
                               </select>
                         </td>
@@ -256,11 +302,11 @@
                     <tr>
                         <td >
                             <p class = "Birth certificate number">Birth certificate No.<br>
-                            <input class="Birth certificate number" type="text" name="Birth certificate number" placeholder="Birth certificate number" id="Birth_certificate_number">
+                            <input class="Birth certificate number" type="text" name="Birth certificate number" placeholder="Birth certificate number" id="BRC">
                         </td>
                         <td class="left_border">
                             <p class = "Postal ID">Postal ID<br>
-                            <input class="Postal ID" type="text" name="Postal ID" placeholder="Postal ID" id="Postal_ID">
+                            <input class="Postal ID" type="text" name="Postal ID" placeholder="Postal ID" id="PID">
                         </td>
                         
                     </tr>
@@ -276,7 +322,7 @@
                             <label for="img">Copy of Visa</label>
                         </td>
                         <td>
-                            <input type="file" id="img" name="img" accept="image/*">
+                            <input type="file" id="imgVisa" name="img" accept="image/*">
                         </td>
                     </tr>
                     <tr>
@@ -284,7 +330,7 @@
                             <label for="img">Upload a scan copy of the selected identity recognition document</label>
                         </td>
                         <td>
-                            <input type="file" id="img" name="img" accept="image/*">
+                            <input type="file" id="imgOther" name="img" accept="image/*">
                         </td>
                     </tr>
                     <tr>
@@ -403,9 +449,9 @@
                         <td style="width:60%;" colspan="2">
                             <p>Are you a resident of Sri Lanka? &nbsp; &nbsp; &nbsp; &nbsp;
                         
-                            <input type="radio"  name="residence" id="yes" value="Yes" style="height:15px; width:15px;" onclick="EnableDisableTextBox()"> &nbsp; Yes &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                            <input type="radio"  name="residence" id="yes" value="Yes" style="height:15px; width:15px;" onclick="disable()"> &nbsp; Yes &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                          
-                            <input type="radio"  name="residence" id="no" value="No" style="height:15px; width:15px;" onclick="EnableDisableTextBox()"> &nbsp; No 
+                            <input type="radio"  name="residence" id="no" value="No" style="height:15px; width:15px;" onclick="enable()"> &nbsp; No 
                         </td>
                         </tr>
                         <tr>
