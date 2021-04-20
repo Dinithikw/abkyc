@@ -29,10 +29,11 @@ def update(request):
     result = Kyc_Infotemp.objects.filter(blue_flagadd_temp=True)
     result2 = Kyc_Infotemp.objects.filter(blue_flag_temp=True)
     result3 = Kyc_Infotemp.objects.filter(red_flag_temp=True)
+    result4 = Kyc_Infotemp.objects.filter(red_flag_temp=False, blue_flag_temp=False, blue_flagadd_temp=False)
 
     # passing variables to the update.html using dictionary
     return render(request, "kyc/update.html", {"Kyc_Infotemp1": result, "Kyc_Infotemp2": result2,
-                                               "Kyc_Infotemp3": result3})
+                                               "Kyc_Infotemp3": result3, "Kyc_Infotemp4": result4})
 
 
 # defining function to get records using id through the database nad display in editing
@@ -82,7 +83,7 @@ def insertkyc1(request):
                                        email_add_temp=email_add,
                                        occu_state_temp=occu_state, date_of_birth_temp=date_of_birth,
                                        driv_exp_temp=driv_exp,
-                                       blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag)
+                                       blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag, profile_pic=profile_pic)
         submit_kyc_temp.save()
         messages.success(request, 'saved look')
         return render(request, 'kyc/(2nd)AccEmp.html')
@@ -99,7 +100,7 @@ def insertkyc1(request):
                                   nationality_other=nationality_other, house_no=house_no, street=street,
                                   city=city, mob_no=mob_no, office_num=office_num, home_num=home_num,
                                   email_add=email_add,
-                                  occu_state=occu_state, date_of_birth=date_of_birth, driv_exp=driv_exp)
+                                  occu_state=occu_state, date_of_birth=date_of_birth, driv_exp=driv_exp, profile_pic=profile_pic)
             submit_kyc.save()
             messages.success(request, 'Successfully saved')
 
@@ -157,9 +158,13 @@ def insertkyc(request):
     driv_exp = request.POST["drive_exp"]
     pass_no = request.POST["passport"]
     pass_exp = request.POST["passport_exp"]
+    Birth_certificate_number = request.POST["Birth_certificate_number"]
+    Postal_ID = request.POST["Postal_ID"]
+    OAFSC = request.POST["OAFSC"]
     nationality = request.POST["Nationality"]
     nationality_other = request.POST["Nationality_other"]
     date_of_birth = request.POST["birthday"]
+    profile_pic = request.POST["profile_pic"]
 
     # calling variables for form inputs in residential detail section
     house_no = request.POST["house_number"]
@@ -205,17 +210,47 @@ def insertkyc(request):
 
                         messages.success(request, 'existing kyc, name true, dob ture, address true')
 
+                        submit_kyc_temp = Kyc_Infotemp(full_name_temp=full_name, name_init_temp=name_init, id_type_temp=id_type,
+                                       nics_no_temp=nics_no, driv_lic_temp=driv_lic,
+                                       pass_no_temp=pass_no, nationality_temp=nationality,
+                                       nationality_other_temp=nationality_other, house_no_temp=house_no,
+                                       street_temp=street,
+                                       city_temp=city, mob_no_temp=mob_no, office_num_temp=office_num,
+                                       home_num_temp=home_num,
+                                       email_add_temp=email_add,
+                                       date_of_birth_temp=date_of_birth,
+                                       driv_exp_temp=driv_exp,
+                                       blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag, profile_pic=profile_pic)
+                        submit_kyc_temp.save()
+                        messages.success(request, 'saved look')
+                        return render(request, 'kyc/index.html')
+
                         green_flag = 'True'
                         print(green_flag)
-                        return render(request, 'kyc/(2nd)AccEmp.html')
 
                     else:
 
                         messages.warning(request, 'existing kyc, name true,dob true, address false attach proof '
                                                   'document')
+                        
 
                         blue_flag = 'True'
-                        return render(request, 'kyc/(2nd)AccEmp.html')
+                        submit_kyc_temp = Kyc_Infotemp(full_name_temp=full_name, name_init_temp=name_init, id_type_temp=id_type,
+                                       nics_no_temp=nics_no, driv_lic_temp=driv_lic,
+                                       pass_no_temp=pass_no, nationality_temp=nationality,
+                                       nationality_other_temp=nationality_other, house_no_temp=house_no,
+                                       street_temp=street,
+                                       city_temp=city, mob_no_temp=mob_no, office_num_temp=office_num,
+                                       home_num_temp=home_num,
+                                       email_add_temp=email_add,
+                                       date_of_birth_temp=date_of_birth,
+                                       driv_exp_temp=driv_exp,
+                                       blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag, profile_pic=profile_pic)
+                    submit_kyc_temp.save()
+                    messages.success(request, 'saved look')
+                    return render(request, 'kyc/index.html')
+
+
 
 
 
@@ -258,7 +293,21 @@ def insertkyc(request):
                                               street_add=street, city_ref=city).exists():
 
                         messages.success(request, 'no kyc, name true, dob ture, address true')
-                        return render(request, 'kyc/(2nd)AccEmp.html')
+
+                        submit_kyc_temp = Kyc_Infotemp(full_name_temp=full_name, name_init_temp=name_init, id_type_temp=id_type,
+                                       nics_no_temp=nics_no, driv_lic_temp=driv_lic,
+                                       pass_no_temp=pass_no, nationality_temp=nationality,
+                                       nationality_other_temp=nationality_other, house_no_temp=house_no,
+                                       street_temp=street,
+                                       city_temp=city, mob_no_temp=mob_no, office_num_temp=office_num,
+                                       home_num_temp=home_num,
+                                       email_add_temp=email_add,
+                                       date_of_birth_temp=date_of_birth,
+                                       driv_exp_temp=driv_exp,
+                                       blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag, profile_pic=profile_pic)
+                        submit_kyc_temp.save()
+                        messages.success(request, 'saved look')
+                        return render(request, 'kyc/index.html')
 
                     else:
 
@@ -267,7 +316,17 @@ def insertkyc(request):
 
                         red_flag = True
 
-                        return render(request, 'kyc/(2nd)AccEmp.html')
+                        submit_kyc = Kyc_Infotemp(full_name=full_name, name_init=name_init, id_type=id_type, nics_no=nics_no,
+                                  driv_lic=driv_lic,
+                                  pass_no=pass_no, nationality=nationality,
+                                  nationality_other=nationality_other, house_no=house_no, street=street,
+                                  city=city, mob_no=mob_no, office_num=office_num, home_num=home_num,
+                                  email_add=email_add,
+                                  date_of_birth=date_of_birth, driv_exp=driv_exp, profile_pic=profile_pic)
+                        submit_kyc.save()
+                        messages.success(request, 'Successfully saved')
+
+                        return render(request, 'kyc/index.html')
 
 
 

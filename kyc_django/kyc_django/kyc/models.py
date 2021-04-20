@@ -24,6 +24,10 @@ class Kyc_Info(models.Model):
     home_num = models.CharField(max_length=20, blank=True, null=True)
     email_add = models.CharField(max_length=50, blank=True, null=True)
     occu_state = models.CharField(max_length=50, blank=True, null=True)
+    profile_pic = models.BinaryField(blank=True)
+    Birth_certificate_number = models.CharField(max_length=10, blank=True, null=True)
+    Postal_ID = models.CharField(max_length=10, blank=True, null=True)
+    OAFSC = models.CharField(max_length=10, blank=True, null=True)
 
 
 
@@ -63,9 +67,13 @@ class Kyc_Infotemp(models.Model):
     red_flag_temp = models.CharField(max_length=5, blank=True, null=True)
     blue_flagadd_temp = models.CharField(max_length=5, blank=True, null=True)
     blue_flag_temp = models.CharField(max_length=5, blank=True, null=True)
+    profile_pic = models.BinaryField(blank=True)
+    Birth_certificate_number = models.CharField(max_length=10, blank=True, null=True)
+    Postal_ID = models.CharField(max_length=10, blank=True, null=True)
+    OAFSC = models.CharField(max_length=10, blank=True, null=True)
 
     class Meta:
-        db_table = "details"
+        db_table = "Kyc_Infotemp"
     #def __str__(self):
         #return self.full_name_temp
 
