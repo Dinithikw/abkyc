@@ -190,21 +190,21 @@
         }
     </script>
 
-  <div class="row">
-    <div class="col-md-12 title" style="background-color: #f3f3f300;">
+    <div class="row">
+        <div class="col-md-12 title" style="background-color: #f3f3f300;">
        
-      <p style="padding-top:10px; padding-left:50px;color:#000"><b>Know Your Customer (KYC) Form</b></p>
+            <p style="padding-top:10px; padding-left:50px;color:#000"><b>Know Your Customer (KYC) Form</b></p>
       
       
+        </div>
     </div>
-  </div>
 
-  <div class="row" style="margin-top: -50px;">
-      <div class="col-md-1">
+    <div class="row" style="margin-top: -50px;">
+        <div class="col-md-1">
 
-      </div>
+        </div>
 
-      <div class="col-md-5 personel_info" style="border:1px solid #000; border-radius:25px; height:1350px;">
+        <div class="col-md-5 personel_info" style="border:1px solid #000; border-radius:25px; height:1350px;">
 
           <form action="insertkyc" method="post">
               {% csrf_token %}
@@ -224,24 +224,25 @@
                         </td>
                         <td>
                             <p class = "name">Name with Initials</br>
-                            <input class = "nwi" type = "text" name = "nwi" placeholder = "Name with Initials" id="nwi" required="">
+                            <input class = "nwi" type = "text" name = "nwi" placeholder = "Name with Initials" id="nwi" required=""></p>
                         </td>
                     </tr>
+
                     <tr>
                         <td colspan="2">
                             <p class = "name">Name in Full<br>
-                            <input class="fullname" type="text" name="fullname" placeholder="Full Name" id="fullName" required="" style="width:95%;">
+                            <input class="fullname" type="text" name="fullname" placeholder="Full Name" id="fullName" required="" style="width:95%;"></p>
                         </td>
                     </tr>
+
                     <tr>
-                        
                         
                         <tr>
                             <td>
                                 <label for="img">Upload Live Selfie to validate NIC</label>
                             </td>
                             <td>
-                                <input type="file" id="img" name="img" accept="image/*">
+                                <input type="file" id="img" name="image_self" accept="image/*">
                             </td>
                         </tr>
                         
@@ -261,23 +262,23 @@
                                 
                                 <option value="Copy_of_Visa" id="op_visa">Copy of Visa</option>
                                 <option value="Other" id="op_other">Other</option>
-                              </select>
+                            </select>
                         </td>
                     </tr>
+
                     <tr>
                         <td>
                             <p class = "NIC">NIC</br>
-                            <input class="NIC" type="text" name="NIC" placeholder="NIC (fill only numbers)" id="NIC" onkeypress="isnumber(event)">
+                            <input class="NIC" type="text" name="NIC" placeholder="NIC (fill only numbers)" id="NIC" onkeypress="isnumber(event)"></p>
                         </td>
                         <td class="left_border">
                             <p class = "DOB">Date of Birth <br>
-                            <input type="date" id="birthday" name="birthday" required="">
+                            <input type="date" id="birthday" name="birthday" required=""></p>
                         </td>
 
                     </tr>
 
-                        </td>
-                    </tr>
+                       
                     <tr>
                         <td>
                             <p class = "Driving_License">Driving License<br>
