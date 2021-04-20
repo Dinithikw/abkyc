@@ -187,6 +187,27 @@
                 document.getElementById("visa_exp_other").disabled = 'true';
                 
             }
+           else if(document.getElementById("Nationality").value == "Other"){
+                document.getElementById("otherNationality").disabled = '';
+                document.getElementById("visa").disabled = '';
+                document.getElementById("visa_exp").disabled = '';
+                document.getElementById("type_of_your_visa").disabled = '';
+                document.getElementById("foreign_address").disabled = '';
+                document.getElementById("visa_exp_other").disabled = '';
+                
+           }
+        }
+        function select_visa()
+        {
+            if(document.getElementById("visa").value == "Permanent Resident"){
+                document.getElementById("type_of_your_visa").disabled = 'true';
+                document.getElementById("visa_exp_other").disabled = 'true';}
+            else if(document.getElementById("visa").value == "Temporary Resident"){
+                document.getElementById("type_of_your_visa").disabled = 'true';
+                document.getElementById("visa_exp_other").disabled = 'true';}
+            else if(document.getElementById("visa").value == "Green Card"){
+                document.getElementById("type_of_your_visa").disabled = 'true';
+                document.getElementById("visa_exp_other").disabled = 'true';}
         }
     </script>
 
@@ -224,13 +245,17 @@
                         </td>
                         <td>
                             <p class = "name">Name with Initials</br>
-                            <input class = "nwi" type = "text" name = "nwi" placeholder = "Name with Initials" id="nwi" required="">
+                            <input class = "nwi" type = "text" name = "nwi" placeholder = "Name with Initials" id="nwi" required placeholder=""
+                            oninvalid="this.setCustomValidity('Please enter your name with initials')"
+                            oninput="this.setCustomValidity('')" />
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
                             <p class = "name">Name in Full<br>
-                            <input class="fullname" type="text" name="fullname" placeholder="Full Name" id="fullName" required="" style="width:95%;">
+                            <input class="fullname" type="text" name="fullname" placeholder="Full Name" id="fullName" style="width:95%;" required placeholder=""
+                            oninvalid="this.setCustomValidity('Please enter your Full Name')"
+                            oninput="this.setCustomValidity('')"  />
                         </td>
                     </tr>
                     <tr>
@@ -241,7 +266,9 @@
                                 <label for="img">Upload Live Selfie to validate NIC</label>
                             </td>
                             <td>
-                                <input type="file" id="img" name="img" accept="image/*">
+                                <input type="file" id="img" name="img" accept="image/*" required placeholder=""
+                                oninvalid="this.setCustomValidity('Please upload a live selfie')"
+                                oninput="this.setCustomValidity('')"  />
                             </td>
                         </tr>
                         
@@ -250,7 +277,7 @@
                             <p class = "ID_Recognitio">Identity Recognititon
                             <select name="ID_type" id="ID_type" required="" onChange="identity_recognition()">
                                 <option value="default" id="op_def">Select Your ID Type</option>
-                                <option value="National_ID" id="op_nic">National ID</option>
+                                <option value="National_ID" id="op_nic"">National ID</option>
                                 <option value="Passport" id="op_passport">Passport</option>
                                 <option value="Driving_License" id="op_dl">Driving License</option>
                                 <!-- <option value="Senior Citizen ID">Senior Citizen ID</option> -->
@@ -267,11 +294,16 @@
                     <tr>
                         <td>
                             <p class = "NIC">NIC</br>
-                            <input class="NIC" type="text" name="NIC" placeholder="NIC (fill only numbers)" id="NIC" onkeypress="isnumber(event)">
+                            <input class="NIC" type="text" name="NIC" placeholder="NIC (fill only numbers)" id="NIC" onkeypress="isnumber(event)"  type="tel" id="phone" name="phone"
+                            pattern="[0-9]{10}" required="">
+                            
+                            
                         </td>
                         <td class="left_border">
                             <p class = "DOB">Date of Birth <br>
-                            <input type="date" id="birthday" name="birthday" required="">
+                            <input type="date" id="birthday" name="birthday" required placeholder=""
+                            oninvalid="this.setCustomValidity('Please enter your birthday')"
+                            oninput="this.setCustomValidity('')"/>
                         </td>
 
                     </tr>
@@ -281,39 +313,53 @@
                     <tr>
                         <td>
                             <p class = "Driving_License">Driving License<br>
-                            <input class="Driving_License" type="text" name="driving_license" placeholder="Driving License" id="drlicense">
+                            <input class="Driving_License" type="text" name="driving_license" placeholder="Driving License" id="drlicense" required placeholder=""
+                            oninvalid="this.setCustomValidity('Please enter the driving licene number')"
+                            oninput="this.setCustomValidity('')"/>
                         </td>
                         <td class="left_border">
                             <p class = "Exp">Expiration Date<br>
-                            <input class="Exp" type="date" name="drive_exp" placeholder="Expire Date" id="drive_exp">
+                            <input class="Exp" type="date" name="drive_exp" placeholder="Expire Date" id="drive_exp" required placeholder=""
+                            oninvalid="this.setCustomValidity('Please enter the expire date of your license')"
+                            oninput="this.setCustomValidity('')"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <p class = "Passport">Passport No.<br>
-                            <input class="Passport" type="text" name="passport" placeholder="Passport" id="passport">
+                            <input class="Passport" type="text" name="passport" placeholder="Passport" id="passport" required placeholder=""
+                            oninvalid="this.setCustomValidity('Please enter your passport number')"
+                            oninput="this.setCustomValidity('')"/>
                         </td>
                         <td class="left_border">
                             <p class = "Exp">Expiration Date</br>
-                            <input class="Exp" type="date" name="passport_exp" placeholder="Expire Date" id="passport_exp">
+                            <input class="Exp" type="date" name="passport_exp" placeholder="Expire Date" id="passport_exp" required placeholder=""
+                            oninvalid="this.setCustomValidity('Please enter the expire date of your passport')"
+                            oninput="this.setCustomValidity('')"/>
                         </td>
                     </tr>
                    
                     <tr>
                         <td >
                             <p class = "Birth certificate number">Birth certificate No.<br>
-                            <input class="Birth certificate number" type="text" name="Birth certificate number" placeholder="Birth certificate number" id="BRC">
+                            <input class="Birth certificate number" type="text" name="Birth certificate number" placeholder="Birth certificate number" id="BRC" required placeholder=""
+                            oninvalid="this.setCustomValidity('Please enter your birth certification number')"
+                            oninput="this.setCustomValidity('')"/>
                         </td>
                         <td class="left_border">
                             <p class = "Postal ID">Postal ID<br>
-                            <input class="Postal ID" type="text" name="Postal ID" placeholder="Postal ID" id="PID">
+                            <input class="Postal ID" type="text" name="Postal ID" placeholder="Postal ID" id="PID" required placeholder=""
+                            oninvalid="this.setCustomValidity('Please enter your postal ID number')"
+                            oninput="this.setCustomValidity('')"/>
                         </td>
                         
                     </tr>
                     <tr > 
                         <td td colspan="2" style="padding-left: 150px; ">
                             <p class = "OAFSC">Official armed forces service card<br>
-                            <input class="OAFSC" type="text" name="OAFSC" placeholder="Official armed forces service card" id="OAFSC" style="width: 60%" >
+                            <input class="OAFSC" type="text" name="OAFSC" placeholder="Official armed forces service card" id="OAFSC" style="width: 60%" required placeholder=""
+                            oninvalid="this.setCustomValidity('Please enter your Official armed forces number')"
+                            oninput="this.setCustomValidity('')"/>
                         </td>
                        
     
@@ -322,7 +368,9 @@
                             <label for="img">Copy of Visa</label>
                         </td>
                         <td>
-                            <input type="file" id="imgVisa" name="img" accept="image/*">
+                            <input type="file" id="imgVisa" name="img" accept="image/*" required placeholder=""
+                            oninvalid="this.setCustomValidity('Please upload a copy of your VISA')"
+                            oninput="this.setCustomValidity('')"/>
                         </td>
                     </tr>
                     <tr>
@@ -330,7 +378,9 @@
                             <label for="img">Upload a scan copy of the selected identity recognition document</label>
                         </td>
                         <td>
-                            <input type="file" id="imgOther" name="img" accept="image/*">
+                            <input type="file" id="imgOther" name="img" accept="image/*" required placeholder=""
+                            oninvalid="this.setCustomValidity('Please Upload a scan copy of the selected identity recognition document')"
+                            oninput="this.setCustomValidity('')"/>
                         </td>
                     </tr>
                     <tr>
@@ -346,38 +396,48 @@
                         </td>
                         <td>
                             <br><p class = "Nationality">Nationality<br>
-                            <input class="Nationality" type="text" name="Nationality_other" placeholder="Nationality" id="otherNationality" onkeyup="lettersOnly(this)">
+                            <input class="Nationality" type="text" name="Nationality_other" placeholder="Nationality" id="otherNationality" onkeyup="lettersOnly(this)" required placeholder=""
+                            oninvalid="this.setCustomValidity('Please enter your Nationality')"
+                            oninput="this.setCustomValidity('')"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <p>Type of Visa<br>
-                            <select id="visa">
-                                <option>Permanent Resident</option>
-                                <option>Temporary Resident</option>
-                                <option>Green Card</option>
-                                <option>Other</option>
+                            <select id="visa" required="" onChange="select_visa()">
+                                <option value="Permanent Resident">Permanent Resident</option>
+                                <option value="Temporary Resident">Temporary Resident</option>
+                                <option value="Green Card">Green Card</option>
+                                <option value="Other">Other</option>
                             </select>
                         </td>
                         <td class="left_border">
                             <p class = "Exp">Expiration Date</br>
-                            <input class="Exp" type="date" name="visa_exp" placeholder="Expire Date" id="visa_exp">
+                            <input class="Exp" type="date" name="visa_exp" placeholder="Expire Date" id="visa_exp" required placeholder=""
+                            oninvalid="this.setCustomValidity('Please enter the expire date of your VISA')"
+                            oninput="this.setCustomValidity('')"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <p>If other please specify<br>
-                            <input class="type_of_visa" type="text" name="type_of_visa" placeholder="Type of your visa" id="type_of_your_visa">
+                            <input class="type_of_visa" type="text" name="type_of_visa" placeholder="Type of your visa" id="type_of_your_visa"  required placeholder=""
+                            oninvalid="this.setCustomValidity('Please enter other details')"
+                            oninput="this.setCustomValidity('')"/>
                         </td>
                         <td class="left_border">
                             <p class = "Exp">Expiration Date</br>
-                            <input class="Exp" type="date" name="visa_exp" placeholder="Expire Date" id="visa_exp_other">
+                            <input class="Exp" type="date" name="visa_exp" placeholder="Expire Date" id="visa_exp_other" required placeholder=""
+                            oninvalid="this.setCustomValidity('Please enter the expire date')"
+                            oninput="this.setCustomValidity('')"/>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
                             <p>Foreign Address<br>
-                            <input type="text" name="foreign_address" id="foreign_address" placeholder="Enter your foreign address, if you have any" style="width:95%;">
+                            <input type="text" name="foreign_address" id="foreign_address" placeholder="Enter your foreign address, if you have any" style="width:95%;" required placeholder=""
+                            oninvalid="this.setCustomValidity('Please enter your foreign address')"
+                            oninput="this.setCustomValidity('')"/>
                         </td>
                     </tr>
                 </table>
@@ -399,8 +459,11 @@
                                   </select>
                             
                         </td>
-                        <td><br>
-                            <input type="file" id="img" name="img" accept="image/*">
+                        <td><br> 
+                            <input type="file" id="img" name="img" accept="image/*" required placeholder=""
+                            oninvalid="this.setCustomValidity('Please upload Availability of verification doc. Address')"
+                            oninput="this.setCustomValidity('')"/>
+                        </td>
                         </td>
                     </tr>
                     <tr>
@@ -481,7 +544,9 @@
                             </td>
 
                             <td style="width:30%">
-                                <input type="text" name="house_number" id="houseNo" required="" placeholder="Ex; 50">
+                                <input type="text" name="house_number" id="houseNo" onkeypress="isnumber(event)" placeholder="Ex; 50"  required placeholder=""
+                                oninvalid="this.setCustomValidity('Please enter the house number')"
+                                oninput="this.setCustomValidity('')"/>
                             </td>
 
                             <td class="left_border" style="width:20%">
@@ -489,7 +554,9 @@
                             </td>
 
                             <td style="width:25%">
-                                <input type="text" name="street" id="street" required="" placeholder="Ex; Jaffna Rd" >
+                                <input type="text" name="street" id="street"  placeholder="Ex; Jaffna Rd"  required placeholder=""
+                                oninvalid="this.setCustomValidity('Please enter the street name')"
+                                oninput="this.setCustomValidity('')"/>
                             </td>
 
                         </tr>
@@ -514,7 +581,9 @@
                             </td>
 
                             <td style="width:25%">
-                                <input type="text" name="postal_code" id="postal_code" readonly>
+                                <input type="text" name="postal_code" id="postal_code" onkeypress="isnumber(event)" placeholder="20000"  required placeholder=""
+                                oninvalid="this.setCustomValidity('Please enter the postal code')"
+                                oninput="this.setCustomValidity('')"/>
                             </td>
 
                         </tr>
@@ -530,7 +599,9 @@
                             </td>
 
                             <td style="width:30%">
-                                <input type="text" name="house_number" id="houseNo" required="" placeholder="Ex; 50">
+                                <input type="text" name="house_number"   onkeypress="isnumber(event)" id="houseNo"  placeholder="Ex; 50" required placeholder=""
+                                oninvalid="this.setCustomValidity('Please enter the house number')"
+                                oninput="this.setCustomValidity('')"/>
                             </td>
 
                             <td class="left_border" style="width:20%">
@@ -538,7 +609,9 @@
                             </td>
 
                             <td style="width:25%">
-                                <input type="text" name="street" id="street" required="" placeholder="Ex; Jaffna Rd" >
+                                <input type="text" name="street" id="street"  placeholder="Ex; Jaffna Rd"  required placeholder=""
+                                oninvalid="this.setCustomValidity('Please enter the street name')"
+                                oninput="this.setCustomValidity('')"/>
                             </td>
 
                         </tr>
@@ -548,14 +621,12 @@
                             <td style="width:25%">
                                 <label>City</label>
                             </td>
-
                             <td style="width:30%">
                                 <Select name="city" id="city" required="" onkeyup="lettersOnly(this)">
                                     <option>Anuradhapura</option>
                                     <option>Colombo</option>
                                     <option>Kandy</option>
                                     <option>Matale</option>
-                                    <option>Kalutara</option>
                                 </Select>
                             </td>
 
@@ -564,7 +635,9 @@
                             </td>
 
                             <td style="width:25%">
-                                <input type="text" name="postal_code" id="postal_code" readonly>
+                                <input type="text" name="postal_code" id="postal_code"  onkeypress="isnumber(event)" placeholder="20000"  required placeholder=""
+                                oninvalid="this.setCustomValidity('Please enter the postal code')"
+                                oninput="this.setCustomValidity('')"/>
                             </td>
 
                         </tr>
@@ -594,20 +667,23 @@
                             <td>
 
                                 <p>Mobile number<br>
-                                    <input type="text" name="mobile_number" id="mobile" onkeypress="isnumber(event)">
+                                    <input  name="mobile_number" id="mobile" onkeypress="isnumber(event)" type="tel" id="phone" name="phone"
+                                    pattern="[0-9]{10}" required="">
                                 </p>
 
                             </td>
 
                             <td>
                                 <p>Office<br>
-                                    <input type="text" name="office_number" id="officetel" onkeypress="isnumber(event)">
+                                    <input type="text" name="office_number" id="officetel" onkeypress="isnumber(event)"  oninput="javascript: type="tel" id="phone" name="phone"
+                                    pattern="[0-9]{10}" required="">
                                 </p>
                             </td>
 
                             <td>
                                 <p>Home<br>
-                                <input type="text" name="home_number" id="hometel" onkeypress="isnumber(event)">
+                                <input type="text" name="home_number" id="hometel" onkeypress="isnumber(event)"  type="tel" id="phone" name="phone"
+                                pattern="[0-9]{10}" required="">
                                 </p>
                             </td>
                         </tr>
@@ -618,7 +694,7 @@
                             </td>
 
                             <td colspan="2" style="width: 100%;">
-                                <input type="email" name="email" id="email" placeholder="Ex; abc@gmail.com">
+                                <input type="email" name="email" id="email" placeholder="Ex; abc@gmail.com" required />
                             </td>
 
                         </tr>
