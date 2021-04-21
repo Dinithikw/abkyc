@@ -186,7 +186,8 @@ def insertkyc(request):
     country_resident = request.POST["resident_contry"]
     house_no_per = request.POST["house_number_per"]
     street_per = request.POST["street_per"]
-    city = request.POST["city_per"]
+    city_per = request.POST["city_per"]
+    postal_code_per = request.Post["postal_code_per"]
 
     # calling variables for form inputs in contact detail section
     mob_no = request.POST["mobile_number"]
