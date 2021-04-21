@@ -151,6 +151,7 @@ def insertkyc(request):
     red_flag = False
 
     # calling variables for form inputs in personal detail section
+    salutation = request.POST["salutation"]
     full_name = request.POST["fullname"]
     name_init = request.POST["nwi"]
     id_type = request.POST["ID_type"]
