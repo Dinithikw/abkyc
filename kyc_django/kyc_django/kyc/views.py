@@ -182,9 +182,11 @@ def insertkyc(request):
     
 
     # calling variables for form inputs in residential detail section
-    house_no = request.POST["house_number"]
-    street = request.POST["street"]
-    city = request.POST["city"]
+    resident_sri = request.POST["residence_sri"]
+    country_resident = request.POST["resident_contry"]
+    house_no_per = request.POST["house_number_per"]
+    street_per = request.POST["street_per"]
+    city = request.POST["city_per"]
 
     # calling variables for form inputs in contact detail section
     mob_no = request.POST["mobile_number"]

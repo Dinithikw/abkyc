@@ -516,9 +516,9 @@
                             <td style="width:60%;" colspan="2">
                                 <p>Are you a resident of Sri Lanka? &nbsp; &nbsp; &nbsp; &nbsp;
                         
-                                <input type="radio"  name="residence" id="yes" value="Yes" style="height:15px; width:15px;" onclick="disable()"> &nbsp; Yes &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                <input type="radio"  name="residence_sri" id="yes" value="Yes" style="height:15px; width:15px;" onclick="disable()"> &nbsp; Yes &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                          
-                                <input type="radio"  name="residence" id="no" value="No" style="height:15px; width:15px;" onclick="enable()"> &nbsp; No 
+                                <input type="radio"  name="residence_sri" id="no" value="No" style="height:15px; width:15px;" onclick="enable()"> &nbsp; No 
                             </td>
                         </tr>
 
@@ -527,7 +527,7 @@
                                 <p>Country of residence</p>
                             </td>
                             <td style="width:50%;">
-                                <select type="text" name="resident" id="resident" placeholder="Please enter the country of residence" width="95%">
+                                <select type="text" name="resident" id="resident_contry" placeholder="Please enter the country of residence" width="95%">
                                     <option>Austrailia</option>
                                     <option>United States of America</option>
                                     <option>England</option>
@@ -552,7 +552,7 @@
                             </td>
 
                             <td style="width:30%">
-                                <input type="text" name="house_number" id="houseNo" onkeypress="isnumber(event)" placeholder="Ex; 50"  required placeholder=""
+                                <input type="text" name="house_number_per" id="houseNo" onkeypress="isnumber(event)" placeholder="Ex; 50"  required placeholder=""
                                 oninvalid="this.setCustomValidity('Please enter the house number')"
                                 oninput="this.setCustomValidity('')"/>
                             </td>
@@ -562,7 +562,7 @@
                             </td>
 
                             <td style="width:25%">
-                                <input type="text" name="street" id="street"  placeholder="Ex; Jaffna Rd"  required placeholder=""
+                                <input type="text" name="street_per" id="street"  placeholder="Ex; Jaffna Rd"  required placeholder=""
                                 oninvalid="this.setCustomValidity('Please enter the street name')"
                                 oninput="this.setCustomValidity('')"/>
                             </td>
@@ -576,11 +576,12 @@
                             </td>
 
                             <td style="width:30%">
-                                <Select name="city" id="city" required="" onkeyup="lettersOnly(this)">
+                                <Select name="city_per" id="city" required="" onkeyup="lettersOnly(this)">
                                     <option>Anuradhapura</option>
                                     <option>Colombo</option>
                                     <option>Kandy</option>
                                     <option>Matale</option>
+                                    <option>Kalutara</option>
                                 </Select>
                             </td>
 
