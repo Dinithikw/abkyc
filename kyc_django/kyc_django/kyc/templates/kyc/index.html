@@ -14,6 +14,126 @@
     {% load static %}    
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <script src="{% static 'js/index_min.js' %}" type="text/javascript"></script>
+	
+		
+		
+	<script type="text/javascript">
+		function  chackDOB(){
+			
+			var id =  document.getElementById("NIC").value;
+			var bir = document.getElementById("birthday").value;
+			var sex;
+			
+			var ele = document.getElementsByName('gender');
+			
+			for(i = 0; i < ele.length; i++) {
+				if(ele[i].checked)
+				sex = ele[i].value;
+			}
+			
+			var iY = Math.round((id/10000000)%100);
+			
+			// find sex 
+			
+			var sexNumber = Math.round((id/10000)%1000);
+			
+			if(sexNumber < 500)
+				{
+					if(sex == "M")
+						{
+							
+						}
+					else
+						{
+							//window.alert('wrong gender')
+
+						}
+				}
+			
+			if(sexNumber >= 500)
+				{
+					iY = iY-1;
+					
+					if(sex == "F")
+						{
+							
+						}
+					else
+						{
+							//window.alert('wrong gender')
+
+						}
+				}
+			
+				// find DOB
+			
+			var birS = bir.toString()
+			var bY = birS.slice(2,4);
+			var bM = birS.slice(5,7);
+			var bD = birS.slice(8,10);
+			
+			
+			
+			var iMD ;
+			
+			if(sexNumber >= 500)
+				{
+					iMD = sexNumber - 500;
+				}
+			else
+				{
+					iMD = sexNumber;
+				}
+			var dArray = [0,31,60,91,121,152,182,213,244,274,305,335,336];
+			var i=0;
+			
+			while(iMD>dArray[i])
+				{
+					i++;
+					
+				}
+			var iD = iMD-dArray[i-1];
+			var iM = i;
+			var temY = parseInt(bY);
+			var temM = parseInt(bM);
+			var temD = parseInt(bD);
+			
+			if(iY==temY)
+				{
+					
+				}
+			else
+				{
+					window.alert('wrong Year in Date of Birth');
+				}
+			
+			if(iM==temM)
+				{
+					
+				}
+			else
+				{
+					window.alert('wrong Month in Date of Birth');
+				}
+			
+			if(iD==temD)
+				{
+					
+				}
+			else
+				{
+					window.alert('wrong Date in Date of Birth');
+				}
+			
+
+		}
+		
+		
+	
+	</script>
+
+	
+
 
 </head>
 
@@ -277,7 +397,7 @@
                             <p class = "ID_Recognitio">Identity Recognititon
                             <select name="id_types" id="ID_type" required="" onChange="identity_recognition()">
                                 <option value="default" id="op_def">Select Your ID Type</option>
-                                <option value="National_ID" id="op_nic"">National ID</option>
+                                <option value="National_ID" id="op_nic">National ID</option>
                                 <option value="Passport" id="op_passport">Passport</option>
                                 <option value="Driving_License" id="op_dl">Driving License</option>
                                 <!-- <option value="Senior Citizen ID">Senior Citizen ID</option> -->
@@ -295,7 +415,7 @@
                     <tr>
                         <td>
                             <p class = "NIC">NIC</br>
-                                <input class="NIC" type="text" name="nic_no" placeholder="NIC (fill only numbers)" id="NIC" onkeypress="isnumber(event)" required="">
+                                <input class="NIC" type="number" name="nic_no" placeholder="NIC (fill only numbers)" id="NIC" onkeypress="isnumber(event)" required="">
                             </p>
                         </td>
 
@@ -687,7 +807,7 @@
 
                             <td>
                                 <p>Office<br>
-                                    <input type="text" name="office_number" id="officetel" onkeypress="isnumber(event)"  oninput="javascript: type="tel" id="phone" name="phone"
+                                    <input type="text" name="office_number" id="officetel" onkeypress="isnumber(event)"  oninput="javascript:" type="tel" id="phone" name="phone"
                                     pattern="[0-9]{10}" required="">
                                 </p>
                             </td>
@@ -714,7 +834,7 @@
 
                 </center>
                 <br>
-                <p style="padding-left: 450px;"><button type="submit" class="btn btn-primary" name="submit" onclick="return validate()" >Next</button></p>
+                <p style="padding-left: 450px;"><button type="submit" class="btn btn-primary" name="submit" onclick="chackDOB();validate();return" >Next</button></p>
           </form>
       </div>
 
