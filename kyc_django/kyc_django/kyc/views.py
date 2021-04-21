@@ -189,11 +189,17 @@ def insertkyc(request):
     city_per = request.POST["city_per"]
     postal_code_per = request.Post["postal_code_per"]
 
+    house_no = request.POST["house_number"]
+    street = request.POST["street"]
+    city = request.POST["city"]
+    postal_code = request.POST["postal_code"]
+    state_address = request.POST["state_of_address"]
+
     # calling variables for form inputs in contact detail section
     mob_no = request.POST["mobile_number"]
     office_num = request.POST["office_number"]
     home_num = request.POST["home_number"]
-    email_add = request.POST["email"]
+    email_add = request.POST["email_add"]
 
     # checking is there ID exists in Identity information database
     if Id_Info.objects.filter(nic_no=nics_no).exists():
