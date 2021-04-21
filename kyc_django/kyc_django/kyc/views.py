@@ -132,13 +132,14 @@ def insertkyc(request):
 
     # ***************** variables of personal information first form ***************
 
-    global full_name, name_init, id_type, nics_no, driv_lic, driv_exp, pass_no, pass_exp, nationality
-    global nationality_other, date_of_birth
+    global salutation, full_name, name_init, profile_pic, id_type, nics_no, date_of_birth, driv_lic, driv_exp, pass_no, pass_exp
+    global birth_cernum, post_id, oafsc, visa_copy, othe_identity_doc, nationality, nationality_other, type_of_visa, visa_exp
+    global other_types, other_exp, foreign_addre, vari_doc_type, vari_doc, pep_person, us_city
 
     # global full_name_temp, name_init_temp, date_of_birth_temp
 
     # variables of residential details
-    global house_no, street, city
+    global resident_sri, country_resident, house_no, street, city, postal_code, state_address, house_no_per, street_per, city_per, postal_code_per
 
     # variables of contact information
     global mob_no, office_num, home_num, email_add
