@@ -171,8 +171,12 @@ def insertkyc(request):
     nationality_other = request.POST["nationality_other"]
     type_of_visa = request.POST["visa_type"]
     visa_exp = request.POST["visa_exp"]
+    other_types = request.POST["type_of_visa"]
+    other_exp = request.POST["visa_other_exp"]
+    foreign_addre =request.POST["foreign_address"]
+    vari_doc_type =request.POST["Verification_addres"]
     
-    profile_pic = request.POST["profile_pic"]
+    
 
     # calling variables for form inputs in residential detail section
     house_no = request.POST["house_number"]
