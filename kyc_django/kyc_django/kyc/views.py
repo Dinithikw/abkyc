@@ -36,7 +36,7 @@ def update(request):
                                                "Kyc_Infotemp3": result3, "Kyc_Infotemp4": result4})
 
 
-# defining function to get records using id through the database nad display in editing
+# defining function to get records using id through the database and display in editing
 def edit_val(request, id):
     update_val = Kyc_Infotemp.objects.get(id=id)
 
