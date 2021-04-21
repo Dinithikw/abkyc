@@ -154,6 +154,7 @@ def insertkyc(request):
     salutation = request.POST["salutation"]
     full_name = request.POST["fullname"]
     name_init = request.POST["name_init"]
+    profile_pic = request.POST["self_nic"]
     id_type = request.POST["ID_type"]
     nics_no = request.POST["NIC"]
     driv_lic = request.POST["driving_license"]
