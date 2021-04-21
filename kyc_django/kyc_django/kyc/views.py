@@ -217,6 +217,7 @@ def insertkyc(request):
         nationality_other = ''
         type_of_visa = ''
         visa_exp = ''
+        other_types = ''
         other_exp = ''
         foreign_addre = ''
 
@@ -289,20 +290,26 @@ def insertkyc(request):
                                                        id_type_temp=id_type,
                                                        nics_no_temp=nics_no, date_of_birth_temp=date_of_birth,
                                                        driv_lic_temp=drive_lic, driv_exp_temp=driv_exp,
-                                                       pass_no_temp=pass_no, pass_exp_temp=pass_exp, birth_cernum_temp=birth_cernum,
+                                                       pass_no_temp=pass_no, pass_exp_temp=pass_exp,
+                                                       birth_cernum_temp=birth_cernum,
                                                        post_id_temp=post_id, oafsc_temp=oafsc, visa_copy_temp=visa_copy,
-                                                       othe_identity_doc_temp=othe_identity_doc ,nationality_temp=nationality ,
-                                                       nationality_other_temp=nationality_other, type_of_visa_temp=type_of_visa,
+                                                       othe_identity_doc_temp=othe_identity_doc,
+                                                       nationality_temp=nationality,
+                                                       nationality_other_temp=nationality_other,
+                                                       type_of_visa_temp=type_of_visa,
                                                        visa_exp_temp=visa_exp, other_types_temp=other_types,
                                                        other_exp_temp=other_exp, foreign_addre_temp=foreign_addre,
-                                                       vari_doc_type_temp=vari_doc_type, vari_doc_temp=vari_doc, pep_person_temp=pep_person,
+                                                       vari_doc_type_temp=vari_doc_type, vari_doc_temp=vari_doc,
+                                                       pep_person_temp=pep_person,
                                                        us_city_temp=us_city,
-                                                       resident_sri_temp=resident_sri, country_resident_temp=country_resident,
+                                                       resident_sri_temp=resident_sri,
+                                                       country_resident_temp=country_resident,
                                                        house_no_temp=house_no, street_temp=street, city_temp=city,
                                                        postal_code_temp=postal_code, state_address_temp=state_address,
                                                        house_no_per_temp=house_no_per, street_per_temp=street_per,
-                                                       city_per_temp= city_per, postal_code_per_temp=postal_code_per,
-                                                       mob_no_temp=mob_no, office_num_temp=office_num, home_num_temp=home_num,
+                                                       city_per_temp=city_per, postal_code_per_temp=postal_code_per,
+                                                       mob_no_temp=mob_no, office_num_temp=office_num,
+                                                       home_num_temp=home_num,
                                                        email_add_temp=email_add, red_flag_temp=red_flag,
                                                        blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag)
                         submit_kyc_temp.save()
@@ -316,24 +323,36 @@ def insertkyc(request):
                                                   'document')
 
                         blue_flag = 'True'
-                        """submit_kyc_temp = Kyc_Infotemp(full_name_temp=full_name, name_init_temp=name_init, id_type_temp=id_type,
-                                       nics_no_temp=nics_no, driv_lic_temp=driv_lic,
-                                       pass_no_temp=pass_no, nationality_temp=nationality,
-                                       nationality_other_temp=nationality_other, house_no_temp=house_no,
-                                       street_temp=street,
-                                       city_temp=city, mob_no_temp=mob_no, office_num_temp=office_num,
-                                       home_num_temp=home_num,
-                                       email_add_temp=email_add,
-                                       date_of_birth_temp=date_of_birth,
-                                       driv_exp_temp=driv_exp,
-                                       blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag, profile_pic=profile_pic)
-                    submit_kyc_temp.save()"""
-                    messages.success(request, 'saved look')
-                    return render(request, 'kyc/index.html')
-
-
-
-
+                        submit_kyc_temp = Kyc_Infotemp(salutation_temp=salutation, full_name_temp=full_name,
+                                                       name_init_temp=name_init, profile_pic_temp=profile_pic,
+                                                       id_type_temp=id_type,
+                                                       nics_no_temp=nics_no, date_of_birth_temp=date_of_birth,
+                                                       driv_lic_temp=drive_lic, driv_exp_temp=driv_exp,
+                                                       pass_no_temp=pass_no, pass_exp_temp=pass_exp,
+                                                       birth_cernum_temp=birth_cernum,
+                                                       post_id_temp=post_id, oafsc_temp=oafsc, visa_copy_temp=visa_copy,
+                                                       othe_identity_doc_temp=othe_identity_doc,
+                                                       nationality_temp=nationality,
+                                                       nationality_other_temp=nationality_other,
+                                                       type_of_visa_temp=type_of_visa,
+                                                       visa_exp_temp=visa_exp, other_types_temp=other_types,
+                                                       other_exp_temp=other_exp, foreign_addre_temp=foreign_addre,
+                                                       vari_doc_type_temp=vari_doc_type, vari_doc_temp=vari_doc,
+                                                       pep_person_temp=pep_person,
+                                                       us_city_temp=us_city,
+                                                       resident_sri_temp=resident_sri,
+                                                       country_resident_temp=country_resident,
+                                                       house_no_temp=house_no, street_temp=street, city_temp=city,
+                                                       postal_code_temp=postal_code, state_address_temp=state_address,
+                                                       house_no_per_temp=house_no_per, street_per_temp=street_per,
+                                                       city_per_temp=city_per, postal_code_per_temp=postal_code_per,
+                                                       mob_no_temp=mob_no, office_num_temp=office_num,
+                                                       home_num_temp=home_num,
+                                                       email_add_temp=email_add, red_flag_temp=red_flag,
+                                                       blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag)
+                        submit_kyc_temp.save()
+                        messages.success(request, 'saved look')
+                        return render(request, 'kyc/index.html')
 
                 # if date of birth is false
                 else:
@@ -375,19 +394,35 @@ def insertkyc(request):
 
                         messages.success(request, 'no kyc, name true, dob ture, address true')
 
-                        """submit_kyc_temp = Kyc_Infotemp(full_name_temp=full_name, name_init_temp=name_init, id_type_temp=id_type,
-                                       nics_no_temp=nics_no, driv_lic_temp=driv_lic,
-                                       pass_no_temp=pass_no, nationality_temp=nationality,
-                                       nationality_other_temp=nationality_other, house_no_temp=house_no,
-                                       street_temp=street,
-                                       city_temp=city, mob_no_temp=mob_no, office_num_temp=office_num,
-                                       home_num_temp=home_num,
-                                       email_add_temp=email_add,
-                                       date_of_birth_temp=date_of_birth,
-                                       driv_exp_temp=driv_exp,
-                                       blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag, profile_pic=profile_pic)
-                        submit_kyc_temp.save()"""
-                        messages.success(request, 'saved look')
+                        submit_kyc_temp = Kyc_Infotemp(salutation_temp=salutation, full_name_temp=full_name,
+                                                       name_init_temp=name_init, profile_pic_temp=profile_pic,
+                                                       id_type_temp=id_type,
+                                                       nics_no_temp=nics_no, date_of_birth_temp=date_of_birth,
+                                                       driv_lic_temp=drive_lic, driv_exp_temp=driv_exp,
+                                                       pass_no_temp=pass_no, pass_exp_temp=pass_exp,
+                                                       birth_cernum_temp=birth_cernum,
+                                                       post_id_temp=post_id, oafsc_temp=oafsc, visa_copy_temp=visa_copy,
+                                                       othe_identity_doc_temp=othe_identity_doc,
+                                                       nationality_temp=nationality,
+                                                       nationality_other_temp=nationality_other,
+                                                       type_of_visa_temp=type_of_visa,
+                                                       visa_exp_temp=visa_exp, other_types_temp=other_types,
+                                                       other_exp_temp=other_exp, foreign_addre_temp=foreign_addre,
+                                                       vari_doc_type_temp=vari_doc_type, vari_doc_temp=vari_doc,
+                                                       pep_person_temp=pep_person,
+                                                       us_city_temp=us_city,
+                                                       resident_sri_temp=resident_sri,
+                                                       country_resident_temp=country_resident,
+                                                       house_no_temp=house_no, street_temp=street, city_temp=city,
+                                                       postal_code_temp=postal_code, state_address_temp=state_address,
+                                                       house_no_per_temp=house_no_per, street_per_temp=street_per,
+                                                       city_per_temp=city_per, postal_code_per_temp=postal_code_per,
+                                                       mob_no_temp=mob_no, office_num_temp=office_num,
+                                                       home_num_temp=home_num,
+                                                       email_add_temp=email_add, red_flag_temp=red_flag,
+                                                       blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag)
+                        submit_kyc_temp.save()
+                        messages.success(request, 'Successfully saved')
                         return render(request, 'kyc/index.html')
 
                     else:
@@ -397,21 +432,40 @@ def insertkyc(request):
 
                         red_flag = True
 
-                        """submit_kyc = Kyc_Infotemp(full_name=full_name, name_init=name_init, id_type=id_type, nics_no=nics_no,
-                                  driv_lic=driv_lic,
-                                  pass_no=pass_no, nationality=nationality,
-                                  nationality_other=nationality_other, house_no=house_no, street=street,
-                                  city=city, mob_no=mob_no, office_num=office_num, home_num=home_num,
-                                  email_add=email_add,
-                                  date_of_birth=date_of_birth, driv_exp=driv_exp, profile_pic=profile_pic)
-                        submit_kyc.save()"""
-                        messages.success(request, 'Successfully saved')
-
+                        submit_kyc_temp = Kyc_Infotemp(salutation_temp=salutation, full_name_temp=full_name,
+                                                       name_init_temp=name_init, profile_pic_temp=profile_pic,
+                                                       id_type_temp=id_type,
+                                                       nics_no_temp=nics_no, date_of_birth_temp=date_of_birth,
+                                                       driv_lic_temp=drive_lic, driv_exp_temp=driv_exp,
+                                                       pass_no_temp=pass_no, pass_exp_temp=pass_exp,
+                                                       birth_cernum_temp=birth_cernum,
+                                                       post_id_temp=post_id, oafsc_temp=oafsc, visa_copy_temp=visa_copy,
+                                                       othe_identity_doc_temp=othe_identity_doc,
+                                                       nationality_temp=nationality,
+                                                       nationality_other_temp=nationality_other,
+                                                       type_of_visa_temp=type_of_visa,
+                                                       visa_exp_temp=visa_exp, other_types_temp=other_types,
+                                                       other_exp_temp=other_exp, foreign_addre_temp=foreign_addre,
+                                                       vari_doc_type_temp=vari_doc_type, vari_doc_temp=vari_doc,
+                                                       pep_person_temp=pep_person,
+                                                       us_city_temp=us_city,
+                                                       resident_sri_temp=resident_sri,
+                                                       country_resident_temp=country_resident,
+                                                       house_no_temp=house_no, street_temp=street, city_temp=city,
+                                                       postal_code_temp=postal_code, state_address_temp=state_address,
+                                                       house_no_per_temp=house_no_per, street_per_temp=street_per,
+                                                       city_per_temp=city_per, postal_code_per_temp=postal_code_per,
+                                                       mob_no_temp=mob_no, office_num_temp=office_num,
+                                                       home_num_temp=home_num,
+                                                       email_add_temp=email_add, red_flag_temp=red_flag,
+                                                       blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag)
+                        submit_kyc_temp.save()
+                        messages.success(request, 'saved look')
                         return render(request, 'kyc/index.html')
 
 
 
-                # if date of birth is false
+                # If date of birth is false
                 else:
                     # give an error message
                     messages.warning(request, 'no kyc, name true,dob false')
