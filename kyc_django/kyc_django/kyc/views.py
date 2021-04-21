@@ -139,7 +139,8 @@ def insertkyc(request):
     # global full_name_temp, name_init_temp, date_of_birth_temp
 
     # variables of residential details
-    global resident_sri, country_resident, house_no, street, city, postal_code, state_address, house_no_per, street_per, city_per, postal_code_per
+    global resident_sri, country_resident, house_no, street, city, postal_code, state_address, house_no_per, street_per
+    global city_per, postal_code_per
 
     # variables of contact information
     global mob_no, office_num, home_num, email_add
@@ -156,36 +157,70 @@ def insertkyc(request):
     name_init = request.POST["name_init"]
     profile_pic = request.POST["self_nic"]
     id_type = request.POST["id_types"]
+
     try:
         nics_no = request.POST["nic_no"]
         date_of_birth = request.POST["birth_day"]
     except MultiValueDictKeyError:
         nics_no = ''
         date_of_birth = ''
+
     try:
         drive_lic = request.POST.get("drive_lice")
         driv_exp = request.POST["drive_exp"]
     except MultiValueDictKeyError:
         drive_lic = ''
         driv_exp = ''
+
     try:
         pass_no = request.POST["passport_num"]
         pass_exp = request.POST["passport_exp"]
     except MultiValueDictKeyError:
         pass_no = ''
         pass_exp = ''
-    birth_cernum = request.POST["birth_certi", '']
-    post_id = request.POST["postal_iden", '']
-    oafsc = request.POST["oafsc", '']
-    visa_copy = request.POST["img_visa", '']
-    othe_identity_doc = request.POST["img_other", '']
+
+    try:
+        birth_cernum = request.POST["birth_certi"]
+    except MultiValueDictKeyError:
+        birth_cernum = ''
+
+    try:
+        post_id = request.POST["postal_iden"]
+    except MultiValueDictKeyError:
+        post_id = ''
+
+    try:
+        oafsc = request.POST["oafsc"]
+    except MultiValueDictKeyError:
+        oafsc = ''
+
+    try:
+        visa_copy = request.POST["img_visa"]
+    except MultiValueDictKeyError:
+        visa_copy = ''
+
+    try:
+        othe_identity_doc = request.POST["img_other"]
+    except MultiValueDictKeyError:
+        othe_identity_doc = ''
+
     nationality = request.POST["nationality"]
-    nationality_other = request.POST["nationality_other", '']
-    type_of_visa = request.POST["visa_type", '']
-    visa_exp = request.POST["visa_exp", '']
-    other_types = request.POST["type_of_visa", '']
-    other_exp = request.POST["visa_other_exp", '']
-    foreign_addre = request.POST["foreign_address", '']
+
+    try:
+        nationality_other = request.POST["nationality_other"]
+        type_of_visa = request.POST["visa_type"]
+        visa_exp = request.POST["visa_exp"]
+        other_types = request.POST["type_of_visa"]
+        other_exp = request.POST["visa_other_exp"]
+        foreign_addre = request.POST["foreign_address"]
+
+    except MultiValueDictKeyError:
+        nationality_other = ''
+        type_of_visa = ''
+        visa_exp = ''
+        other_exp = ''
+        foreign_addre = ''
+
     vari_doc_type = request.POST["Verification_addres"]
     vari_doc = request.POST["vari_image"]
     pep_person = request.POST["pep"]
@@ -195,11 +230,16 @@ def insertkyc(request):
 
     # calling variables for form inputs in residential detail section
     resident_sri = request.POST["residence_sri"]
-    country_resident = request.POST["resident_contry", '']
+
+    try:
+        country_resident = request.POST["resident_contry"]
+    except MultiValueDictKeyError:
+        country_resident = ''
+
     house_no_per = request.POST["house_number_per"]
     street_per = request.POST["street_per"]
     city_per = request.POST["city_per"]
-    postal_code_per = request.Post["postal_code_per"]
+    postal_code_per = request.POST["postal_code_per"]
 
     house_no = request.POST["house_number"]
     street = request.POST["street"]
