@@ -4,30 +4,61 @@ from datetime import datetime, date
 
 # Create your models here.
 class Kyc_Info(models.Model):
+    salutation = models.CharField(max_length=5)
     full_name = models.CharField(max_length=200)
     name_init = models.CharField(max_length=100)
+    profile_pic = models.BinaryField(blank=True)
     id_type = models.CharField(max_length=50)
     nics_no = models.CharField(max_length=50)
+    date_of_birth = models.DateField('%Y-%m-%d')
     driv_lic = models.CharField(max_length=50, blank=True, null=True)
     driv_exp = models.CharField(max_length=20, blank=True, null=True)
     pass_no = models.CharField(max_length=50, blank=True, null=True)
     pass_exp = models.CharField(max_length=20, blank=True, null=True)
+    birth_cernum = models.CharField(max_length=10, blank=True, null=True)
+    post_id = models.CharField(max_length=10, blank=True, null=True)
+    oafsc = models.CharField(max_length=10, blank=True, null=True)
+    visa_copy = models.BinaryField(blank=True)
+    othe_identity_doc = models.BinaryField(blank=True)
     nationality = models.CharField(max_length=50)
     nationality_other = models.CharField(max_length=50, blank=True, null=True)
-    date_of_birth = models.DateField('%Y-%m-%d')
+    type_of_visa = models.CharField(max_length=20,blank=True)
+    visa_exp = models.CharField(max_length=20, blank=True, null=True)
+    other_types = models.CharField(max_length=20,blank=True)
+    other_exp = models.CharField(max_length=20, blank=True, null=True)
+    foreign_addre = models.CharField(max_length=200, blank=True, null=True)
+    vari_doc_type = models.CharField(max_length=200, blank=True, null=True)
+    vari_doc = models.BinaryField(blank=True)
+    pep_person = models.CharField(max_length=200, blank=True, null=True)
+    us_city = models.CharField(max_length=200, blank=True, null=True)
+
+    # residential information
+    resident_sri = models.CharField(max_length=10, blank=True, null=True)
+    country_resident =models.CharField(blank=True, max_length=50)
+
+    # current Address
     house_no = models.CharField(max_length=20)
     street = models.CharField(max_length=20)
     city = models.CharField(max_length=20)
-    #country = models.CharField(max_length=20)
+    postal_code = models.CharField(max_length=10, blank=True, null=True)
+    state_address = models.CharField(max_length=20, blank=True, null=True)
+
+    # permenent Address
+    house_no_per = models.CharField(max_length=20)
+    street_per = models.CharField(max_length=20)
+    city_per = models.CharField(max_length=20)
+    postal_code_per = models.CharField(max_length=10, blank=True, null=True)
+    
+    # contact infromation
     mob_no = models.CharField(max_length=20)
     office_num = models.CharField(max_length=20, blank=True, null=True)
     home_num = models.CharField(max_length=20, blank=True, null=True)
     email_add = models.CharField(max_length=50, blank=True, null=True)
+    
+    # secound page
     occu_state = models.CharField(max_length=50, blank=True, null=True)
-    profile_pic = models.BinaryField(blank=True)
-    Birth_certificate_number = models.CharField(max_length=10, blank=True, null=True)
-    Postal_ID = models.CharField(max_length=10, blank=True, null=True)
-    OAFSC = models.CharField(max_length=10, blank=True, null=True)
+    
+    
 
 
 
