@@ -157,6 +157,7 @@ def insertkyc(request):
     profile_pic = request.POST["self_nic"]
     id_type = request.POST["id_types"]
     nics_no = request.POST["nic_no"]
+    date_of_birth = request.POST["birth_day"]
     driv_lic = request.POST["driving_license"]
     driv_exp = request.POST["drive_exp"]
     pass_no = request.POST["passport"]
@@ -166,7 +167,7 @@ def insertkyc(request):
     OAFSC = request.POST["OAFSC"]
     nationality = request.POST["Nationality"]
     nationality_other = request.POST["Nationality_other"]
-    date_of_birth = request.POST["birthday"]
+    
     profile_pic = request.POST["profile_pic"]
 
     # calling variables for form inputs in residential detail section
