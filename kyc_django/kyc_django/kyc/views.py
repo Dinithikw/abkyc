@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Kyc_Info, Kyc_Infotemp, Id_Info
 from django.contrib import messages
-
+from django.utils.datastructures import MultiValueDictKeyError
 from .forms import update_forms
 
 
@@ -63,7 +63,7 @@ def update_data(request, id):
 
 
 # defining method to call accounts page and applying values to the variables
-def insertkyc1(request):
+"""def insertkyc1(request):
     # *************variables of second form********************
     global occu_state
 
@@ -120,7 +120,7 @@ def insertkyc1(request):
                                            blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag)
             submit_kyc_temp.save()
             messages.success(request, 'saved look')
-            return render(request, 'kyc/(2nd)AccEmp.html')
+            return render(request, 'kyc/(2nd)AccEmp.html')"""
 
 
 def insertkyc(request):
@@ -132,7 +132,7 @@ def insertkyc(request):
 
     # ***************** variables of personal information first form ***************
 
-    global salutation, full_name, name_init, profile_pic, id_type, nics_no, date_of_birth, driv_lic, driv_exp, pass_no, pass_exp
+    global salutation, full_name, name_init, profile_pic, id_type, nics_no, date_of_birth, drive_lic, driv_exp, pass_no, pass_exp
     global birth_cernum, post_id, oafsc, visa_copy, othe_identity_doc, nationality, nationality_other, type_of_visa, visa_exp
     global other_types, other_exp, foreign_addre, vari_doc_type, vari_doc, pep_person, us_city
 
@@ -156,24 +156,36 @@ def insertkyc(request):
     name_init = request.POST["name_init"]
     profile_pic = request.POST["self_nic"]
     id_type = request.POST["id_types"]
-    nics_no = request.POST["nic_no"]
-    date_of_birth = request.POST["birth_day"]
-    driv_lic = request.POST["drive_lic"]
-    driv_exp = request.POST["drive_exp"]
-    pass_no = request.POST["passport_num"]
-    pass_exp = request.POST["passport_exp"]
-    birth_cernum = request.POST["birth_certi"]
-    Postal_ID = request.POST["postal_iden"]
-    oafsc = request.POST["oafsc"]
-    visa_copy = request.POST["img_visa"]
-    othe_identity_doc = request.POST["img_other"]
+    try:
+        nics_no = request.POST["nic_no"]
+        date_of_birth = request.POST["birth_day"]
+    except MultiValueDictKeyError:
+        nics_no = ''
+        date_of_birth = ''
+    try:
+        drive_lic = request.POST.get("drive_lice")
+        driv_exp = request.POST["drive_exp"]
+    except MultiValueDictKeyError:
+        drive_lic = ''
+        driv_exp = ''
+    try:
+        pass_no = request.POST["passport_num"]
+        pass_exp = request.POST["passport_exp"]
+    except MultiValueDictKeyError:
+        pass_no = ''
+        pass_exp = ''
+    birth_cernum = request.POST["birth_certi", '']
+    post_id = request.POST["postal_iden", '']
+    oafsc = request.POST["oafsc", '']
+    visa_copy = request.POST["img_visa", '']
+    othe_identity_doc = request.POST["img_other", '']
     nationality = request.POST["nationality"]
-    nationality_other = request.POST["nationality_other"]
-    type_of_visa = request.POST["visa_type"]
-    visa_exp = request.POST["visa_exp"]
-    other_types = request.POST["type_of_visa"]
-    other_exp = request.POST["visa_other_exp"]
-    foreign_addre = request.POST["foreign_address"]
+    nationality_other = request.POST["nationality_other", '']
+    type_of_visa = request.POST["visa_type", '']
+    visa_exp = request.POST["visa_exp", '']
+    other_types = request.POST["type_of_visa", '']
+    other_exp = request.POST["visa_other_exp", '']
+    foreign_addre = request.POST["foreign_address", '']
     vari_doc_type = request.POST["Verification_addres"]
     vari_doc = request.POST["vari_image"]
     pep_person = request.POST["pep"]
@@ -183,7 +195,7 @@ def insertkyc(request):
 
     # calling variables for form inputs in residential detail section
     resident_sri = request.POST["residence_sri"]
-    country_resident = request.POST["resident_contry"]
+    country_resident = request.POST["resident_contry", '']
     house_no_per = request.POST["house_number_per"]
     street_per = request.POST["street_per"]
     city_per = request.POST["city_per"]
@@ -234,7 +246,7 @@ def insertkyc(request):
 
                         messages.success(request, 'existing kyc, name true, dob ture, address true')
 
-                        submit_kyc_temp = Kyc_Infotemp(full_name_temp=full_name, name_init_temp=name_init, id_type_temp=id_type,
+                        """submit_kyc_temp = Kyc_Infotemp(full_name_temp=full_name, name_init_temp=name_init, id_type_temp=id_type,
                                        nics_no_temp=nics_no, driv_lic_temp=driv_lic,
                                        pass_no_temp=pass_no, nationality_temp=nationality,
                                        nationality_other_temp=nationality_other, house_no_temp=house_no,
@@ -245,7 +257,7 @@ def insertkyc(request):
                                        date_of_birth_temp=date_of_birth,
                                        driv_exp_temp=driv_exp,
                                        blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag, profile_pic=profile_pic)
-                        submit_kyc_temp.save()
+                        submit_kyc_temp.save()"""
                         messages.success(request, 'saved look')
                         return render(request, 'kyc/index.html')
 
@@ -259,7 +271,7 @@ def insertkyc(request):
                         
 
                         blue_flag = 'True'
-                        submit_kyc_temp = Kyc_Infotemp(full_name_temp=full_name, name_init_temp=name_init, id_type_temp=id_type,
+                        """submit_kyc_temp = Kyc_Infotemp(full_name_temp=full_name, name_init_temp=name_init, id_type_temp=id_type,
                                        nics_no_temp=nics_no, driv_lic_temp=driv_lic,
                                        pass_no_temp=pass_no, nationality_temp=nationality,
                                        nationality_other_temp=nationality_other, house_no_temp=house_no,
@@ -270,7 +282,7 @@ def insertkyc(request):
                                        date_of_birth_temp=date_of_birth,
                                        driv_exp_temp=driv_exp,
                                        blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag, profile_pic=profile_pic)
-                    submit_kyc_temp.save()
+                    submit_kyc_temp.save()"""
                     messages.success(request, 'saved look')
                     return render(request, 'kyc/index.html')
 
@@ -290,12 +302,12 @@ def insertkyc(request):
 
         else:
 
-            print(full_name)
-            print(name_init)
+            print(drive_lic)
+            print(driv_exp)
             print(id_type)
             print(nics_no)
             print(date_of_birth)
-            print(driv_exp)
+            #print(driv_exp)
 
             # check whether the full name is similar to id info database
             if Id_Info.objects.filter(nic_no=nics_no, name_full=full_name).exists():
@@ -318,7 +330,7 @@ def insertkyc(request):
 
                         messages.success(request, 'no kyc, name true, dob ture, address true')
 
-                        submit_kyc_temp = Kyc_Infotemp(full_name_temp=full_name, name_init_temp=name_init, id_type_temp=id_type,
+                        """submit_kyc_temp = Kyc_Infotemp(full_name_temp=full_name, name_init_temp=name_init, id_type_temp=id_type,
                                        nics_no_temp=nics_no, driv_lic_temp=driv_lic,
                                        pass_no_temp=pass_no, nationality_temp=nationality,
                                        nationality_other_temp=nationality_other, house_no_temp=house_no,
@@ -329,7 +341,7 @@ def insertkyc(request):
                                        date_of_birth_temp=date_of_birth,
                                        driv_exp_temp=driv_exp,
                                        blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag, profile_pic=profile_pic)
-                        submit_kyc_temp.save()
+                        submit_kyc_temp.save()"""
                         messages.success(request, 'saved look')
                         return render(request, 'kyc/index.html')
 
@@ -340,14 +352,14 @@ def insertkyc(request):
 
                         red_flag = True
 
-                        submit_kyc = Kyc_Infotemp(full_name=full_name, name_init=name_init, id_type=id_type, nics_no=nics_no,
+                        """submit_kyc = Kyc_Infotemp(full_name=full_name, name_init=name_init, id_type=id_type, nics_no=nics_no,
                                   driv_lic=driv_lic,
                                   pass_no=pass_no, nationality=nationality,
                                   nationality_other=nationality_other, house_no=house_no, street=street,
                                   city=city, mob_no=mob_no, office_num=office_num, home_num=home_num,
                                   email_add=email_add,
                                   date_of_birth=date_of_birth, driv_exp=driv_exp, profile_pic=profile_pic)
-                        submit_kyc.save()
+                        submit_kyc.save()"""
                         messages.success(request, 'Successfully saved')
 
                         return render(request, 'kyc/index.html')
