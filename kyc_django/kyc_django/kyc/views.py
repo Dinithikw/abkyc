@@ -258,7 +258,7 @@ def insertkyc(request):
         messages.success(request, 'NIC validated successfully')
 
         # check whether there are existing kyc in the database to the given id number
-        if Kyc_Info.objects.filter(nics_no=nics_no).exists():
+        if Kyc_Infotemp.objects.filter(nics_no_temp=nics_no).exists():
 
             # if true for existing kyc
             # messages.success(request, 'existing kyc')
