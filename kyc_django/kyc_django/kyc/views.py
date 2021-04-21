@@ -175,6 +175,7 @@ def insertkyc(request):
     other_exp = request.POST["visa_other_exp"]
     foreign_addre =request.POST["foreign_address"]
     vari_doc_type =request.POST["Verification_addres"]
+    vari_doc = request.POST["vari_image"]
     
     
 
