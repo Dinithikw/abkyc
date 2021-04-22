@@ -28,6 +28,8 @@
 
     </div>
 
+    
+
     {% endfor %}
     <script type="text/javascript">
         // function EnableDisableTextBox() {
@@ -211,10 +213,26 @@
         }
     </script>
 
+    
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+
+        }
+    </script>
+    
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
     <div class="row">
         <div class="col-md-12 title" style="background-color: #f3f3f300;">
        
             <p style="padding-top:10px; padding-left:50px;color:#000"><b>Know Your Customer (KYC) Form</b></p>
+
+            <div class="col-md-2" style="margin-top: -50px; margin-left: 800px;">
+                <div id="google_translate_element" ></div>
+            </div>
       
       
         </div>
@@ -227,7 +245,10 @@
 
         <div class="col-md-5 personel_info" style="border:1px solid #000; border-radius:25px; height:1350px;">
 
-          <form action="insertkyc" method="post">
+            
+            
+
+            <form action="insertkyc" method="post">
               {% csrf_token %}
               <br>
                 <center><h5>Personal Information</h5></center>
@@ -671,7 +692,7 @@
 
                     </table>
                     <hr>
-                    <p style="text-align: left; padding-left: 35px;"><i><b>Contact Information</b></i></p>
+                    <p style="text-align: left; padding-left: 35px;"><i><b><label>Contact Information?</label></b></i></p>
 
                     <table class="contact" width="90%">
 
