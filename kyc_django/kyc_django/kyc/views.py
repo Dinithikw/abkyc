@@ -313,7 +313,7 @@ def insertkyc(request):
                                                        email_add_temp=email_add, red_flag_temp=red_flag,
                                                        blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag)
                         submit_kyc_temp.save()
-                        messages.success(request, 'saved look')
+                        messages.success(request, 'successfully submitted')
                         return render(request, 'kyc/index.html')
                         print(green_flag)
 
@@ -351,7 +351,7 @@ def insertkyc(request):
                                                        email_add_temp=email_add, red_flag_temp=red_flag,
                                                        blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag)
                         submit_kyc_temp.save()
-                        messages.success(request, 'saved look')
+                        messages.success(request, 'successfully submitted')
                         return render(request, 'kyc/index.html')
 
                 # if date of birth is false
@@ -460,7 +460,7 @@ def insertkyc(request):
                                                        email_add_temp=email_add, red_flag_temp=red_flag,
                                                        blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag)
                         submit_kyc_temp.save()
-                        messages.success(request, 'saved look')
+                        messages.success(request, 'successfully submitted')
                         return render(request, 'kyc/index.html')
 
 
