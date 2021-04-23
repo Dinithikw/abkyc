@@ -10,7 +10,7 @@ class Kyc_Info(models.Model):
     profile_pic = models.ImageField(null=True, blank=True, upload_to="images/profile_pic/")
     id_type = models.CharField(max_length=50)
     nics_no = models.CharField(max_length=50)
-    date_of_birth = models.DateField('%Y-%m-%d')
+    date_of_birth = models.CharField(max_length=20)
     driv_lic = models.CharField(max_length=50, blank=True, null=True)
     driv_exp = models.CharField(max_length=20, blank=True, null=True)
     pass_no = models.CharField(max_length=50, blank=True, null=True)
