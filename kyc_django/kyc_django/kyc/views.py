@@ -47,11 +47,11 @@ def edit_val(request, id):
 def update_data(request, id):
     updates_data = Kyc_Infotemp.objects.get(id=id)
     form = update_forms(request.POST, instance=updates_data)
-    # print(form.errors)
+    print(form.errors)
 
     # print(updates_data)
 
-    print(form)
+    print(form.is_valid())
 
     if form.is_valid():
         form.save()

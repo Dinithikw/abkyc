@@ -79,7 +79,7 @@ class Kyc_Infotemp(models.Model):
     profile_pic_temp = models.ImageField(null=True, blank=True, upload_to="images/")
     id_type_temp = models.CharField(max_length=50)
     nics_no_temp = models.CharField(max_length=50)
-    date_of_birth_temp = models.DateField('%Y-%m-%d')
+    date_of_birth_temp = models.CharField(max_length=20)
     driv_lic_temp = models.CharField(max_length=50, blank=True, null=True)
     driv_exp_temp = models.CharField(max_length=20, blank=True, null=True)
     pass_no_temp = models.CharField(max_length=50, blank=True, null=True)

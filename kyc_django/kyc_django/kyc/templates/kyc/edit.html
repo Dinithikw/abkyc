@@ -39,20 +39,30 @@
                                 </p>
                             </td>
 
-
                             <td class="border">
-                                <p>Name in full<br>
-                                    <input  type="text" name="full_name_temp" value="{{Kyc_Infotemp.full_name_temp}}" readonly>
+                                <p>Salutation<br>
+                                    <input  type="text" name="salutation_temp" value="{{Kyc_Infotemp.salutation_temp}}" readonly>
                                 </p>
                             </td>
+                            
 
                             <td class="border">
                                 <p>Name with initials<br>
                                     <input type="text" name="name_init_temp" value="{{Kyc_Infotemp.name_init_temp}}">
                                 </p>
                             </td>
-                        
 
+                            <td class="border">
+                                <p>Name in full<br>
+                                    <input type="text" name="full_name_temp" value="{{Kyc_Infotemp.full_name_temp}}">
+                                </p>
+                            </td>
+
+                            <td class="border">
+                                <p>Live Selfie<br>
+                                    <input  type="text" name="profile_pic_temp" value="{{Kyc_Infotemp.profile_pic_temp}}" accept="image/*" readonly>
+                                </p>
+                            </td>
                         
                             <td class="border">
                                 <p>Id type<br>
@@ -66,11 +76,7 @@
                                 </p>
                             </td>
 
-                            <td class="border">
-                                <p>Driving licence<br>
-                                    <input type="number" name="driv_lic_temp" value="{{Kyc_Infotemp.driv_lic_temp}}">
-                                </p>
-                            </td>
+                            
                         </tr>
                     </table>
 
@@ -80,8 +86,20 @@
 
                         <tr class="border control">
                             <td class="border">
+                                <p>Date of birth<br>
+                                    <input type="date"  name="date_of_birth_temp" value="{{Kyc_Infotemp.date_of_birth_temp}}" readonly>
+                                </p>
+                            </td>
+
+                            <td class="border">
+                                <p>Driving licence<br>
+                                    <input type="number" name="driv_lic_temp" value="{{Kyc_Infotemp.driv_lic_temp}}">
+                                </p>
+                            </td>
+
+                            <td class="border">
                                 <p>Driving licence Expire<br>
-                                    <input type="date" name="driv_exp_temp" value="{{Kyc_Infotemp.driv_exp_temp}}">
+                                    <input type="text" name="driv_exp_temp" value="{{Kyc_Infotemp.driv_exp_temp}}">
                                 </p>
                             </td>
                         
@@ -93,11 +111,48 @@
                         
                             <td class="border">
                                 <p>Passport number expire<br>
-                                    <input type="date" name="pass_exp_temp" value="{{Kyc_Infotemp.pass_exp_temp}}">
+                                    <input type="text" name="pass_exp_temp" value="{{Kyc_Infotemp.pass_exp_temp}}">
+                                </p>
+                            </td>
+
+                            <td class="border">
+                                <p>Birth certificate No<br>
+                                    <input type="text" name="birth_cernum_temp" value="{{Kyc_Infotemp.birth_cernum_temp}}">
+                                </p>
+                            </td>                        
+                            
+                        </tr>
+                    </table>
+
+                    <br>
+
+                    <table class="border" style="width: 100%;">
+                        
+                        <tr class="border control">
+
+                            <td class="border">
+                                <p>Postal ID<br>
+                                    <input type="text" name="post_id_temp" value="{{Kyc_Infotemp.post_id_temp}}">
                                 </p>
                             </td>
                         
+                            <td class="border">
+                                <p>OAFSC<br>
+                                    <input type="text" name="oafsc_temp" value="{{Kyc_Infotemp.oafsc_temp}}">
+                                </p>
+                            </td>
 
+                            <td class="border">
+                                <p>Copy of Visa<br>
+                                    <input type="text" name="visa_copy_temp" value="{{Kyc_Infotemp.visa_copy_temp}}">
+                                </p>
+                            </td>
+
+                            <td class="border">
+                                <p>Identity recognition<br>
+                                    <input type="text" name="othe_identity_doc_temp" value="{{Kyc_Infotemp.othe_identity_doc_temp}}">
+                                </p>
+                            </td>
                         
                             <td class="border">
                                 <p>Nationality<br>
@@ -111,20 +166,135 @@
                                     <input type="text" name="nationality_other_temp" value="{{Kyc_Infotemp.nationality_other_temp}}">
                                 </p>
                             </td>
-                        
+
+                        </tr>
+                    
+                    </table>
+
+                    <br>
+
+                    <table class="border" style="width: 100%;">
+                    
+                        <tr class="border control">
+
                             <td class="border">
-                                <p>Date of birth<br>
-                                    <input type="date"  name="date_of_birth_temp" value="{{Kyc_Infotemp.date_of_birth_temp}}">
+                                <p>Type of Visa<br>
+                                    <input type="text" name="type_of_visa_temp" value="{{Kyc_Infotemp.type_of_visa_temp}}">
                                 </p>
                             </td>
+                        
+                            <td class="border">
+                                <p>Expiration Date<br>
+                                    <input type="text" name="visa_exp_temp" value="{{Kyc_Infotemp.visa_exp_temp}}">
+                                </p>
+                            </td>
+
+                            <td class="border">
+                                <p>If other please specify<br>
+                                    <input type="text" name="other_types_temp" value="{{Kyc_Infotemp.other_types_temp}}">
+                                </p>
+                            </td>
+
+                            <td class="border">
+                                <p>Expiration Date<br>
+                                    <input type="text" name="other_exp_temp" value="{{Kyc_Infotemp.other_exp_temp}}">
+                                </p>
+                            </td>
+                        
+                            <td class="border">
+                                <p>Foreign Address<br>
+                                    <input type="text" name="foreign_addre_temp" value="{{Kyc_Infotemp.foreign_addre_temp}}">
+                                </p>
+                            </td>
+                        
+                        
+                            <td class="border">
+                                <p>Verification doc type<br>
+                                    <input type="text" name="vari_doc_type_temp" value="{{Kyc_Infotemp.vari_doc_type_temp}}">
+                                </p>
+                            </td>
+
                         </tr>
+
                     </table>
+
+                    <br>
+
+                    <table class="border" style="width: 100%;">
+                    
+                        <tr class="border control">
+
+                            <td class="border">
+                                <p>Verification document<br>
+                                    <input type="text" name="vari_doc_temp" value="{{Kyc_Infotemp.vari_doc_temp}}">
+                                </p>
+                            </td>
+                        
+                            <td class="border">
+                                <p>PEP<br>
+                                    <input type="text" name="pep_person_temp" value="{{Kyc_Infotemp.pep_person_temp}}">
+                                </p>
+                            </td>
+
+                            <td class="border">
+                                <p>US citizen<br>
+                                    <input type="text" name="us_city_temp" value="{{Kyc_Infotemp.us_city_temp}}">
+                                </p>
+                            </td>
+
+                            <td class="border">
+                                <p>Resident of Sri Lanka?<br>
+                                    <input type="text" name="resident_sri_temp" value="{{Kyc_Infotemp.resident_sri_temp}}">
+                                </p>
+                            </td>
+                        
+                            <td class="border">
+                                <p>Country of residence<br>
+                                    <input type="text" name="country_resident_temp" value="{{Kyc_Infotemp.country_resident_temp}}">
+                                </p>
+                            </td>
+                        
+                        
+                            <td class="border">
+                                <p>Verification doc type<br>
+                                    <input type="text" name="vari_doc_type_temp" value="{{Kyc_Infotemp.vari_doc_type_temp}}">
+                                </p>
+                            </td>
+
+                        </tr>
+
+                    </table>
+
 
                     <br>
 
                     <table class="border" style="width: 100%;">
 
                         <tr class="border control">
+                            <td class="border">
+                                <p>House number Permanent<br>
+                                    <input type="text" name="house_no_per_temp" value="{{Kyc_Infotemp.house_no_per_temp}}">
+                                </p>
+                            </td>
+
+                            <td class="border">
+                                <p>Street Permanent<br>
+                                    <input type="text" name="street_per_temp" value="{{Kyc_Infotemp.street_per_temp}}">
+                                </p>
+                            </td>
+                            
+                            <td class="border">
+                                <p>City Permanent<br>
+                                    <input type="text" name="city_per_temp" value="{{Kyc_Infotemp.city_per_temp}}">
+                                </p>
+                            </td>
+
+                            <td class="border">
+                                <p>Postal code Permanent<br>
+                                    <input type="text" name="postal_code_per_temp" value="{{Kyc_Infotemp.postal_code_per_temp}}">
+                                </p>
+                            </td>
+
                             <td class="border">
                                 <p>House number<br>
                                     <input type="text" name="house_no_temp" value="{{Kyc_Infotemp.house_no_temp}}">
@@ -136,18 +306,31 @@
                                     <input type="text" name="street_temp" value="{{Kyc_Infotemp.street_temp}}">
                                 </p>
                             </td>
-                        
+                        </tr>
+                    </table>
+
+                    <br>
+
+                    <table class="border" style="width: 100%;">
+                        <tr class="border control">
                             <td class="border">
                                 <p>City<br>
                                     <input type="text" name="city_temp" value="{{Kyc_Infotemp.city_temp}}">
                                 </p>
                             </td>
-                        
 
+                            <td class="border">
+                                <p>Postal code<br>
+                                    <input type="text" name="postal_code_temp" value="{{Kyc_Infotemp.postal_code_temp}}">
+                                </p>
+                            </td>
 
-                        
-
-                        
+                            <td class="border">
+                                <p>State of the address<br>
+                                    <input type="text" name="state_address_temp" value="{{Kyc_Infotemp.state_address_temp}}">
+                                </p>
+                            </td>
+                                            
                             <td class="border">
                                 <p>Mobile number<br>
                                     <input type="number" name="mob_no_temp" value="{{Kyc_Infotemp.mob_no_temp}}">
@@ -211,6 +394,8 @@
                     <br>
                     
                     <input type="submit" value="update"/> | <a href="{% url 'update' %}">back to summary page</a>
+
+                    <br><br>
 
                     {% if messages %}
                         {% for records in messages %}
