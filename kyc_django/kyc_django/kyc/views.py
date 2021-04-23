@@ -49,6 +49,7 @@ def update_data(request, id):
     form = update_forms(request.POST, instance=updates_data)
     print(form.errors)
 
+
     # print(updates_data)
 
     print(form.is_valid())

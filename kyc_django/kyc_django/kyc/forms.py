@@ -7,6 +7,7 @@ class update_forms(forms.ModelForm):
         model = Kyc_Infotemp
         fields = '__all__'
 
+
 class accept_form(forms.ModelForm):
     class Meta:
         model = Kyc_Info
