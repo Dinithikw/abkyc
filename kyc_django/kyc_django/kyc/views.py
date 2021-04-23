@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Kyc_Info, Kyc_Infotemp, Id_Info
 from django.contrib import messages
 from django.utils.datastructures import MultiValueDictKeyError
-from .forms import update_forms
+from .forms import update_forms, accept_form
 
 
 # define method for calling pages

@@ -56,7 +56,8 @@ class Kyc_Info(models.Model):
     email_add = models.CharField(max_length=50, blank=True, null=True)
 
     
-    
+    class Meta:
+        db_table = "Kyc_Info"
 
 
 
@@ -68,8 +69,8 @@ class Kyc_Info(models.Model):
     long_text = models.TextField(max_length=255)"""
 
 
-    def __str__(self):
-        return self.full_name
+    # def __str__(self):
+    #   return self.full_name
 
 class Kyc_Infotemp(models.Model):
     
