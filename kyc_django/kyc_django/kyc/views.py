@@ -180,37 +180,37 @@ def update_data(request, id):
                     other_exp = ''
                     foreign_addre = ''
 
-                vari_doc_type = request.POST["Verification_addres_temp"]
-                vari_doc = request.POST["vari_image_temp"]
-                pep_person = request.POST["pep_temp"]
+                vari_doc_type = request.POST["vari_doc_type_temp"]
+                vari_doc = request.POST["vari_doc_temp"]
+                pep_person = request.POST["pep_person_temp"]
                 us_city = request.POST["us_city_temp"]
 
                 # calling variables for form inputs in residential detail section
-                resident_sri = request.POST["residence_sri_temp"]
+                resident_sri = request.POST["resident_sri_temp"]
 
                 try:
-                    country_resident = request.POST["resident_contry_temp"]
+                    country_resident = request.POST["country_resident_temp"]
                 except MultiValueDictKeyError:
                     country_resident = ''
 
-                house_no_per = request.POST["house_number_per_temp"]
+                house_no_per = request.POST["house_no_per_temp"]
                 street_per = request.POST["street_per_temp"]
                 city_per = request.POST["city_per_temp"]
                 postal_code_per = request.POST["postal_code_per_temp"]
 
-                house_no = request.POST["house_number_temp"]
+                house_no = request.POST["house_no_temp"]
                 street = request.POST["street_temp"]
                 city = request.POST["city_temp"]
                 postal_code = request.POST["postal_code_temp"]
-                state_address = request.POST["state_of_address_temp"]
+                state_address = request.POST["state_address_temp"]
 
                 # calling variables for form inputs in contact detail section
-                mob_no = request.POST["mobile_number_temp"]
-                office_num = request.POST["office_number_temp"]
-                home_num = request.POST["home_number_temp"]
+                mob_no = request.POST["mob_no_temp"]
+                office_num = request.POST["office_num_temp"]
+                home_num = request.POST["home_num_temp"]
                 email_add = request.POST["email_add_temp"]
 
-                submit_kyc_temp = Kyc_Infotemp(salutation_temp=salutation, full_name_temp=full_name,
+                submit_kyc_temp = Kyc_Info(salutation_temp=salutation, full_name_temp=full_name,
                                                        name_init_temp=name_init, profile_pic_temp=profile_pic,
                                                        id_type_temp=id_type,
                                                        nics_no_temp=nics_no, date_of_birth_temp=date_of_birth,
@@ -235,14 +235,18 @@ def update_data(request, id):
                                                        city_per_temp=city_per, postal_code_per_temp=postal_code_per,
                                                        mob_no_temp=mob_no, office_num_temp=office_num,
                                                        home_num_temp=home_num,
-                                                       email_add_temp=email_add, red_flag_temp=red_flag,
-                                                       blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag)
+                                                       email_add_temp=email_add, red_flag_temp=flag_1,
+                                                       blue_flagadd_temp=flag_2, blue_flag_temp=flag_3)
+                                                       
                 submit_kyc_temp.save()
+                Kyc_Infotemp.objects.filter(id=id).delete()
                 messages.success(request, 'successfully submitted')
                 result = Kyc_Infotemp.objects.filter(blue_flagadd_temp=True)
                 result2 = Kyc_Infotemp.objects.filter(blue_flag_temp=True)
                 result3 = Kyc_Infotemp.objects.filter(red_flag_temp=True)
                 result4 = Kyc_Infotemp.objects.filter(red_flag_temp=False, blue_flag_temp=False, blue_flagadd_temp=False)
+
+                
 
                 # passing variables to the update.html using dictionary
                 return render(request, "kyc/update.html", {"Kyc_Infotemp1": result, "Kyc_Infotemp2": result2,
