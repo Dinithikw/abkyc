@@ -109,14 +109,15 @@ def update_data(request, id):
         else:
 
             if (flag_1 == 'False' and flag_2 == 'False' and flag_3 == 'False'):
+                
                 salutation = request.POST["salutation_temp"]
-                full_name = request.POST["fullname_temp"]
+                full_name = request.POST["full_name_temp"]
                 name_init = request.POST["name_init_temp"]
-                profile_pic = request.POST["self_nic_temp"]
-                id_type = request.POST["id_types_temp"]
+                profile_pic = request.POST["profile_pic_temp"]
+                id_type = request.POST["id_type_temp"]
 
                 try:
-                    nics_no = request.POST["nic_no_temp"]
+                    nics_no = request.POST["nics_no_temp"]
                     date_of_birth = request.POST["birth_day_temp"]
                 except MultiValueDictKeyError:
                     nics_no = ''
@@ -208,6 +209,51 @@ def update_data(request, id):
                 office_num = request.POST["office_number_temp"]
                 home_num = request.POST["home_number_temp"]
                 email_add = request.POST["email_add_temp"]
+
+                submit_kyc_temp = Kyc_Infotemp(salutation_temp=salutation, full_name_temp=full_name,
+                                                       name_init_temp=name_init, profile_pic_temp=profile_pic,
+                                                       id_type_temp=id_type,
+                                                       nics_no_temp=nics_no, date_of_birth_temp=date_of_birth,
+                                                       driv_lic_temp=drive_lic, driv_exp_temp=driv_exp,
+                                                       pass_no_temp=pass_no, pass_exp_temp=pass_exp,
+                                                       birth_cernum_temp=birth_cernum,
+                                                       post_id_temp=post_id, oafsc_temp=oafsc, visa_copy_temp=visa_copy,
+                                                       othe_identity_doc_temp=othe_identity_doc,
+                                                       nationality_temp=nationality,
+                                                       nationality_other_temp=nationality_other,
+                                                       type_of_visa_temp=type_of_visa,
+                                                       visa_exp_temp=visa_exp, other_types_temp=other_types,
+                                                       other_exp_temp=other_exp, foreign_addre_temp=foreign_addre,
+                                                       vari_doc_type_temp=vari_doc_type, vari_doc_temp=vari_doc,
+                                                       pep_person_temp=pep_person,
+                                                       us_city_temp=us_city,
+                                                       resident_sri_temp=resident_sri,
+                                                       country_resident_temp=country_resident,
+                                                       house_no_temp=house_no, street_temp=street, city_temp=city,
+                                                       postal_code_temp=postal_code, state_address_temp=state_address,
+                                                       house_no_per_temp=house_no_per, street_per_temp=street_per,
+                                                       city_per_temp=city_per, postal_code_per_temp=postal_code_per,
+                                                       mob_no_temp=mob_no, office_num_temp=office_num,
+                                                       home_num_temp=home_num,
+                                                       email_add_temp=email_add, red_flag_temp=red_flag,
+                                                       blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag)
+                submit_kyc_temp.save()
+                messages.success(request, 'successfully submitted')
+                result = Kyc_Infotemp.objects.filter(blue_flagadd_temp=True)
+                result2 = Kyc_Infotemp.objects.filter(blue_flag_temp=True)
+                result3 = Kyc_Infotemp.objects.filter(red_flag_temp=True)
+                result4 = Kyc_Infotemp.objects.filter(red_flag_temp=False, blue_flag_temp=False, blue_flagadd_temp=False)
+
+                # passing variables to the update.html using dictionary
+                return render(request, "kyc/update.html", {"Kyc_Infotemp1": result, "Kyc_Infotemp2": result2,
+                                                            "Kyc_Infotemp3": result3, "Kyc_Infotemp4": result4})
+
+            else:
+                updates_data = Kyc_Infotemp.objects.get(id=id)
+                form = update_forms(request.POST, instance=updates_data)
+                messages.warning(request, 'please remove flags before adding to main database')
+                return render(request, "kyc/edit.html", {"Kyc_Infotemp": updates_data})
+
 
 
 
