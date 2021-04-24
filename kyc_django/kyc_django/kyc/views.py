@@ -118,32 +118,32 @@ def update_data(request, id):
 
                 try:
                     nics_no = request.POST["nics_no_temp"]
-                    date_of_birth = request.POST["birth_day_temp"]
+                    date_of_birth = request.POST["date_of_birth_temp"]
                 except MultiValueDictKeyError:
                     nics_no = ''
                     date_of_birth = ''
 
                 try:
-                    drive_lic = request.POST.get("drive_lice_temp")
-                    driv_exp = request.POST["drive_exp_temp"]
+                    drive_lic = request.POST.get("driv_lic_temp")
+                    driv_exp = request.POST["driv_exp_temp"]
                 except MultiValueDictKeyError:
                     drive_lic = ''
                     driv_exp = ''
 
                 try:
-                    pass_no = request.POST["passport_num_temp"]
-                    pass_exp = request.POST["passport_exp_temp"]
+                    pass_no = request.POST["pass_no_temp"]
+                    pass_exp = request.POST["pass_exp_temp"]
                 except MultiValueDictKeyError:
                     pass_no = ''
                     pass_exp = ''
 
                 try:
-                    birth_cernum = request.POST["birth_certi_temp"]
+                    birth_cernum = request.POST["birth_cernum_temp"]
                 except MultiValueDictKeyError:
                     birth_cernum = ''
 
                 try:
-                    post_id = request.POST["postal_iden_temp"]
+                    post_id = request.POST["post_id_temp"]
                 except MultiValueDictKeyError:
                     post_id = ''
 
@@ -153,12 +153,12 @@ def update_data(request, id):
                     oafsc = ''
 
                 try:
-                    visa_copy = request.POST["img_visa_temp"]
+                    visa_copy = request.POST["visa_copy_temp"]
                 except MultiValueDictKeyError:
                     visa_copy = ''
 
                 try:
-                    othe_identity_doc = request.POST["img_other_temp"]
+                    othe_identity_doc = request.POST["othe_identity_doc_temp"]
                 except MultiValueDictKeyError:
                     othe_identity_doc = ''
 
@@ -166,11 +166,11 @@ def update_data(request, id):
 
                 try:
                     nationality_other = request.POST["nationality_other_temp"]
-                    type_of_visa = request.POST["visa_type_temp"]
+                    type_of_visa = request.POST["type_of_visa_temp"]
                     visa_exp = request.POST["visa_exp_temp"]
-                    other_types = request.POST["type_of_visa_temp"]
-                    other_exp = request.POST["visa_other_exp_temp"]
-                    foreign_addre = request.POST["foreign_address_temp"]
+                    other_types = request.POST["other_types_temp"]
+                    other_exp = request.POST["other_exp_temp"]
+                    foreign_addre = request.POST["foreign_addre_temp"]
 
                 except MultiValueDictKeyError:
                     nationality_other = ''
