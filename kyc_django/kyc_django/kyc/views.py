@@ -106,6 +106,110 @@ def update_data(request, id):
         #updates_data = Kyc_Infotemp.objects.get(id=id)
         #form = update_forms(request.POST, instance=updates_data)
         #print(form)
+        else:
+
+            if (flag_1 == 'False' and flag_2 == 'False' and flag_3 == 'False'):
+                salutation = request.POST["salutation_temp"]
+                full_name = request.POST["fullname_temp"]
+                name_init = request.POST["name_init_temp"]
+                profile_pic = request.POST["self_nic_temp"]
+                id_type = request.POST["id_types_temp"]
+
+                try:
+                    nics_no = request.POST["nic_no_temp"]
+                    date_of_birth = request.POST["birth_day_temp"]
+                except MultiValueDictKeyError:
+                    nics_no = ''
+                    date_of_birth = ''
+
+                try:
+                    drive_lic = request.POST.get("drive_lice_temp")
+                    driv_exp = request.POST["drive_exp_temp"]
+                except MultiValueDictKeyError:
+                    drive_lic = ''
+                    driv_exp = ''
+
+                try:
+                    pass_no = request.POST["passport_num_temp"]
+                    pass_exp = request.POST["passport_exp_temp"]
+                except MultiValueDictKeyError:
+                    pass_no = ''
+                    pass_exp = ''
+
+                try:
+                    birth_cernum = request.POST["birth_certi_temp"]
+                except MultiValueDictKeyError:
+                    birth_cernum = ''
+
+                try:
+                    post_id = request.POST["postal_iden_temp"]
+                except MultiValueDictKeyError:
+                    post_id = ''
+
+                try:
+                    oafsc = request.POST["oafsc_temp"]
+                except MultiValueDictKeyError:
+                    oafsc = ''
+
+                try:
+                    visa_copy = request.POST["img_visa_temp"]
+                except MultiValueDictKeyError:
+                    visa_copy = ''
+
+                try:
+                    othe_identity_doc = request.POST["img_other_temp"]
+                except MultiValueDictKeyError:
+                    othe_identity_doc = ''
+
+                nationality = request.POST["nationality_temp"]
+
+                try:
+                    nationality_other = request.POST["nationality_other_temp"]
+                    type_of_visa = request.POST["visa_type_temp"]
+                    visa_exp = request.POST["visa_exp_temp"]
+                    other_types = request.POST["type_of_visa_temp"]
+                    other_exp = request.POST["visa_other_exp_temp"]
+                    foreign_addre = request.POST["foreign_address_temp"]
+
+                except MultiValueDictKeyError:
+                    nationality_other = ''
+                    type_of_visa = ''
+                    visa_exp = ''
+                    other_types = ''
+                    other_exp = ''
+                    foreign_addre = ''
+
+                vari_doc_type = request.POST["Verification_addres_temp"]
+                vari_doc = request.POST["vari_image_temp"]
+                pep_person = request.POST["pep_temp"]
+                us_city = request.POST["us_city_temp"]
+
+                # calling variables for form inputs in residential detail section
+                resident_sri = request.POST["residence_sri_temp"]
+
+                try:
+                    country_resident = request.POST["resident_contry_temp"]
+                except MultiValueDictKeyError:
+                    country_resident = ''
+
+                house_no_per = request.POST["house_number_per_temp"]
+                street_per = request.POST["street_per_temp"]
+                city_per = request.POST["city_per_temp"]
+                postal_code_per = request.POST["postal_code_per_temp"]
+
+                house_no = request.POST["house_number_temp"]
+                street = request.POST["street_temp"]
+                city = request.POST["city_temp"]
+                postal_code = request.POST["postal_code_temp"]
+                state_address = request.POST["state_of_address_temp"]
+
+                # calling variables for form inputs in contact detail section
+                mob_no = request.POST["mobile_number_temp"]
+                office_num = request.POST["office_number_temp"]
+                home_num = request.POST["home_number_temp"]
+                email_add = request.POST["email_add_temp"]
+
+
 
 
 # -----------------------------------------------------------------------------------------------------------------------
