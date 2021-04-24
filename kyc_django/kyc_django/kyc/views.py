@@ -73,11 +73,27 @@ def update_data(request, id):
             place = Kyc_Info.objects.get(nics_no_temp=new_entry)
             updates_origin = Kyc_Info.objects.get(id=place.id)
 
-            if flag_1==False and flag_2==False and flag_3==False:
+            if (flag_1 == 'False' and flag_2 == 'False' and flag_3 == 'False'):
                 form = accept_form(request.POST, instance=updates_origin)
 
-                print(form.is_valid())
-                print(form.errors)
+                if form.is_valid():
+
+                    
+                    form.save()
+
+                    updates_data = Kyc_Infotemp.objects.get(id=id)
+                    form = update_forms(request.POST, instance=updates_data)
+                    #Kyc_Infotemp.objects.filter(id=id).delete()
+                    Kyc_Infotemp.objects.filter(id=id).delete()
+                    result = Kyc_Infotemp.objects.filter(blue_flagadd_temp=True)
+                    result2 = Kyc_Infotemp.objects.filter(blue_flag_temp=True)
+                    result3 = Kyc_Infotemp.objects.filter(red_flag_temp=True)
+                    result4 = Kyc_Infotemp.objects.filter(red_flag_temp=False, blue_flag_temp=False, blue_flagadd_temp=False)
+
+                    # passing variables to the update.html using dictionary
+                    return render(request, "kyc/update.html", {"Kyc_Infotemp1": result, "Kyc_Infotemp2": result2,
+                                                            "Kyc_Infotemp3": result3, "Kyc_Infotemp4": result4})
+                    
             else:
                 updates_data = Kyc_Infotemp.objects.get(id=id)
                 form = update_forms(request.POST, instance=updates_data)
