@@ -20,6 +20,19 @@
 
 <body style="background: url({% static 'img/1.jpg' %}) no-repeat fixed; background-position: center;background-repeat: no-repeat; background-size: cover;"> 
 
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+        <strong>Message </strong>{{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+    </div>
+
+    
+
+    {% endfor %}
+
     <div class="container">
 
         <div>
@@ -399,8 +412,8 @@
                     
                     <br>
                     
-                    <input type="submit" value="update"/> | <a href="{% url 'update' %}">back to summary page</a>
-                    <input type="button" name="accept" value="accept"/>
+                    <input type="submit" name="update_db" value="update"/> | <a href="{% url 'update' %}">back to summary page</a>
+                    <input type="submit" name="accept_rec" value="accept"/>
 
                     <br><br>
 

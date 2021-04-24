@@ -45,18 +45,51 @@ def edit_val(request, id):
 
 # defining database update function when click on update button
 def update_data(request, id):
-    updates_data = Kyc_Infotemp.objects.get(id=id)
-    form = update_forms(request.POST, instance=updates_data)
-    print(form.errors)
+    if request.method=='POST' and 'update_db' in request.POST:
+        updates_data = Kyc_Infotemp.objects.get(id=id)
+        form = update_forms(request.POST, instance=updates_data)
 
-    # print(updates_data)
+        #print(form.errors)
 
-    print(form.is_valid())
+        # print(updates_data)
 
-    if form.is_valid():
-        form.save()
-        messages.success(request, "record update sucessfully")
-        return render(request, "kyc/edit.html", {"Kyc_Infotemp": updates_data})
+        print(form.is_valid())
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, "record update sucessfully")
+            return render(request, "kyc/edit.html", {"Kyc_Infotemp": updates_data})
+
+
+    if request.method=='POST' and 'accept_rec' in request.POST:
+
+        new_entry = request.POST["nics_no_temp"]
+        flag_1 = request.POST["red_flag_temp"]
+        flag_2 = request.POST["blue_flagadd_temp"]
+        flag_3 = request.POST["blue_flag_temp"]
+
+        if Kyc_Info.objects.filter(nics_no_temp=new_entry).exists():
+
+            place = Kyc_Info.objects.get(nics_no_temp=new_entry)
+            updates_origin = Kyc_Info.objects.get(id=place.id)
+
+            if flag_1==False and flag_2==False and flag_3==False:
+                form = accept_form(request.POST, instance=updates_origin)
+
+                print(form.is_valid())
+                print(form.errors)
+            else:
+                updates_data = Kyc_Infotemp.objects.get(id=id)
+                form = update_forms(request.POST, instance=updates_data)
+                messages.warning(request, 'please remove flags before adding to main database')
+                return render(request, "kyc/edit.html", {"Kyc_Infotemp": updates_data})
+                
+
+            new_entry = request.POST["salutation_temp"]
+            print(new_entry)
+        #updates_data = Kyc_Infotemp.objects.get(id=id)
+        #form = update_forms(request.POST, instance=updates_data)
+        #print(form)
 
 
 # -----------------------------------------------------------------------------------------------------------------------
