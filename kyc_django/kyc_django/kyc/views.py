@@ -155,6 +155,7 @@ def insertkyc(request):
     full_name = request.POST["fullname"]
     name_init = request.POST["name_init"]
     profile_pic = request.POST["self_nic"]
+    profile_vid = request.POST["live_video"]
     id_type = request.POST["id_types"]
 
     try:
@@ -287,6 +288,7 @@ def insertkyc(request):
 
                         submit_kyc_temp = Kyc_Infotemp(salutation_temp=salutation, full_name_temp=full_name,
                                                        name_init_temp=name_init, profile_pic_temp=profile_pic,
+                                                       profile_vid_temp=profile_vid,
                                                        id_type_temp=id_type,
                                                        nics_no_temp=nics_no, date_of_birth_temp=date_of_birth,
                                                        driv_lic_temp=drive_lic, driv_exp_temp=driv_exp,
@@ -325,6 +327,7 @@ def insertkyc(request):
                         blue_flag = 'True'
                         submit_kyc_temp = Kyc_Infotemp(salutation_temp=salutation, full_name_temp=full_name,
                                                        name_init_temp=name_init, profile_pic_temp=profile_pic,
+                                                       profile_vid_temp=profile_vid,
                                                        id_type_temp=id_type,
                                                        nics_no_temp=nics_no, date_of_birth_temp=date_of_birth,
                                                        driv_lic_temp=drive_lic, driv_exp_temp=driv_exp,
@@ -396,6 +399,7 @@ def insertkyc(request):
 
                         submit_kyc_temp = Kyc_Infotemp(salutation_temp=salutation, full_name_temp=full_name,
                                                        name_init_temp=name_init, profile_pic_temp=profile_pic,
+                                                       profile_vid_temp=profile_vid,
                                                        id_type_temp=id_type,
                                                        nics_no_temp=nics_no, date_of_birth_temp=date_of_birth,
                                                        driv_lic_temp=drive_lic, driv_exp_temp=driv_exp,
@@ -434,6 +438,7 @@ def insertkyc(request):
 
                         submit_kyc_temp = Kyc_Infotemp(salutation_temp=salutation, full_name_temp=full_name,
                                                        name_init_temp=name_init, profile_pic_temp=profile_pic,
+                                                       profile_vid_temp=profile_vid,
                                                        id_type_temp=id_type,
                                                        nics_no_temp=nics_no, date_of_birth_temp=date_of_birth,
                                                        driv_lic_temp=drive_lic, driv_exp_temp=driv_exp,
