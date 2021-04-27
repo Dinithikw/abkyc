@@ -458,7 +458,7 @@ def insertkyc(request):
     if Id_Info.objects.filter(nic_no=nics_no).exists():
 
         # if exists id number proceed to next step
-        messages.success(request, 'NIC validated successfully')
+        #messages.success(request, 'NIC validated successfully')
 
         # check whether there are existing kyc in the database to the given id number
         if Kyc_Infotemp.objects.filter(nics_no_temp=nics_no).exists():
@@ -516,14 +516,14 @@ def insertkyc(request):
                                                        email_add_temp=email_add, red_flag_temp=red_flag,
                                                        blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag)
                         submit_kyc_temp.save()
-                        messages.success(request, 'successfully submitted')
+                        #messages.success(request, 'successfully submitted')
                         return render(request, 'kyc/index.html')
                         print(green_flag)
 
                     else:
 
-                        messages.warning(request, 'existing kyc, name true,dob true, address false attach proof '
-                                                  'document')
+                        """messages.warning(request, 'existing kyc, name true,dob true, address false attach proof '
+                                                  'document')"""
 
                         blue_flag = 'True'
                         submit_kyc_temp = Kyc_Infotemp(salutation_temp=salutation, full_name_temp=full_name,
@@ -554,17 +554,17 @@ def insertkyc(request):
                                                        email_add_temp=email_add, red_flag_temp=red_flag,
                                                        blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag)
                         submit_kyc_temp.save()
-                        messages.success(request, 'successfully submitted')
+                        #messages.success(request, 'successfully submitted')
                         return render(request, 'kyc/index.html')
 
                 # if date of birth is false
                 else:
                     # give an error message
-                    messages.warning(request, 'existing kyc, name true,dob false')
+                    #messages.warning(request, 'existing kyc, name true,dob false')
                     return render(request, 'kyc/index.html')
             else:
                 # give an message if name is false
-                messages.warning(request, 'existing kyc, name false')
+                #messages.warning(request, 'existing kyc, name false')
                 return render(request, 'kyc/index.html')
 
         else:
@@ -595,7 +595,7 @@ def insertkyc(request):
                                               house_num=house_no,
                                               street_add=street, city_ref=city).exists():
 
-                        messages.success(request, 'no kyc, name true, dob ture, address true')
+                        #messages.success(request, 'no kyc, name true, dob ture, address true')
 
                         submit_kyc_temp = Kyc_Infotemp(salutation_temp=salutation, full_name_temp=full_name,
                                                        name_init_temp=name_init, profile_pic_temp=profile_pic,
@@ -625,13 +625,13 @@ def insertkyc(request):
                                                        email_add_temp=email_add, red_flag_temp=red_flag,
                                                        blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag)
                         submit_kyc_temp.save()
-                        messages.success(request, 'Successfully saved')
+                        #messages.success(request, 'Successfully saved')
                         return render(request, 'kyc/index.html')
 
                     else:
 
-                        messages.warning(request, 'no kyc, name true,dob true, address false attach proof '
-                                                  'document')
+                        """messages.warning(request, 'no kyc, name true,dob true, address false attach proof '
+                                                  'document')"""
 
                         red_flag = True
 
@@ -663,7 +663,7 @@ def insertkyc(request):
                                                        email_add_temp=email_add, red_flag_temp=red_flag,
                                                        blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag)
                         submit_kyc_temp.save()
-                        messages.success(request, 'successfully submitted')
+                        #messages.success(request, 'successfully submitted')
                         return render(request, 'kyc/index.html')
 
 
@@ -671,11 +671,11 @@ def insertkyc(request):
                 # If date of birth is false
                 else:
                     # give an error message
-                    messages.warning(request, 'no kyc, name true,dob false')
+                    #messages.warning(request, 'no kyc, name true,dob false')
                     return render(request, 'kyc/index.html')
             else:
                 # give an message if name is false
-                messages.warning(request, 'no kyc, name false')
+                #messages.warning(request, 'no kyc, name false')
                 return render(request, 'kyc/index.html')
 
             # messages.success(request, 'Successfully submitted')
@@ -686,7 +686,7 @@ def insertkyc(request):
     # it there is no id number in id information system give error message
     else:
 
-        messages.warning(request, 'Invalid NIC Number. please check again')
+        #messages.warning(request, 'Invalid NIC Number. please check again')
         return render(request, 'kyc/index.html')
 
     """if request.method=='POST':
