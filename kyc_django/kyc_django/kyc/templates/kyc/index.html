@@ -19,7 +19,7 @@
                 placement : 'bottom',
                 trigger : 'hover',
                 html : true,
-                content : '<div class="media"><img src="../media/1.jpeg" class="mr-3" alt="user image"><div class="media-body"><h5 class="media-heading">Jhon Carter</h5><p>Excellent Bootstrap popover! I really love it.</p></div></div>'
+                content : '<div class="media">{% load static %}<img src="{% static "img/1.jpg" %" class="mr-3" alt="user image"><div class="media-body"><h5 class="media-heading">Guidelines</h5><p>Get the photo as shown as in right of the image</p></div></div>'
             });
         });
     </script>
@@ -464,10 +464,8 @@
                         
                         <tr>
                             <td>
-                                <div class="bs-example">
-                                <label data-toggle="popover">Upload Live Selfie to validate NIC</label>
-                                
-                                    
+                                <div style="color: blue">
+                                    <label data-toggle="popover">Upload Live Selfie to validate NIC</label>
                                     
                                 </div>
                             </td>
