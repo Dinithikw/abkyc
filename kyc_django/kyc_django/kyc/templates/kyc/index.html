@@ -9,6 +9,63 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style type="text/css">
+        span.title {
+          font-weight: bold;
+          font-size: 16px;
+        }
+
+        a.info {
+          vertical-align: bottom;
+          position:relative; /* Anything but static */
+          width: 1.5em;
+          height: 1.5em;
+          text-indent: -9999em;
+          display: inline-block;
+          color: white;
+          font-weight:bold;
+          font-size:1em;
+          line-height:1em;
+          background-color: #91b2d2;
+          margin-left: .25em;
+          -webkit-border-radius:.75em;
+          -moz-border-radius:.75em;
+          border-radius:.75em;
+        }
+        a.info:hover {
+          background-color:#628cb6;
+          cursor: hand; 
+          cursor: pointer;
+        }
+        a.info:before {
+          content:"?";
+          position: absolute;
+          top: .25em;
+          left:0;
+          text-indent: 0;
+          display:block;
+          width:1.5em;
+          text-align:center;
+        }
+
+        .popover-title {
+          font-weight:bold;
+        }
+
+
+        label a.info, 
+        label div.popover.fade.in { 
+          opacity: 0;
+          -webkit-transition: opacity 0.2s ease;
+          -moz-transition: opacity 0.2s ease;
+          transition: opacity 0.2s ease;
+        }
+        label:hover a.info, 
+        label:hover div.popover.fade.in { 
+          opacity: 1; }
+    </style>
+
+    
     <title>Document</title>
 
     {% load static %}    
@@ -405,19 +462,34 @@
                         
                         <tr>
                             <td>
-                                <label for="img">Upload Live Selfie to validate NIC</label>
+                                <label>
+
+                                  <span>Upload Live Selfie to validate NIC</span>
+                                  
+                                  <a class="info" data-toggle="popover" data-placement="right" data-content="This is the helpful information that will appear to help users along their way. They'll love it." title="" data-original-title="Help here">Info</a>
+                                  
+                                </label>
                             </td>
                             <td>
                                 <input type="file" id="img" name="self_nic" accept="image/*" required placeholder=""
                                 oninvalid="this.setCustomValidity('Please upload a live selfie')" oninput="this.setCustomValidity('')"  />
 
 
-                                <label>
-                                  <span class="title">Confusing thing here</span>
-                                  
-                                  <a class="info" data-toggle="popover" data-placement="right" data-content="This is the helpful information that will appear to help users along their way. They'll love it." title="" data-original-title="Help here">Info</a>
-                                  
-                                </label>
+                                <script type="text/javascript">
+                                    $('.info').popover();
+
+
+                                    $(':not(#anything)').on('click', function (e) {
+                                        $('.info').each(function () {
+                                            //the 'is' for buttons that trigger popups
+                                            //the 'has' for icons and other elements within a button that triggers a popup
+                                            if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+                                                $(this).popover('hide');
+                                                return;
+                                            }
+                                        });
+                                    });
+                                </script>
 
                                 
                             </td>
