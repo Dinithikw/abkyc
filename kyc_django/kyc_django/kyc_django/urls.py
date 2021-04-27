@@ -32,4 +32,4 @@ urlpatterns = [
     path('edit/<int:id>', edit_val),
     path('insertkyc', insertkyc),
     #path('insertkyc1', insertkyc1)
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
