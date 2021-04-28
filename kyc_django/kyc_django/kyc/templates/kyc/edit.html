@@ -310,7 +310,7 @@
                             </td>
 
                             <td class="border">
-                                <p>House number<br>
+                                <p class="blue_mark">House number<br>
                                     <input type="text" name="house_no_temp" value="{{Kyc_Infotemp.house_no_temp}}">
                                 </p>
                             </td>
@@ -324,13 +324,13 @@
                         <tr class="border control">
 
                             <td class="border">
-                                <p>Street<br>
+                                <p class="blue_mark">Street<br>
                                     <input type="text" name="street_temp" value="{{Kyc_Infotemp.street_temp}}">
                                 </p>
                             </td>
 
                             <td class="border">
-                                <p>City<br>
+                                <p class="blue_mark green_mark">City<br>
                                     <input type="text" name="city_temp" value="{{Kyc_Infotemp.city_temp}}">
                                 </p>
                             </td>
@@ -400,7 +400,7 @@
                             </td>
                       
                             <td class="border">
-                                <p>Blue flaged<br>
+                                <p class="blue_mark">Blue flaged<br>
                                     <input type="text" name="blue_flag_temp" value="{{Kyc_Infotemp.blue_flag_temp}}">
                                 </p>
                             </td>
@@ -416,6 +416,25 @@
                     <input type="submit" name="accept_rec" value="Verify"/> | <a href="{% url 'update' %}">back to summary page</a>
 
                     <br><br>
+                    {% if Kyc_Infotemp.blue_flag_temp == "True" %}
+                        <style>
+                            .blue_mark{
+                                background-color: rgb(56, 56, 219);
+                                color: #000;
+                                        
+                            }
+                        </style>
+                    {% endif %}
+
+                    {% if Kyc_Infotemp.blue_flag_temp == "True" %}
+                        <style>
+                            .green_mark{
+                                background-color: rgb(76, 250, 105);
+                                color: #000;
+                                        
+                            }
+                        </style>
+                    {% endif %}
 
                     {% if messages %}
                         {% for records in messages %}
