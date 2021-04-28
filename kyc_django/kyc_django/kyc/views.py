@@ -479,7 +479,7 @@ def insertkyc(request):
                                               street_add=street, city_ref=city).exists():
                         green_flag = 'True'
 
-                        messages.success(request, 'existing kyc, name true, dob ture, address true')
+                        #messages.success(request, 'existing kyc, name true, dob ture, address true')
 
                         submit_kyc_temp = Kyc_Infotemp(salutation_temp=salutation, full_name_temp=full_name,
                                                        name_init_temp=name_init, profile_pic_temp=profile_pic,
@@ -553,11 +553,11 @@ def insertkyc(request):
                 # if date of birth is false
                 else:
                     # give an error message
-                    messages.warning(request, 'Date of birth is invalid, please check again')
+                    messages.error(request, 'Date of birth is invalid, please check again')
                     return render(request, 'kyc/index.html')
             else:
                 # give an message if name is false
-                messages.warning(request, 'Invalid name, please check again')
+                messages.error(request, 'Invalid name, please check again')
                 return render(request, 'kyc/index.html')
 
         else:
@@ -668,7 +668,7 @@ def insertkyc(request):
                     return render(request, 'kyc/index.html')
             else:
                 # give an message if name is false
-                messages.warning(request, 'no kyc, Invalid name, please check again')
+                messages.error(request, 'Invalid name, please check again')
                 return render(request, 'kyc/index.html')
 
             # messages.success(request, 'Successfully submitted')
@@ -679,7 +679,7 @@ def insertkyc(request):
     # it there is no id number in id information system give error message
     else:
 
-        messages.warning(request, 'Invalid NIC Number. please check again')
+        messages.error(request, 'Invalid NIC Number. please check again')
         return render(request, 'kyc/index.html')
 
     """if request.method=='POST':
