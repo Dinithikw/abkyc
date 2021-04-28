@@ -60,13 +60,13 @@
                             
 
                             <td class="border">
-                                <p>Name with initials<br>
+                                <p class="red_mark">Name with initials<br>
                                     <input type="text" name="name_init_temp" value="{{Kyc_Infotemp.name_init_temp}}">
                                 </p>
                             </td>
 
                             <td class="border">
-                                <p>Name in full<br>
+                                <p class="red_mark">Name in full<br>
                                     <input type="text" name="full_name_temp" value="{{Kyc_Infotemp.full_name_temp}}">
                                 </p>
                             </td>
@@ -310,7 +310,7 @@
                             </td>
 
                             <td class="border">
-                                <p class="blue_mark">House number<br>
+                                <p class="blue_mark green_mark red_mark">House number<br>
                                     <input type="text" name="house_no_temp" value="{{Kyc_Infotemp.house_no_temp}}">
                                 </p>
                             </td>
@@ -324,13 +324,13 @@
                         <tr class="border control">
 
                             <td class="border">
-                                <p class="blue_mark">Street<br>
+                                <p class="blue_mark green_mark red_mark">Street<br>
                                     <input type="text" name="street_temp" value="{{Kyc_Infotemp.street_temp}}">
                                 </p>
                             </td>
 
                             <td class="border">
-                                <p class="blue_mark green_mark">City<br>
+                                <p class="blue_mark green_mark red_mark">City<br>
                                     <input type="text" name="city_temp" value="{{Kyc_Infotemp.city_temp}}">
                                 </p>
                             </td>
@@ -388,13 +388,13 @@
                             </td>
                         
                             <td class="border">
-                                <p>RED flaged<br>
+                                <p class="red_mark">RED flaged<br>
                                     <input type="text" name="red_flag_temp" value="{{Kyc_Infotemp.red_flag_temp}}">
                                 </p>
                             </td>
                         
                             <td class="border">
-                                <p>Green flaged<br>
+                                <p class="green_mark">Green flaged<br>
                                     <input type="text" name="blue_flagadd_temp" value="{{Kyc_Infotemp.blue_flagadd_temp}}">
                                 </p>
                             </td>
@@ -426,7 +426,7 @@
                         </style>
                     {% endif %}
 
-                    {% if Kyc_Infotemp.blue_flag_temp == "True" %}
+                    {% if Kyc_Infotemp.blue_flagadd_temp == "True" %}
                         <style>
                             .green_mark{
                                 background-color: rgb(76, 250, 105);
@@ -436,11 +436,18 @@
                         </style>
                     {% endif %}
 
-                    {% if messages %}
-                        {% for records in messages %}
-                        <h3 style="color: green;">{{records}}</h3>
-                        {% endfor %}
+                    {% if Kyc_Infotemp.red_flag_temp == "True" %}
+                        <style>
+                            .red_mark{
+                                background-color: rgb(245, 129, 129);
+                                color: #000;
+                                        
+                            }
+                        </style>
+                        <p class="red_mark">New User</p>
                     {% endif %}
+
+                    
 
                 </form>
 
