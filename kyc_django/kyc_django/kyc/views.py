@@ -95,7 +95,7 @@ def update_data(request, id):
             else:
                 updates_data = Kyc_Infotemp.objects.get(id=id)
                 form = update_forms(request.POST, instance=updates_data)
-                messages.warning(request, 'please remove flags before adding to main database')
+                messages.error(request, 'please remove flags before adding to main database')
                 return render(request, "kyc/edit.html", {"Kyc_Infotemp": updates_data})
 
             new_entry = request.POST["salutation_temp"]
@@ -251,7 +251,7 @@ def update_data(request, id):
             else:
                 updates_data = Kyc_Infotemp.objects.get(id=id)
                 form = update_forms(request.POST, instance=updates_data)
-                messages.warning(request, 'please remove flags before adding to main database')
+                messages.error(request, 'please remove flags before adding to main database')
                 return render(request, "kyc/edit.html", {"Kyc_Infotemp": updates_data})
 
 
