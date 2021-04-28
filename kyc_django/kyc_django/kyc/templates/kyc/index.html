@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,15 +17,15 @@
     <script>
         $(document).ready(function(){
             $('[data-toggle="popover"]').popover({
-                placement : 'bottom',
+                placement : 'right',
                 trigger : 'hover',
                 html : true,
-                content : '<div class="media">{% load static %}<img src="{% static "img/1.jpg" %" class="mr-6" alt="selfie image"><div class="media-body"><h5 class="media-heading">Guidelines</h5><p>Get the photo as shown as in right of the image</p></div></div>'
+                content : '<div class="media"><div class="media-body"><p>To upload your selfie, face the camera with your photo ID card, facing the photo to the camera clearly as shown below</p><div style="width: 20px"><img style="width: 10px;" src="{% static 'kyc/img/1.jpeg' %}"></div></div></div>'
             });
         });
     </script>
     <style type="text/css">
-        
+
 
         a.info {
           vertical-align: bottom;
@@ -45,7 +46,7 @@
         }
         a.info:hover {
           background-color:#628cb6;
-          cursor: hand; 
+          cursor: hand;
           cursor: pointer;
         }
         a.info:before {
@@ -59,48 +60,48 @@
           text-align:center;
         }
 
-        
 
 
-      
 
-        
+
+
+
     </style>
 
-    
+
     <title>Document</title>
 
-    {% load static %}    
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
-    <script src="{% static 'js/index_min.js' %}" type="text/javascript"></script>
-	
-		
-		
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'kyc/css/index.css' %}">
+    <script src="{% static 'kyc/js/index_min.js' %}" type="text/javascript"></script>
+
+
+
 	<script type="text/javascript">
 		function  chackDOB(){
-			
+
 			var id =  document.getElementById("NIC").value;
 			var bir = document.getElementById("birthday").value;
 			var sex;
-			
+
 			var ele = document.getElementsByName('gender');
-			
+
 			for(i = 0; i < ele.length; i++) {
 				if(ele[i].checked)
 				sex = ele[i].value;
 			}
-			
+
 			var iY = Math.round((id/10000000)%100);
-			
-			// find sex 
-			
+
+			// find sex
+
 			var sexNumber = Math.round((id/10000)%1000);
-			
+
 			if(sexNumber < 500)
 				{
 					if(sex == "M")
 						{
-							
+
 						}
 					else
 						{
@@ -108,14 +109,14 @@
 
 						}
 				}
-			
+
 			if(sexNumber >= 500)
 				{
 					iY = iY-1;
-					
+
 					if(sex == "F")
 						{
-							
+
 						}
 					else
 						{
@@ -123,18 +124,18 @@
 
 						}
 				}
-			
+
 				// find DOB
-			
+
 			var birS = bir.toString()
 			var bY = birS.slice(2,4);
 			var bM = birS.slice(5,7);
 			var bD = birS.slice(8,10);
-			
-			
-			
+
+
+
 			var iMD ;
-			
+
 			if(sexNumber >= 500)
 				{
 					iMD = sexNumber - 500;
@@ -145,53 +146,53 @@
 				}
 			var dArray = [0,31,60,91,121,152,182,213,244,274,305,335,336];
 			var i=0;
-			
+
 			while(iMD>dArray[i])
 				{
 					i++;
-					
+
 				}
 			var iD = iMD-dArray[i-1];
 			var iM = i;
 			var temY = parseInt(bY);
 			var temM = parseInt(bM);
 			var temD = parseInt(bD);
-			
+
 			if(iY==temY)
 				{
-					
+
 				}
 			else
 				{
 					window.alert('wrong Year in Date of Birth');
 				}
-			
+
 			if(iM==temM)
 				{
-					
+
 				}
 			else
 				{
 					window.alert('wrong Month in Date of Birth');
 				}
-			
+
 			if(iD==temD)
 				{
-					
+
 				}
 			else
 				{
 					window.alert('wrong Date in Date of Birth');
 				}
-			
+
 
 		}
-		
-		
-	
+
+
+
 	</script>
 
-	
+
 
 
 </head>
@@ -207,7 +208,7 @@
 
     </div>
 
-    
+
 
     {% endfor %}
     <script type="text/javascript">
@@ -218,7 +219,7 @@
         //     if (!residence_country.disabled) {
         //         residence_country.focus();
         //     }
-            
+
         // }
         function disable(){
             document.getElementById("resident").disabled=true;
@@ -235,7 +236,7 @@
             var birthCertificate = document.getElementById("BRC");
             var postalID = document.getElementById("Postal_ID");
             var ArmedID = document.getElementById("OAFSC");
-          
+
             //NIC.disabled = ID_type.value = National_ID ? false : true;
 
             if(document.getElementById("ID_type").value == "National_ID"){
@@ -244,12 +245,12 @@
                 document.getElementById("birthday").disabled = '';
                 document.getElementById("drlicense").disabled = 'true';
                 document.getElementById("drive_exp").disabled = 'true';
-                document.getElementById("passport_exp").disabled = 'true'; 
+                document.getElementById("passport_exp").disabled = 'true';
                 document.getElementById("BRC").disabled = 'true';
                 document.getElementById("PID").disabled = 'true';
-                document.getElementById("OAFSC").disabled = 'true'; 
+                document.getElementById("OAFSC").disabled = 'true';
                 document.getElementById("imgVisa").disabled = 'true';
-                document.getElementById("imgOther").disabled = 'true'; 
+                document.getElementById("imgOther").disabled = 'true';
             }
             else if(document.getElementById("ID_type").value == "Passport"){
                 document.getElementById("passport").disabled = '';
@@ -260,9 +261,9 @@
                 document.getElementById("drive_exp").disabled = 'true';
                 document.getElementById("BRC").disabled = 'true';
                 document.getElementById("PID").disabled = 'true';
-                document.getElementById("OAFSC").disabled = 'true'; 
+                document.getElementById("OAFSC").disabled = 'true';
                 document.getElementById("imgOther").disabled = 'true';
-                document.getElementById("imgVisa").disabled = 'true'; 
+                document.getElementById("imgVisa").disabled = 'true';
             }
             else if(document.getElementById("ID_type").value == "Driving_License"){
                 document.getElementById("drlicense").disabled = '';
@@ -274,11 +275,11 @@
                 document.getElementById("passport_exp").disabled = 'true';
                 document.getElementById("BRC").disabled = 'true';
                 document.getElementById("PID").disabled = 'true';
-                document.getElementById("OAFSC").disabled = 'true'; 
-                document.getElementById("imgVisa").disabled = 'true'; 
+                document.getElementById("OAFSC").disabled = 'true';
+                document.getElementById("imgVisa").disabled = 'true';
                 document.getElementById("imgOther").disabled = 'true';
             }
-            else if(document.getElementById("ID_type").value == "Birth_certificate_number") {  
+            else if(document.getElementById("ID_type").value == "Birth_certificate_number") {
                 document.getElementById("NIC").disabled = 'true';
                 document.getElementById("birthday").disabled = 'true';
                 document.getElementById("passport").disabled = 'true';
@@ -288,10 +289,10 @@
                 document.getElementById("BRC").disabled = '';
                 document.getElementById("PID").disabled = 'true';
                 document.getElementById("OAFSC").disabled = 'true';
-                document.getElementById("imgVisa").disabled = 'true';  
+                document.getElementById("imgVisa").disabled = 'true';
                 document.getElementById("imgOther").disabled = 'true';
             }
-            else if(document.getElementById("ID_type").value == "Postal ID") {  
+            else if(document.getElementById("ID_type").value == "Postal ID") {
                 document.getElementById("NIC").disabled = 'true';
                 document.getElementById("passport").disabled = 'true';
                 document.getElementById("birthday").disabled = 'true';
@@ -300,11 +301,11 @@
                 document.getElementById("passport_exp").disabled = 'true';
                 document.getElementById("BRC").disabled = 'true';
                 document.getElementById("PID").disabled = '';
-                document.getElementById("OAFSC").disabled = 'true'; 
-                document.getElementById("imgVisa").disabled = 'true'; 
+                document.getElementById("OAFSC").disabled = 'true';
+                document.getElementById("imgVisa").disabled = 'true';
                 document.getElementById("imgOther").disabled = 'true';
             }
-            else if(document.getElementById("ID_type").value == "Official armed forces service card") {  
+            else if(document.getElementById("ID_type").value == "Official armed forces service card") {
                 document.getElementById("NIC").disabled = 'true';
                 document.getElementById("passport").disabled = 'true';
                 document.getElementById("birthday").disabled = 'true';
@@ -313,11 +314,11 @@
                 document.getElementById("passport_exp").disabled = 'true';
                 document.getElementById("BRC").disabled = 'true';
                 document.getElementById("PID").disabled = 'true';
-                document.getElementById("OAFSC").disabled = ''; 
-                document.getElementById("imgVisa").disabled = 'true'; 
+                document.getElementById("OAFSC").disabled = '';
+                document.getElementById("imgVisa").disabled = 'true';
                 document.getElementById("imgOther").disabled = 'true';
             }
-            else if(document.getElementById("ID_type").value == "Copy of Visa") {  
+            else if(document.getElementById("ID_type").value == "Copy of Visa") {
                 document.getElementById("NIC").disabled = 'true';
                 document.getElementById("passport").disabled = 'true';
                 document.getElementById("birthday").disabled = 'true';
@@ -326,11 +327,11 @@
                 document.getElementById("passport_exp").disabled = 'true';
                 document.getElementById("BRC").disabled = 'true';
                 document.getElementById("PID").disabled = 'true';
-                document.getElementById("OAFSC").disabled = 'true'; 
-                document.getElementById("imgVisa").disabled = ''; 
+                document.getElementById("OAFSC").disabled = 'true';
+                document.getElementById("imgVisa").disabled = '';
                 document.getElementById("imgOther").disabled = 'true';
             }
-            else if(document.getElementById("ID_type").value == "Other") {  
+            else if(document.getElementById("ID_type").value == "Other") {
                 document.getElementById("NIC").disabled = 'true';
                 document.getElementById("passport").disabled = 'true';
                 document.getElementById("birthday").disabled = 'true';
@@ -339,11 +340,11 @@
                 document.getElementById("passport_exp").disabled = 'true';
                 document.getElementById("BRC").disabled = 'true';
                 document.getElementById("PID").disabled = 'true';
-                document.getElementById("OAFSC").disabled = 'true'; 
-                document.getElementById("imgVisa").disabled = 'true'; 
+                document.getElementById("OAFSC").disabled = 'true';
+                document.getElementById("imgVisa").disabled = 'true';
                 document.getElementById("imgOther").disabled = '';
             }
-            else if(document.getElementById("ID_type").value == "default") {  
+            else if(document.getElementById("ID_type").value == "default") {
                 document.getElementById("NIC").disabled = 'true';
                 document.getElementById("passport").disabled = 'true';
                 document.getElementById("birthday").disabled = 'true';
@@ -352,11 +353,11 @@
                 document.getElementById("passport_exp").disabled = 'true';
                 document.getElementById("BRC").disabled = 'true';
                 document.getElementById("PID").disabled = 'true';
-                document.getElementById("OAFSC").disabled = 'true'; 
-                document.getElementById("imgVisa").disabled = 'true'; 
+                document.getElementById("OAFSC").disabled = 'true';
+                document.getElementById("imgVisa").disabled = 'true';
                 document.getElementById("imgOther").disabled = 'true';
             }
-            
+
         }
         function select_nationality(){
             if(document.getElementById("Nationality").value == "Sri Lankan"){
@@ -366,7 +367,7 @@
                 document.getElementById("type_of_your_visa").disabled = 'true';
                 document.getElementById("foreign_address").disabled = 'true';
                 document.getElementById("visa_exp_other").disabled = 'true';
-                
+
             }
            else if(document.getElementById("Nationality").value == "Other"){
                 document.getElementById("otherNationality").disabled = '';
@@ -375,7 +376,7 @@
                 document.getElementById("type_of_your_visa").disabled = '';
                 document.getElementById("foreign_address").disabled = '';
                 document.getElementById("visa_exp_other").disabled = '';
-                
+
            }
         }
         function select_visa()
@@ -392,7 +393,7 @@
         }
     </script>
 
-    
+
 
     <script type="text/javascript">
         function googleTranslateElementInit() {
@@ -401,19 +402,19 @@
 
         }
     </script>
-    
+
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <div class="row">
         <div class="col-md-12 title" style="background-color: #f3f3f300;">
-       
+
             <p style="padding-top:10px; padding-left:50px;color:#000"><b>Know Your Customer (KYC) Form</b></p>
 
             <div class="col-md-2" style="margin-top: -50px; margin-left: 80%;">
                 <div id="google_translate_element" ></div>
             </div>
-      
-      
+
+
         </div>
     </div>
 
@@ -424,8 +425,8 @@
 
         <div class="col-md-5 personel_info" style="border:1px solid #000; border-radius:25px; height:1450px;">
 
-            
-            
+
+
 
             <form action="insertkyc" method="post">
               {% csrf_token %}
@@ -433,7 +434,7 @@
                 <center><h5>Personal Information</h5></center>
             <!--<div class="col-md-5 personel_info" style="border:1px solid #000; border-radius:25px;">-->
                 <table align="center" width="90%">
-                   
+
                     <tr>
                         <td>
                             <select name="salutation" id="solutation" required="" style="width:100px;">
@@ -461,17 +462,18 @@
                     </tr>
 
                     <tr>
-                        
+
                         <tr>
                             <td>
                                 <div style="color: blue">
-                                    <label data-toggle="popover">Upload Live Selfie to validate NIC</label>
-                                    
+                                    <label data-toggle="popover" title="Guidelines">Upload Live Selfie to validate NIC</label>
+
                                 </div>
                             </td>
                             <td>
                                 <input type="file" id="img" name="self_nic" accept="image/*" required placeholder=""
                                 oninvalid="this.setCustomValidity('Please upload a live selfie')" oninput="this.setCustomValidity('')"  />
+
                                 
                             </td>
                         </tr>
