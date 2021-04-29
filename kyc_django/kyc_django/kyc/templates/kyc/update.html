@@ -19,11 +19,93 @@
 </head>
 <body style="background: url({% static 'kyc/img/7.jpg' %}) no-repeat fixed; background-position: center;background-repeat: no-repeat; background-size: cover;">
     <div class="container-fluid">
-        <div >
-            <div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="scrollmenu">
+                    <h2>Queue of records</h2>
 
+                
+                    <select name="id_types" id="ID_type" required="">
+
+                        <option value="default" id="op_def">Select a user</option>
+
+                        {% for display in all_rec %}
+
+                            {% if display.blue_flag_temp == "True" %}
+
+                                <option value="{{display.id}}" id="op_nic" style="background-color: rgb(99, 148, 212);"> {{display.id}} | {{display.full_name_temp}} </option>
+
+                            {% endif %}
+
+                            
+
+                            {% if display.blue_flagadd_temp == "True" %}
+                
+                                <option value="{{display.id}}" id="op_nic" style="background-color: rgb(76, 250, 105);"> {{display.id}} | {{display.full_name_temp}} </option>
+
+                            {% endif %}
+
+                            {% if display.red_flag_temp == "True" %}
+
+                                <option value="{{display.id}}" id="op_nic" style="background-color: rgb(245, 129, 129);"> {{display.id}} | {{display.full_name_temp}} </option>
+                                
+                            {% endif %}
+                            
+                            {% if display.red_flag_temp != "True" and display.blue_flagadd_temp != "True" and display.blue_flag_temp != "True" %}
+
+                                <option value="{{display.id}}" id="op_nic"> {{display.id}} | {{display.full_name_temp}} </option>
+                                
+                            {% endif %}
+                            
+                        {% endfor %}
+
+                        
+                    </select>
+
+                    <br>
+
+                    <table class="border" style="margin-top: 10px;">
+                        <tr class="border">
+                            <th id="userid"  class="border">Temp_ID</th>
+                            <th id="full_name"  class="border">Name in full</th>
+                            <th id="Name_inti"  class="border">Name with initials</th>
+                            <th id="Id_num"  class="border">Id number</th>
+                            <th id="Resi_info"  class="border">House number</th>
+                            <th id="Resi_info"  class="border">Street</th>
+                            <th id="Resi_info"  class="border">City</th>
+                            <th id="Resi_info"  class="border">Country</th>
+                            <th id="edit1" class="border">Edit</th>
+                        </tr>
+                        
+                        {% for display in all_rec %}
+                        <tr class="border">
+                            <td class="border">{{display.id}}</td>
+                            <td class="border">{{display.full_name_temp}}</td>
+                            <td class="border">{{display.name_init_temp}}</td>
+                            <td class="border">{{display.nics_no_temp}}</td>
+                            <td class="border">{{display.house_no_temp}}</td>
+                            <td class="border">{{display.street_temp}}</td>
+                            <td class="border">{{display.city_temp}}</td>
+                            <td class="border">{{display.country_temp}}</td>
+                            <td class="border"><a href="/edit/{{display.id}}">edit</a></td>
+
+                        </tr>
+                    {% endfor %}
+                    </table>
+                    <br>
+
+                </div>
+            </div>
+
+            <div class="col-sm-8">
+                <h2>Selected Record</h2>
+                
+                <div class="fakeimg">Fake Record place display</div>
+                
             </div>
         </div>
+        
+    
         <div>
 
             <center>
@@ -37,6 +119,7 @@
                         <th id="full_name"  class="border">Name in full</th>
                         <th id="Name_inti"  class="border">Name with initials</th>
                         <th id="Id_num"  class="border">Id number</th>
+                        
                         <th id="Driving_lic"  class="border">Driving licence</th>
                         <th id="Driving_lic"  class="border">Driving licence expire</th>
                         <th id="passport"  class="border">Passport number</th>

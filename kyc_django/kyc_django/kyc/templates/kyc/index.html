@@ -156,7 +156,7 @@
 </head>
 
 
-<body style="background: url({% static 'img/7.jpg' %}) no-repeat fixed; background-position: center;background-repeat: no-repeat; background-size: cover;">
+<body style="background: url({% static 'kyc/img/7.jpg' %}) no-repeat fixed; background-position: center;background-repeat: no-repeat; background-size: cover;">
     {% for message in messages %}
     <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
         <strong>Message </strong>{{message}}
@@ -386,7 +386,7 @@
 
 
 
-            <form action="insertkyc" method="post">
+            <form action="insertkyc" method="post" enctype="multipart/form-data">
               {% csrf_token %}
               <br>
                 <center><h5>Personal Information</h5></center>
@@ -433,6 +433,20 @@
                                 oninvalid="this.setCustomValidity('Please upload a live selfie')" oninput="this.setCustomValidity('')"  />
 
                                 
+                            </td>
+                        </tr>
+
+                        
+                        <tr>
+                            <td>
+                                <div>
+                                    <p></p>
+                                    <label for="img">Upload Live VIDEO</label>
+                                </div>
+                            </td>
+                            <td>
+                                <input type="file" id="vid" name="live_video" accept="video/*" required placeholder=""
+                                oninvalid="this.setCustomValidity('Please upload a live video')" oninput="this.setCustomValidity('')"  />
                             </td>
                         </tr>
                         

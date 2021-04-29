@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from .models import Kyc_Info, Kyc_Infotemp, Id_Info
+from .models import Kyc_Info, Kyc_Infotemp, Id_Info, Image
 from django.contrib import messages
 from django.utils.datastructures import MultiValueDictKeyError
-from .forms import update_forms, accept_form
+from .forms import update_forms, accept_form, ImageForm
 
 
 # define method for calling pages
@@ -30,10 +30,12 @@ def update(request):
     result2 = Kyc_Infotemp.objects.filter(blue_flag_temp=True)
     result3 = Kyc_Infotemp.objects.filter(red_flag_temp=True)
     result4 = Kyc_Infotemp.objects.filter(red_flag_temp=False, blue_flag_temp=False, blue_flagadd_temp=False)
+    all_records = Kyc_Infotemp.objects.all()
 
     # passing variables to the update.html using dictionary
     return render(request, "kyc/update.html", {"Kyc_Infotemp1": result, "Kyc_Infotemp2": result2,
-                                               "Kyc_Infotemp3": result3, "Kyc_Infotemp4": result4})
+                                               "Kyc_Infotemp3": result3, "Kyc_Infotemp4": result4,
+                                               "all_rec": all_records})
 
 
 # defining function to get records using id through the database and display in editing
@@ -111,6 +113,7 @@ def update_data(request, id):
                 full_name = request.POST["full_name_temp"]
                 name_init = request.POST["name_init_temp"]
                 profile_pic = request.POST["profile_pic_temp"]
+                live_video = request.FILES["live_video"]
                 id_type = request.POST["id_type_temp"]
 
                 try:
@@ -209,6 +212,7 @@ def update_data(request, id):
 
                 submit_kyc_temp = Kyc_Info(salutation_temp=salutation, full_name_temp=full_name,
                                            name_init_temp=name_init, profile_pic_temp=profile_pic,
+                                           live_video_temp=live_video,
                                            id_type_temp=id_type,
                                            nics_no_temp=nics_no, date_of_birth_temp=date_of_birth,
                                            driv_lic_temp=drive_lic, driv_exp_temp=driv_exp,
@@ -350,7 +354,8 @@ def insertkyc(request):
     salutation = request.POST["salutation"]
     full_name = request.POST["fullname"]
     name_init = request.POST["name_init"]
-    profile_pic = request.POST["self_nic"]
+    profile_pic = request.FILES["self_nic"]
+    live_video = request.FILES["live_video"]
     id_type = request.POST["id_types"]
 
     try:
@@ -418,7 +423,7 @@ def insertkyc(request):
         foreign_addre = ''
 
     vari_doc_type = request.POST["Verification_addres"]
-    vari_doc = request.POST["vari_image"]
+    vari_doc = request.FILES["vari_image"]
     pep_person = request.POST["pep"]
     us_city = request.POST["us_city"]
 
@@ -483,6 +488,7 @@ def insertkyc(request):
 
                         submit_kyc_temp = Kyc_Infotemp(salutation_temp=salutation, full_name_temp=full_name,
                                                        name_init_temp=name_init, profile_pic_temp=profile_pic,
+                                                       live_video_temp=live_video,
                                                        id_type_temp=id_type,
                                                        nics_no_temp=nics_no, date_of_birth_temp=date_of_birth,
                                                        driv_lic_temp=drive_lic, driv_exp_temp=driv_exp,
@@ -521,6 +527,7 @@ def insertkyc(request):
                         blue_flag = 'True'
                         submit_kyc_temp = Kyc_Infotemp(salutation_temp=salutation, full_name_temp=full_name,
                                                        name_init_temp=name_init, profile_pic_temp=profile_pic,
+                                                       live_video_temp=live_video,
                                                        id_type_temp=id_type,
                                                        nics_no_temp=nics_no, date_of_birth_temp=date_of_birth,
                                                        driv_lic_temp=drive_lic, driv_exp_temp=driv_exp,
@@ -592,6 +599,7 @@ def insertkyc(request):
 
                         submit_kyc_temp = Kyc_Infotemp(salutation_temp=salutation, full_name_temp=full_name,
                                                        name_init_temp=name_init, profile_pic_temp=profile_pic,
+                                                       live_video_temp=live_video,
                                                        id_type_temp=id_type,
                                                        nics_no_temp=nics_no, date_of_birth_temp=date_of_birth,
                                                        driv_lic_temp=drive_lic, driv_exp_temp=driv_exp,
@@ -630,6 +638,7 @@ def insertkyc(request):
 
                         submit_kyc_temp = Kyc_Infotemp(salutation_temp=salutation, full_name_temp=full_name,
                                                        name_init_temp=name_init, profile_pic_temp=profile_pic,
+                                                       live_video_temp=live_video,
                                                        id_type_temp=id_type,
                                                        nics_no_temp=nics_no, date_of_birth_temp=date_of_birth,
                                                        driv_lic_temp=drive_lic, driv_exp_temp=driv_exp,
@@ -692,3 +701,16 @@ def insertkyc(request):
 
     else:
         return render(request, 'kyc/index.html')"""
+
+def image_upload_view(request):
+    """Process images uploaded by users"""
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            # Get the current instance object to display in the template
+            img_obj = form.instance
+            return render(request, 'kyc/home.html', {'form': form, 'img_obj': img_obj})
+    else:
+        form = ImageForm()
+    return render(request, 'kyc/home.html', {'form': form})

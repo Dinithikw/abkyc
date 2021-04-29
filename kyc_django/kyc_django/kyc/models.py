@@ -7,7 +7,8 @@ class Kyc_Info(models.Model):
     salutation_temp = models.CharField(max_length=5)
     full_name_temp = models.CharField(max_length=200)
     name_init_temp = models.CharField(max_length=100)
-    profile_pic_temp = models.FileField(upload_to='images/', null=True, blank=True, verbose_name="")
+    profile_pic_temp = models.FileField(upload_to='images/', null=True, blank=True)
+    live_video_temp = models.FileField(upload_to='videos/%Y/%m/%d/', null=True)
     id_type_temp = models.CharField(max_length=50)
     nics_no_temp = models.CharField(max_length=50)
     date_of_birth_temp = models.CharField(max_length=20)
@@ -72,15 +73,16 @@ class Kyc_Info(models.Model):
     long_text = models.TextField(max_length=255)"""
 
 
-    # def __str__(self):
-    #   return self.full_name
+    def __str__(self):
+        return self.full_name
 
 class Kyc_Infotemp(models.Model):
     
     salutation_temp = models.CharField(max_length=5)
     full_name_temp = models.CharField(max_length=200)
     name_init_temp = models.CharField(max_length=100)
-    profile_pic_temp = models.FileField(upload_to='images/', null=True, verbose_name="")
+    profile_pic_temp = models.ImageField(upload_to='images', null=True)
+    live_video_temp = models.FileField(upload_to='videos/%Y/%m/%d/', null=True)
     id_type_temp = models.CharField(max_length=50)
     nics_no_temp = models.CharField(max_length=50)
     date_of_birth_temp = models.CharField(max_length=20)
@@ -134,8 +136,8 @@ class Kyc_Infotemp(models.Model):
 
     class Meta:
         db_table = "Kyc_Infotemp"
-    #def __str__(self):
-        #return self.full_name_temp
+    def __str__(self):
+        return self.full_name_temp
 
 class Id_Info(models.Model):
     nic_no = models.CharField(max_length=50)
@@ -147,3 +149,11 @@ class Id_Info(models.Model):
 
     def __str__(self):
         return self.name_full
+
+
+class Image(models.Model):
+    title = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='images')
+
+    def __str__(self):
+        return self.title

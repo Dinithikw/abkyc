@@ -142,8 +142,13 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT  = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
-MEDIA_URL= "/media/"
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Base url to serve media files
+MEDIA_URL = '/media/'
+
+# Path where media is stored
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',

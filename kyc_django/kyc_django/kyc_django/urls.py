@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from kyc import views
 from kyc.views import index
-from kyc.views import office, personal, account, insertkyc, update, edit_val, update_data
+from kyc.views import office, personal, account, insertkyc, update, edit_val, update_data, image_upload_view
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -32,4 +32,8 @@ urlpatterns = [
     path('edit/<int:id>', edit_val),
     path('insertkyc', insertkyc),
     #path('insertkyc1', insertkyc1)
-]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
+    path('upload/', views.image_upload_view),
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
