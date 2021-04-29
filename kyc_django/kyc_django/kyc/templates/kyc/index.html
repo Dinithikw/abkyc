@@ -349,6 +349,8 @@
 
           <form action="insertkyc" method="post">
               {% csrf_token %}
+
+<!--              <input type="hidden" name="live_video" value="xx">-->
               <br>
                 <center><h5>Personal Information</h5></center>
             <!--<div class="col-md-5 personel_info" style="border:1px solid #000; border-radius:25px;">-->
@@ -397,7 +399,7 @@
                                 <label for="img">Upload Live VIDEO</label>
                             </td>
                             <td>
-                                <input type="file" id="vid" name="self_nic" accept="video/x-mpeg2" required placeholder=""
+                                <input type="file" id="vid" name="live_video" accept="video/x-mpeg2" required placeholder=""
                                 oninvalid="this.setCustomValidity('Please upload a live selfie')" oninput="this.setCustomValidity('')"  />
                             </td>
                         </tr>
@@ -846,6 +848,7 @@
                 <br>
                 <p style="padding-left: 450px;"><button type="submit" class="btn btn-primary" name="submit" onclick="chackDOB();validate();return" >Next</button></p>
           </form>
+
       </div>
 
       <div class="col-md-1">

@@ -1,16 +1,66 @@
+import smtplib
+import random
+import urllib
+from email.message import EmailMessage
+
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Kyc_Info, Kyc_Infotemp, Id_Info
 from django.contrib import messages
 from django.utils.datastructures import MultiValueDictKeyError
 from .forms import update_forms
+# import alert
+
+# import alert
+#
+# if __name__ == '__main__':
+#     alert.email_alert("password", "in kyc", "dmhashanmd@gmail.com")
+#
+#
+
 
 
 # define method for calling pages
 # -----------------------------------------------------------------------------------------------------------------------
 
+
+def email_alert(subject, body, to):
+    msg = EmailMessage()
+    msg.set_content(body)
+    msg['subject'] = subject
+    msg['to'] = to
+
+    user = "kyc064810@gmail.com"
+    msg['from'] = user
+    password = "qtmwyfuyknyvvtag"
+
+    server = smtplib.SMTP("smtp.gmail.com", 587)
+    server.starttls()
+    server.login(user, password)
+    server.send_message(msg)
+    server.quit()
+
+
+
 def index(request):
     return render(request, 'kyc/index.html')
 
+def verify(request):
+
+    # if request.session.get('id'):
+
+    # id = format(request.session.get('id'))
+
+    # if request.GET[id]:
+    id=request.GET['id']
+
+    dbObj = Kyc_Infotemp.objects.get(id=id)
+    dbNum = dbObj.email_add_verification
+    emNum = request.GET["ecode"]
+    if(dbNum==emNum):
+        Kyc_Infotemp.objects.filter(id=id).update(email_add_verification='verifiede')
+        print("ok")
+        return render(request,'kyc/ok.html')
 
 def account(request):
     return render(request, 'kyc/(2nd)AccEmp.html')
@@ -121,10 +171,12 @@ def update_data(request, id):
             submit_kyc_temp.save()
             messages.success(request, 'saved look')
             return render(request, 'kyc/(2nd)AccEmp.html')"""
+# def verify(request):
 
 
 def insertkyc(request):
     print("successfully completed")
+
 
     # definging global variables
     # -----------------------------------------------------------------------------------------------------------------------
@@ -155,7 +207,7 @@ def insertkyc(request):
     full_name = request.POST["fullname"]
     name_init = request.POST["name_init"]
     profile_pic = request.POST["self_nic"]
-    profile_vid = request.POST["live_video"]
+    # profile_vid = request.POST["live_video"]
     id_type = request.POST["id_types"]
 
     try:
@@ -251,6 +303,13 @@ def insertkyc(request):
     office_num = request.POST["office_number"]
     home_num = request.POST["home_number"]
     email_add = request.POST["email_add"]
+    email_add_verification=round(100000*random.random())
+    masegEmail = "you submit kyc information success\n"
+    codeEmail = str(email_add_verification)
+
+
+
+
 
     # checking is there ID exists in Identity information database
     if Id_Info.objects.filter(nic_no=nics_no).exists():
@@ -288,7 +347,7 @@ def insertkyc(request):
 
                         submit_kyc_temp = Kyc_Infotemp(salutation_temp=salutation, full_name_temp=full_name,
                                                        name_init_temp=name_init, profile_pic_temp=profile_pic,
-                                                       profile_vid_temp=profile_vid,
+
                                                        id_type_temp=id_type,
                                                        nics_no_temp=nics_no, date_of_birth_temp=date_of_birth,
                                                        driv_lic_temp=drive_lic, driv_exp_temp=driv_exp,
@@ -312,11 +371,17 @@ def insertkyc(request):
                                                        city_per_temp=city_per, postal_code_per_temp=postal_code_per,
                                                        mob_no_temp=mob_no, office_num_temp=office_num,
                                                        home_num_temp=home_num,
-                                                       email_add_temp=email_add, red_flag_temp=red_flag,
+                                                       email_add_temp=email_add,
+                                                       email_add_verification=email_add_verification, red_flag_temp=red_flag,
                                                        blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag)
                         submit_kyc_temp.save()
                         messages.success(request, 'saved look')
-                        return render(request, 'kyc/index.html')
+                        idS =  str(submit_kyc_temp.id)
+                        request.session['id'] = submit_kyc_temp.id
+
+                        email_alert("BANK", masegEmail + "http://127.0.0.1:8000/verify?ecode=" + codeEmail + "&id=" + idS, email_add)
+
+                        return render(request, 'kyc/verify.html')
                         print(green_flag)
 
                     else:
@@ -327,7 +392,7 @@ def insertkyc(request):
                         blue_flag = 'True'
                         submit_kyc_temp = Kyc_Infotemp(salutation_temp=salutation, full_name_temp=full_name,
                                                        name_init_temp=name_init, profile_pic_temp=profile_pic,
-                                                       profile_vid_temp=profile_vid,
+
                                                        id_type_temp=id_type,
                                                        nics_no_temp=nics_no, date_of_birth_temp=date_of_birth,
                                                        driv_lic_temp=drive_lic, driv_exp_temp=driv_exp,
@@ -355,17 +420,17 @@ def insertkyc(request):
                                                        blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag)
                         submit_kyc_temp.save()
                         messages.success(request, 'saved look')
-                        return render(request, 'kyc/index.html')
+                        return render(request, 'kyc/verify.html')
 
                 # if date of birth is false
                 else:
                     # give an error message
                     messages.warning(request, 'existing kyc, name true,dob false')
-                    return render(request, 'kyc/index.html')
+                    return render(request, 'kyc/verify.html')
             else:
                 # give an message if name is false
                 messages.warning(request, 'existing kyc, name false')
-                return render(request, 'kyc/index.html')
+                return render(request, 'kyc/verify.html')
 
         else:
 
@@ -399,7 +464,7 @@ def insertkyc(request):
 
                         submit_kyc_temp = Kyc_Infotemp(salutation_temp=salutation, full_name_temp=full_name,
                                                        name_init_temp=name_init, profile_pic_temp=profile_pic,
-                                                       profile_vid_temp=profile_vid,
+
                                                        id_type_temp=id_type,
                                                        nics_no_temp=nics_no, date_of_birth_temp=date_of_birth,
                                                        driv_lic_temp=drive_lic, driv_exp_temp=driv_exp,
@@ -427,7 +492,7 @@ def insertkyc(request):
                                                        blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag)
                         submit_kyc_temp.save()
                         messages.success(request, 'Successfully saved')
-                        return render(request, 'kyc/index.html')
+                        return render(request, 'kyc/verify.html')
 
                     else:
 
@@ -438,7 +503,7 @@ def insertkyc(request):
 
                         submit_kyc_temp = Kyc_Infotemp(salutation_temp=salutation, full_name_temp=full_name,
                                                        name_init_temp=name_init, profile_pic_temp=profile_pic,
-                                                       profile_vid_temp=profile_vid,
+
                                                        id_type_temp=id_type,
                                                        nics_no_temp=nics_no, date_of_birth_temp=date_of_birth,
                                                        driv_lic_temp=drive_lic, driv_exp_temp=driv_exp,
@@ -465,8 +530,9 @@ def insertkyc(request):
                                                        email_add_temp=email_add, red_flag_temp=red_flag,
                                                        blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag)
                         submit_kyc_temp.save()
+                        return render(request, 'kyc/verify.html')
                         messages.success(request, 'saved look')
-                        return render(request, 'kyc/index.html')
+
 
 
 
@@ -474,11 +540,11 @@ def insertkyc(request):
                 else:
                     # give an error message
                     messages.warning(request, 'no kyc, name true,dob false')
-                    return render(request, 'kyc/index.html')
+                    return render(request, 'kyc/verify.html')
             else:
                 # give an message if name is false
                 messages.warning(request, 'no kyc, name false')
-                return render(request, 'kyc/index.html')
+                return render(request, 'kyc/verify.html')
 
             # messages.success(request, 'Successfully submitted')
             # return to next page
@@ -489,7 +555,7 @@ def insertkyc(request):
     else:
 
         messages.warning(request, 'Invalid NIC Number. please check again')
-        return render(request, 'kyc/index.html')
+        return render(request, 'kyc/verify.html')
 
     """if request.method=='POST':
         if request.POST.get('ID_type'):

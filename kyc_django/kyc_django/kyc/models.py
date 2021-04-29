@@ -8,6 +8,7 @@ class Kyc_Info(models.Model):
     full_name = models.CharField(max_length=200)
     name_init = models.CharField(max_length=100)
     profile_pic = models.ImageField(null=True, blank=True, upload_to="images/profile_pic/")
+    # profile_vid = models.ImageField(null=True, blank=True, upload_to="images/profile_pic/")
     id_type = models.CharField(max_length=50)
     nics_no = models.CharField(max_length=50)
     date_of_birth = models.DateField('%Y-%m-%d')
@@ -54,6 +55,7 @@ class Kyc_Info(models.Model):
     office_num = models.CharField(max_length=20, blank=True, null=True)
     home_num = models.CharField(max_length=20, blank=True, null=True)
     email_add = models.CharField(max_length=50, blank=True, null=True)
+    email_add_temp = models.CharField(max_length=50, blank=True, null=True)
 
     
     
@@ -122,7 +124,8 @@ class Kyc_Infotemp(models.Model):
     mob_no_temp = models.CharField(max_length=20)
     office_num_temp = models.CharField(max_length=20, blank=True, null=True)
     home_num_temp = models.CharField(max_length=20, blank=True, null=True)
-    email_add_temp = models.CharField(max_length=50, blank=True, null=True)
+    email_add_temp = models.CharField(max_length=50, blank=True, null=True)            #   -----------temp  email
+    email_add_verification = models.CharField(max_length=50, blank=True, null=True)
     red_flag_temp = models.CharField(max_length=5, blank=True, null=True)
     blue_flagadd_temp = models.CharField(max_length=5, blank=True, null=True)
     blue_flag_temp = models.CharField(max_length=5, blank=True, null=True)
