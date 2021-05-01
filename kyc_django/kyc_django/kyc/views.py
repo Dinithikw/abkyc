@@ -1,16 +1,84 @@
+import smtplib
+import random
+import urllib
+from email.message import EmailMessage
+
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .models import Kyc_Info, Kyc_Infotemp, Id_Info, Image
+from .models import Kyc_Info, Kyc_Infotemp, Id_Info
 from django.contrib import messages
 from django.utils.datastructures import MultiValueDictKeyError
-from .forms import update_forms, accept_form, ImageForm
+from .forms import update_forms
+# import alert
+
+# import alert
+#
+# if __name__ == '__main__':
+#     alert.email_alert("password", "in kyc", "dmhashanmd@gmail.com")
+#
+#
+
 
 
 # define method for calling pages
 # -----------------------------------------------------------------------------------------------------------------------
 
+
+def email_alert(subject, body, to):
+    msg = EmailMessage()
+    msg.set_content(body)
+    msg['subject'] = subject
+    msg['to'] = to
+
+    user = "kyc064810@gmail.com"
+    msg['from'] = user
+    password = "qtmwyfuyknyvvtag"
+
+    server = smtplib.SMTP("smtp.gmail.com", 587)
+    server.starttls()
+    server.login(user, password)
+    server.send_message(msg)
+    server.quit()
+
+
+
 def index(request):
     return render(request, 'kyc/index.html')
 
+def verify(request):
+
+    # if request.session.get('id'):
+
+    # id = format(request.session.get('id'))
+
+    # if request.GET[id]:
+    id=request.GET['id']
+
+    dbObj = Kyc_Infotemp.objects.get(id=id)
+    dbNum = dbObj.email_add_verification
+    emNum = request.GET["ecode"]
+    if(dbNum==emNum):
+        Kyc_Infotemp.objects.filter(id=id).update(email_add_verification='verifiede')
+        print("ok")
+        return render(request,'kyc/ok.html')
+
+def verify2(request):
+
+    # # if request.session.get('id'):
+    #
+    # # id = format(request.session.get('id'))
+    #
+    # # if request.GET[id]:
+    # id=request.GET['id']
+    #
+    # dbObj = Kyc_Infotemp.objects.get(id=id)
+    # dbNum = dbObj.email_add_verification
+    # emNum = request.GET["ecode"]
+    # if(dbNum==emNum):
+    #     Kyc_Infotemp.objects.filter(id=id).update(email_add_verification='verifiede')
+    #     print("ok")
+    messages.success(request, 'Mobile number verified')
+    return render(request,'kyc/index.html')
 
 def account(request):
     return render(request, 'kyc/(2nd)AccEmp.html')
@@ -30,44 +98,10 @@ def update(request):
     result2 = Kyc_Infotemp.objects.filter(blue_flag_temp=True)
     result3 = Kyc_Infotemp.objects.filter(red_flag_temp=True)
     result4 = Kyc_Infotemp.objects.filter(red_flag_temp=False, blue_flag_temp=False, blue_flagadd_temp=False)
-    productnames = Kyc_Infotemp.objects.all()
 
-    #get the form output using get method
-    if request.method == 'GET':
-        p = request.GET.getlist('select_user')
-        #print(p)
-        #k = request.GET('parameters[]')
-        productnames = Kyc_Infotemp.objects.all()
-        context = {
-            "Kyc_Infotemp1": result, "Kyc_Infotemp2": result2,
-            "Kyc_Infotemp3": result3, "Kyc_Infotemp4": result4,
-            'userList': p, 'all_info': productnames,
-        }
-
-    else:
-
-        context = {
-            "Kyc_Infotemp1": result, "Kyc_Infotemp2": result2,
-            "Kyc_Infotemp3": result3, "Kyc_Infotemp4": result4,
-            "all_info": productnames,
-        }
     # passing variables to the update.html using dictionary
-    return render(request, "kyc/update.html", context)
-
-# this was defined to check a branch of a program only for devoloping purposes
-def productList(request):
-    if request.method == 'GET':
-        p = request.GET.getlist('select_user')
-        print(p)
-        #k = request.GET('parameters[]')
-        productnames = Kyc_Infotemp.objects.all()
-        context = {
-            'userList': p, 'all_info': productnames,
-        }
-        # --- logic later for chart ------    
-    
-
-    return render(request, 'kyc/select.html', context)
+    return render(request, "kyc/update.html", {"Kyc_Infotemp1": result, "Kyc_Infotemp2": result2,
+                                               "Kyc_Infotemp3": result3, "Kyc_Infotemp4": result4})
 
 
 # defining function to get records using id through the database and display in editing
@@ -79,216 +113,18 @@ def edit_val(request, id):
 
 # defining database update function when click on update button
 def update_data(request, id):
-    if request.method == 'POST' and 'update_db' in request.POST:
-        updates_data = Kyc_Infotemp.objects.get(id=id)
-        form = update_forms(request.POST, instance=updates_data)
+    updates_data = Kyc_Infotemp.objects.get(id=id)
+    form = update_forms(request.POST, instance=updates_data)
+    # print(form.errors)
 
-        # print(form.errors)
+    # print(updates_data)
 
-        # print(updates_data)
+    print(form)
 
-        print(form.is_valid())
-
-        if form.is_valid():
-            form.save()
-            messages.success(request, "record update sucessfully")
-            return render(request, "kyc/edit.html", {"Kyc_Infotemp": updates_data})
-
-    if request.method == 'POST' and 'accept_rec' in request.POST:
-
-        new_entry = request.POST["nics_no_temp"]
-        flag_1 = request.POST["red_flag_temp"]
-        flag_2 = request.POST["blue_flagadd_temp"]
-        flag_3 = request.POST["blue_flag_temp"]
-
-        if Kyc_Info.objects.filter(nics_no_temp=new_entry).exists():
-
-            place = Kyc_Info.objects.get(nics_no_temp=new_entry)
-            updates_origin = Kyc_Info.objects.get(id=place.id)
-
-            if (flag_1 == 'False' and flag_2 == 'False' and flag_3 == 'False'):
-                form = accept_form(request.POST, instance=updates_origin)
-
-                if form.is_valid():
-                    form.save()
-
-                    updates_data = Kyc_Infotemp.objects.get(id=id)
-                    form = update_forms(request.POST, instance=updates_data)
-                    # Kyc_Infotemp.objects.filter(id=id).delete()
-                    Kyc_Infotemp.objects.filter(id=id).delete()
-                    result = Kyc_Infotemp.objects.filter(blue_flagadd_temp=True)
-                    result2 = Kyc_Infotemp.objects.filter(blue_flag_temp=True)
-                    result3 = Kyc_Infotemp.objects.filter(red_flag_temp=True)
-                    result4 = Kyc_Infotemp.objects.filter(red_flag_temp=False, blue_flag_temp=False,
-                                                          blue_flagadd_temp=False)
-
-                    # passing variables to the update.html using dictionary
-                    return render(request, "kyc/update.html", {"Kyc_Infotemp1": result, "Kyc_Infotemp2": result2,
-                                                               "Kyc_Infotemp3": result3, "Kyc_Infotemp4": result4})
-
-            else:
-                updates_data = Kyc_Infotemp.objects.get(id=id)
-                form = update_forms(request.POST, instance=updates_data)
-                messages.error(request, 'please remove flags before adding to main database')
-                return render(request, "kyc/edit.html", {"Kyc_Infotemp": updates_data})
-
-            new_entry = request.POST["salutation_temp"]
-            print(new_entry)
-        # updates_data = Kyc_Infotemp.objects.get(id=id)
-        # form = update_forms(request.POST, instance=updates_data)
-        # print(form)
-        else:
-
-            if (flag_1 == 'False' and flag_2 == 'False' and flag_3 == 'False'):
-
-                salutation = request.POST["salutation_temp"]
-                full_name = request.POST["full_name_temp"]
-                name_init = request.POST["name_init_temp"]
-                profile_pic = request.POST["profile_pic_temp"]
-                live_video = request.FILES["live_video"]
-                id_type = request.POST["id_type_temp"]
-
-                try:
-                    nics_no = request.POST["nics_no_temp"]
-                    date_of_birth = request.POST["date_of_birth_temp"]
-                except MultiValueDictKeyError:
-                    nics_no = ''
-                    date_of_birth = ''
-
-                try:
-                    drive_lic = request.POST.get("driv_lic_temp")
-                    driv_exp = request.POST["driv_exp_temp"]
-                except MultiValueDictKeyError:
-                    drive_lic = ''
-                    driv_exp = ''
-
-                try:
-                    pass_no = request.POST["pass_no_temp"]
-                    pass_exp = request.POST["pass_exp_temp"]
-                except MultiValueDictKeyError:
-                    pass_no = ''
-                    pass_exp = ''
-
-                try:
-                    birth_cernum = request.POST["birth_cernum_temp"]
-                except MultiValueDictKeyError:
-                    birth_cernum = ''
-
-                try:
-                    post_id = request.POST["post_id_temp"]
-                except MultiValueDictKeyError:
-                    post_id = ''
-
-                try:
-                    oafsc = request.POST["oafsc_temp"]
-                except MultiValueDictKeyError:
-                    oafsc = ''
-
-                try:
-                    visa_copy = request.POST["visa_copy_temp"]
-                except MultiValueDictKeyError:
-                    visa_copy = ''
-
-                try:
-                    othe_identity_doc = request.POST["othe_identity_doc_temp"]
-                except MultiValueDictKeyError:
-                    othe_identity_doc = ''
-
-                nationality = request.POST["nationality_temp"]
-
-                try:
-                    nationality_other = request.POST["nationality_other_temp"]
-                    type_of_visa = request.POST["type_of_visa_temp"]
-                    visa_exp = request.POST["visa_exp_temp"]
-                    other_types = request.POST["other_types_temp"]
-                    other_exp = request.POST["other_exp_temp"]
-                    foreign_addre = request.POST["foreign_addre_temp"]
-
-                except MultiValueDictKeyError:
-                    nationality_other = ''
-                    type_of_visa = ''
-                    visa_exp = ''
-                    other_types = ''
-                    other_exp = ''
-                    foreign_addre = ''
-
-                vari_doc_type = request.POST["vari_doc_type_temp"]
-                vari_doc = request.POST["vari_doc_temp"]
-                pep_person = request.POST["pep_person_temp"]
-                us_city = request.POST["us_city_temp"]
-
-                # calling variables for form inputs in residential detail section
-                resident_sri = request.POST["resident_sri_temp"]
-
-                try:
-                    country_resident = request.POST["country_resident_temp"]
-                except MultiValueDictKeyError:
-                    country_resident = ''
-
-                house_no_per = request.POST["house_no_per_temp"]
-                street_per = request.POST["street_per_temp"]
-                city_per = request.POST["city_per_temp"]
-                postal_code_per = request.POST["postal_code_per_temp"]
-
-                house_no = request.POST["house_no_temp"]
-                street = request.POST["street_temp"]
-                city = request.POST["city_temp"]
-                postal_code = request.POST["postal_code_temp"]
-                state_address = request.POST["state_address_temp"]
-
-                # calling variables for form inputs in contact detail section
-                mob_no = request.POST["mob_no_temp"]
-                office_num = request.POST["office_num_temp"]
-                home_num = request.POST["home_num_temp"]
-                email_add = request.POST["email_add_temp"]
-
-                submit_kyc_temp = Kyc_Info(salutation_temp=salutation, full_name_temp=full_name,
-                                           name_init_temp=name_init, profile_pic_temp=profile_pic,
-                                           live_video_temp=live_video,
-                                           id_type_temp=id_type,
-                                           nics_no_temp=nics_no, date_of_birth_temp=date_of_birth,
-                                           driv_lic_temp=drive_lic, driv_exp_temp=driv_exp,
-                                           pass_no_temp=pass_no, pass_exp_temp=pass_exp,
-                                           birth_cernum_temp=birth_cernum,
-                                           post_id_temp=post_id, oafsc_temp=oafsc, visa_copy_temp=visa_copy,
-                                           othe_identity_doc_temp=othe_identity_doc,
-                                           nationality_temp=nationality,
-                                           nationality_other_temp=nationality_other,
-                                           type_of_visa_temp=type_of_visa,
-                                           visa_exp_temp=visa_exp, other_types_temp=other_types,
-                                           other_exp_temp=other_exp, foreign_addre_temp=foreign_addre,
-                                           vari_doc_type_temp=vari_doc_type, vari_doc_temp=vari_doc,
-                                           pep_person_temp=pep_person,
-                                           us_city_temp=us_city,
-                                           resident_sri_temp=resident_sri,
-                                           country_resident_temp=country_resident,
-                                           house_no_temp=house_no, street_temp=street, city_temp=city,
-                                           postal_code_temp=postal_code, state_address_temp=state_address,
-                                           house_no_per_temp=house_no_per, street_per_temp=street_per,
-                                           city_per_temp=city_per, postal_code_per_temp=postal_code_per,
-                                           mob_no_temp=mob_no, office_num_temp=office_num,
-                                           home_num_temp=home_num,
-                                           email_add_temp=email_add, red_flag_temp=flag_1,
-                                           blue_flagadd_temp=flag_2, blue_flag_temp=flag_3)
-
-                submit_kyc_temp.save()
-                Kyc_Infotemp.objects.filter(id=id).delete()
-                messages.success(request, 'successfully submitted')
-                result = Kyc_Infotemp.objects.filter(blue_flagadd_temp=True)
-                result2 = Kyc_Infotemp.objects.filter(blue_flag_temp=True)
-                result3 = Kyc_Infotemp.objects.filter(red_flag_temp=True)
-                result4 = Kyc_Infotemp.objects.filter(red_flag_temp=False, blue_flag_temp=False,
-                                                      blue_flagadd_temp=False)
-
-                # passing variables to the update.html using dictionary
-                return render(request, "kyc/update.html", {"Kyc_Infotemp1": result, "Kyc_Infotemp2": result2,
-                                                           "Kyc_Infotemp3": result3, "Kyc_Infotemp4": result4})
-
-            else:
-                updates_data = Kyc_Infotemp.objects.get(id=id)
-                form = update_forms(request.POST, instance=updates_data)
-                messages.error(request, 'please remove flags before adding to main database')
-                return render(request, "kyc/edit.html", {"Kyc_Infotemp": updates_data})
+    if form.is_valid():
+        form.save()
+        messages.success(request, "record update sucessfully")
+        return render(request, "kyc/edit.html", {"Kyc_Infotemp": updates_data})
 
 
 # -----------------------------------------------------------------------------------------------------------------------
@@ -353,10 +189,12 @@ def update_data(request, id):
             submit_kyc_temp.save()
             messages.success(request, 'saved look')
             return render(request, 'kyc/(2nd)AccEmp.html')"""
+# def verify(request):
 
 
 def insertkyc(request):
     print("successfully completed")
+
 
     # definging global variables
     # -----------------------------------------------------------------------------------------------------------------------
@@ -386,8 +224,8 @@ def insertkyc(request):
     salutation = request.POST["salutation"]
     full_name = request.POST["fullname"]
     name_init = request.POST["name_init"]
-    profile_pic = request.FILES["self_nic"]
-    live_video = request.FILES["live_video"]
+    profile_pic = request.POST["self_nic"]
+    # profile_vid = request.POST["live_video"]
     id_type = request.POST["id_types"]
 
     try:
@@ -455,7 +293,7 @@ def insertkyc(request):
         foreign_addre = ''
 
     vari_doc_type = request.POST["Verification_addres"]
-    vari_doc = request.FILES["vari_image"]
+    vari_doc = request.POST["vari_image"]
     pep_person = request.POST["pep"]
     us_city = request.POST["us_city"]
 
@@ -483,12 +321,19 @@ def insertkyc(request):
     office_num = request.POST["office_number"]
     home_num = request.POST["home_number"]
     email_add = request.POST["email_add"]
+    email_add_verification=round(100000*random.random())
+    masegEmail = "you submit kyc information success\n"
+    codeEmail = str(email_add_verification)
+
+
+
+
 
     # checking is there ID exists in Identity information database
     if Id_Info.objects.filter(nic_no=nics_no).exists():
 
         # if exists id number proceed to next step
-        # messages.success(request, 'NIC validated successfully')
+        messages.success(request, 'NIC validated successfully')
 
         # check whether there are existing kyc in the database to the given id number
         if Kyc_Infotemp.objects.filter(nics_no_temp=nics_no).exists():
@@ -516,11 +361,11 @@ def insertkyc(request):
                                               street_add=street, city_ref=city).exists():
                         green_flag = 'True'
 
-                        #messages.success(request, 'existing kyc, name true, dob ture, address true')
+                        messages.success(request, 'existing kyc, name true, dob ture, address true')
 
                         submit_kyc_temp = Kyc_Infotemp(salutation_temp=salutation, full_name_temp=full_name,
                                                        name_init_temp=name_init, profile_pic_temp=profile_pic,
-                                                       live_video_temp=live_video,
+
                                                        id_type_temp=id_type,
                                                        nics_no_temp=nics_no, date_of_birth_temp=date_of_birth,
                                                        driv_lic_temp=drive_lic, driv_exp_temp=driv_exp,
@@ -544,22 +389,28 @@ def insertkyc(request):
                                                        city_per_temp=city_per, postal_code_per_temp=postal_code_per,
                                                        mob_no_temp=mob_no, office_num_temp=office_num,
                                                        home_num_temp=home_num,
-                                                       email_add_temp=email_add, red_flag_temp=red_flag,
+                                                       email_add_temp=email_add,
+                                                       email_add_verification=email_add_verification, red_flag_temp=red_flag,
                                                        blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag)
                         submit_kyc_temp.save()
-                        messages.success(request, 'successfully submitted, Document is processing')
-                        return render(request, 'kyc/index.html')
+                        messages.success(request, 'saved look')
+                        idS =  str(submit_kyc_temp.id)
+                        request.session['id'] = submit_kyc_temp.id
+
+                        email_alert("BANK", masegEmail + "http://127.0.0.1:8000/verify?ecode=" + codeEmail + "&id=" + idS, email_add)
+
+                        return render(request, 'kyc/verify.html')
                         print(green_flag)
 
                     else:
 
-                        """messages.warning(request, 'existing kyc, name true,dob true, address false attach proof '
-                                                  'document')"""
+                        messages.warning(request, 'existing kyc, name true,dob true, address false attach proof '
+                                                  'document')
 
                         blue_flag = 'True'
                         submit_kyc_temp = Kyc_Infotemp(salutation_temp=salutation, full_name_temp=full_name,
                                                        name_init_temp=name_init, profile_pic_temp=profile_pic,
-                                                       live_video_temp=live_video,
+
                                                        id_type_temp=id_type,
                                                        nics_no_temp=nics_no, date_of_birth_temp=date_of_birth,
                                                        driv_lic_temp=drive_lic, driv_exp_temp=driv_exp,
@@ -586,18 +437,18 @@ def insertkyc(request):
                                                        email_add_temp=email_add, red_flag_temp=red_flag,
                                                        blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag)
                         submit_kyc_temp.save()
-                        messages.success(request, 'Submitted successfully, processing')
-                        return render(request, 'kyc/index.html')
+                        messages.success(request, 'saved look')
+                        return render(request, 'kyc/verify.html')
 
                 # if date of birth is false
                 else:
                     # give an error message
-                    messages.error(request, 'Date of birth is invalid, please check again')
-                    return render(request, 'kyc/index.html')
+                    messages.warning(request, 'existing kyc, name true,dob false')
+                    return render(request, 'kyc/verify.html')
             else:
                 # give an message if name is false
-                messages.error(request, 'Invalid name, please check again')
-                return render(request, 'kyc/index.html')
+                messages.warning(request, 'existing kyc, name false')
+                return render(request, 'kyc/verify.html')
 
         else:
 
@@ -627,11 +478,11 @@ def insertkyc(request):
                                               house_num=house_no,
                                               street_add=street, city_ref=city).exists():
 
-                        # messages.success(request, 'no kyc, name true, dob ture, address true')
+                        messages.success(request, 'no kyc, name true, dob ture, address true')
 
                         submit_kyc_temp = Kyc_Infotemp(salutation_temp=salutation, full_name_temp=full_name,
                                                        name_init_temp=name_init, profile_pic_temp=profile_pic,
-                                                       live_video_temp=live_video,
+
                                                        id_type_temp=id_type,
                                                        nics_no_temp=nics_no, date_of_birth_temp=date_of_birth,
                                                        driv_lic_temp=drive_lic, driv_exp_temp=driv_exp,
@@ -658,19 +509,19 @@ def insertkyc(request):
                                                        email_add_temp=email_add, red_flag_temp=red_flag,
                                                        blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag)
                         submit_kyc_temp.save()
-                        messages.success(request, 'Successfully submitted, Document is processing')
-                        return render(request, 'kyc/index.html')
+                        messages.success(request, 'Successfully saved')
+                        return render(request, 'kyc/verify.html')
 
                     else:
 
-                        """messages.warning(request, 'no kyc, name true,dob true, address false attach proof '
-                                                  'document')"""
+                        messages.warning(request, 'no kyc, name true,dob true, address false attach proof '
+                                                  'document')
 
                         red_flag = True
 
                         submit_kyc_temp = Kyc_Infotemp(salutation_temp=salutation, full_name_temp=full_name,
                                                        name_init_temp=name_init, profile_pic_temp=profile_pic,
-                                                       live_video_temp=live_video,
+
                                                        id_type_temp=id_type,
                                                        nics_no_temp=nics_no, date_of_birth_temp=date_of_birth,
                                                        driv_lic_temp=drive_lic, driv_exp_temp=driv_exp,
@@ -697,20 +548,21 @@ def insertkyc(request):
                                                        email_add_temp=email_add, red_flag_temp=red_flag,
                                                        blue_flagadd_temp=green_flag, blue_flag_temp=blue_flag)
                         submit_kyc_temp.save()
-                        messages.success(request, 'successfully submitted, Document is processing')
-                        return render(request, 'kyc/index.html')
+                        return render(request, 'kyc/verify.html')
+                        messages.success(request, 'saved look')
+
 
 
 
                 # If date of birth is false
                 else:
                     # give an error message
-                    messages.warning(request, 'Invalid date of birth, please check again')
-                    return render(request, 'kyc/index.html')
+                    messages.warning(request, 'no kyc, name true,dob false')
+                    return render(request, 'kyc/verify.html')
             else:
                 # give an message if name is false
-                messages.error(request, 'Invalid name, please check again')
-                return render(request, 'kyc/index.html')
+                messages.warning(request, 'no kyc, name false')
+                return render(request, 'kyc/verify.html')
 
             # messages.success(request, 'Successfully submitted')
             # return to next page
@@ -720,8 +572,8 @@ def insertkyc(request):
     # it there is no id number in id information system give error message
     else:
 
-        messages.error(request, 'Invalid NIC Number. please check again')
-        return render(request, 'kyc/index.html')
+        messages.warning(request, 'Invalid NIC Number. please check again')
+        return render(request, 'kyc/verify.html')
 
     """if request.method=='POST':
         if request.POST.get('ID_type'):
@@ -733,16 +585,3 @@ def insertkyc(request):
 
     else:
         return render(request, 'kyc/index.html')"""
-
-def image_upload_view(request):
-    """Process images uploaded by users"""
-    if request.method == 'POST':
-        form = ImageForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            # Get the current instance object to display in the template
-            img_obj = form.instance
-            return render(request, 'kyc/home.html', {'form': form, 'img_obj': img_obj})
-    else:
-        form = ImageForm()
-    return render(request, 'kyc/home.html', {'form': form})
