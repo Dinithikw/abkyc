@@ -62,6 +62,24 @@ def verify(request):
         print("ok")
         return render(request,'kyc/ok.html')
 
+def verify2(request):
+
+    # # if request.session.get('id'):
+    #
+    # # id = format(request.session.get('id'))
+    #
+    # # if request.GET[id]:
+    # id=request.GET['id']
+    #
+    # dbObj = Kyc_Infotemp.objects.get(id=id)
+    # dbNum = dbObj.email_add_verification
+    # emNum = request.GET["ecode"]
+    # if(dbNum==emNum):
+    #     Kyc_Infotemp.objects.filter(id=id).update(email_add_verification='verifiede')
+    #     print("ok")
+    messages.success(request, 'Mobile number verified')
+    return render(request,'kyc/index.html')
+
 def account(request):
     return render(request, 'kyc/(2nd)AccEmp.html')
 
