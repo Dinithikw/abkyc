@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from kyc import views
 from kyc.views import index
-from kyc.views import office, personal, account, insertkyc, update, edit_val, update_data, image_upload_view
+from kyc.views import office, personal, account, insertkyc, update, edit_val, update_data, image_upload_view, productList
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -28,6 +28,7 @@ urlpatterns = [
     path('personal', personal),
     path('account', account),
     path('update', update, name="update"),
+    path('select/', productList, name="select"),
     path("update/<int:id>", update_data),
     path('edit/<int:id>', edit_val),
     path('insertkyc', insertkyc),

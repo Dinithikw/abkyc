@@ -30,12 +30,44 @@ def update(request):
     result2 = Kyc_Infotemp.objects.filter(blue_flag_temp=True)
     result3 = Kyc_Infotemp.objects.filter(red_flag_temp=True)
     result4 = Kyc_Infotemp.objects.filter(red_flag_temp=False, blue_flag_temp=False, blue_flagadd_temp=False)
-    all_records = Kyc_Infotemp.objects.all()
+    productnames = Kyc_Infotemp.objects.all()
 
+    #get the form output using get method
+    if request.method == 'GET':
+        p = request.GET.getlist('select_user')
+        #print(p)
+        #k = request.GET('parameters[]')
+        productnames = Kyc_Infotemp.objects.all()
+        context = {
+            "Kyc_Infotemp1": result, "Kyc_Infotemp2": result2,
+            "Kyc_Infotemp3": result3, "Kyc_Infotemp4": result4,
+            'userList': p, 'all_info': productnames,
+        }
+
+    else:
+
+        context = {
+            "Kyc_Infotemp1": result, "Kyc_Infotemp2": result2,
+            "Kyc_Infotemp3": result3, "Kyc_Infotemp4": result4,
+            "all_info": productnames,
+        }
     # passing variables to the update.html using dictionary
-    return render(request, "kyc/update.html", {"Kyc_Infotemp1": result, "Kyc_Infotemp2": result2,
-                                               "Kyc_Infotemp3": result3, "Kyc_Infotemp4": result4,
-                                               "all_rec": all_records})
+    return render(request, "kyc/update.html", context)
+
+# this was defined to check a branch of a program only for devoloping purposes
+def productList(request):
+    if request.method == 'GET':
+        p = request.GET.getlist('select_user')
+        print(p)
+        #k = request.GET('parameters[]')
+        productnames = Kyc_Infotemp.objects.all()
+        context = {
+            'userList': p, 'all_info': productnames,
+        }
+        # --- logic later for chart ------    
+    
+
+    return render(request, 'kyc/select.html', context)
 
 
 # defining function to get records using id through the database and display in editing
