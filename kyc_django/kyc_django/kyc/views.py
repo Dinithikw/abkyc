@@ -893,5 +893,8 @@ def search_val(request):
         else:
             messages.success(request, 'no kyc new one')
             return render(request, 'kyc/index.html')
-            
+
     return render(request, 'kyc/search.html')
+
+def update_main(request):
+    return render(request, "kyc/update_main.html")
