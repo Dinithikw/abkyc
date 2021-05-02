@@ -75,7 +75,7 @@ class Kyc_Info(models.Model):
 
 
     def __str__(self):
-        return self.full_name
+        return self.full_name_temp
 
 class Kyc_Infotemp(models.Model):
     

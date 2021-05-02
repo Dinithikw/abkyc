@@ -213,7 +213,7 @@ def update_data(request, id):
                 full_name = request.POST["full_name_temp"]
                 name_init = request.POST["name_init_temp"]
                 profile_pic = request.POST["profile_pic_temp"]
-                live_video = request.FILES["live_video"]
+                live_video = request.POST["live_video_temp"]
                 id_type = request.POST["id_type_temp"]
 
                 try:
@@ -309,6 +309,7 @@ def update_data(request, id):
                 office_num = request.POST["office_num_temp"]
                 home_num = request.POST["home_num_temp"]
                 email_add = request.POST["email_add_temp"]
+                email_add_verification = request.POST["email_add_verification"]
 
                 submit_kyc_temp = Kyc_Info(salutation_temp=salutation, full_name_temp=full_name,
                                            name_init_temp=name_init, profile_pic_temp=profile_pic,
@@ -335,7 +336,7 @@ def update_data(request, id):
                                            house_no_per_temp=house_no_per, street_per_temp=street_per,
                                            city_per_temp=city_per, postal_code_per_temp=postal_code_per,
                                            mob_no_temp=mob_no, office_num_temp=office_num,
-                                           home_num_temp=home_num,
+                                           home_num_temp=home_num, email_add_verification=email_add_verification,
                                            email_add_temp=email_add, red_flag_temp=flag_1,
                                            blue_flagadd_temp=flag_2, blue_flag_temp=flag_3)
 
