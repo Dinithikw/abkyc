@@ -184,15 +184,35 @@ def update_data(request, id):
                     form = update_forms(request.POST, instance=updates_data)
                     # Kyc_Infotemp.objects.filter(id=id).delete()
                     Kyc_Infotemp.objects.filter(id=id).delete()
+
                     result = Kyc_Infotemp.objects.filter(blue_flagadd_temp=True)
                     result2 = Kyc_Infotemp.objects.filter(blue_flag_temp=True)
                     result3 = Kyc_Infotemp.objects.filter(red_flag_temp=True)
-                    result4 = Kyc_Infotemp.objects.filter(red_flag_temp=False, blue_flag_temp=False,
-                                                          blue_flagadd_temp=False)
+                    result4 = Kyc_Infotemp.objects.filter(red_flag_temp=False, blue_flag_temp=False, blue_flagadd_temp=False)
+                    productnames = Kyc_Infotemp.objects.all()
 
+                    # get the form output using get method
+                    if request.method == 'GET':
+                        p = request.GET.getlist('select_user')
+                        # print(p)
+                        # k = request.GET('parameters[]')
+                        productnames = Kyc_Infotemp.objects.all()
+                        context = {
+                            "Kyc_Infotemp1": result, "Kyc_Infotemp2": result2,
+                            "Kyc_Infotemp3": result3, "Kyc_Infotemp4": result4,
+                            'userList': p, 'all_info': productnames,
+                        }
+
+                    else:
+
+                        context = {
+                            "Kyc_Infotemp1": result, "Kyc_Infotemp2": result2,
+                            "Kyc_Infotemp3": result3, "Kyc_Infotemp4": result4,
+                            "all_info": productnames,
+                        }
                     # passing variables to the update.html using dictionary
-                    return render(request, "kyc/update.html", {"Kyc_Infotemp1": result, "Kyc_Infotemp2": result2,
-                                                               "Kyc_Infotemp3": result3, "Kyc_Infotemp4": result4})
+                    return render(request, "kyc/update.html", context)
+
 
             else:
                 updates_data = Kyc_Infotemp.objects.get(id=id)
@@ -340,18 +360,37 @@ def update_data(request, id):
                                            email_add_temp=email_add, red_flag_temp=flag_1,
                                            blue_flagadd_temp=flag_2, blue_flag_temp=flag_3)
 
+                
                 submit_kyc_temp.save()
                 Kyc_Infotemp.objects.filter(id=id).delete()
                 messages.success(request, 'successfully submitted')
                 result = Kyc_Infotemp.objects.filter(blue_flagadd_temp=True)
                 result2 = Kyc_Infotemp.objects.filter(blue_flag_temp=True)
                 result3 = Kyc_Infotemp.objects.filter(red_flag_temp=True)
-                result4 = Kyc_Infotemp.objects.filter(red_flag_temp=False, blue_flag_temp=False,
-                                                      blue_flagadd_temp=False)
+                result4 = Kyc_Infotemp.objects.filter(red_flag_temp=False, blue_flag_temp=False, blue_flagadd_temp=False)
+                productnames = Kyc_Infotemp.objects.all()
 
+                # get the form output using get method
+                if request.method == 'GET':
+                    p = request.GET.getlist('select_user')
+                    # print(p)
+                    # k = request.GET('parameters[]')
+                    productnames = Kyc_Infotemp.objects.all()
+                    context = {
+                        "Kyc_Infotemp1": result, "Kyc_Infotemp2": result2,
+                        "Kyc_Infotemp3": result3, "Kyc_Infotemp4": result4,
+                        'userList': p, 'all_info': productnames,
+                    }
+
+                else:
+
+                    context = {
+                        "Kyc_Infotemp1": result, "Kyc_Infotemp2": result2,
+                        "Kyc_Infotemp3": result3, "Kyc_Infotemp4": result4,
+                        "all_info": productnames,
+                    }
                 # passing variables to the update.html using dictionary
-                return render(request, "kyc/update.html", {"Kyc_Infotemp1": result, "Kyc_Infotemp2": result2,
-                                                           "Kyc_Infotemp3": result3, "Kyc_Infotemp4": result4})
+                return render(request, "kyc/update.html", context)
 
             else:
                 updates_data = Kyc_Infotemp.objects.get(id=id)
