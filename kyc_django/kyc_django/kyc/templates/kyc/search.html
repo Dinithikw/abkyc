@@ -28,4 +28,20 @@
 
             <label for="submit"></label><button id="submit" type="submit" class="btn btn-default">Submit</button>
     </form>
+
+
+    {% for diplay in found_user %}
+
+        <p>{{display.id}}</p>
+        
+        
+        {% include "kyc/edit.html"  with Kyc_Infotemp=diplay %}
+        
+        
+            
+
+            
+
+    {% endfor %}
+
 </body>
