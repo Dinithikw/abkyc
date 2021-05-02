@@ -879,8 +879,8 @@ def search_val(request):
 
         if Kyc_Info.objects.filter(nics_no_temp=nic_no).exists():
             messages.warning(request, 'containging kyc')
-            return render(request, 'kyc/index.html')
+            return render(request, 'kyc/search.html')
         else:
             messages.success(request, 'no kyc new one')
-    
+            return render(request, 'kyc/index.html')
     return render(request, 'kyc/search.html')
