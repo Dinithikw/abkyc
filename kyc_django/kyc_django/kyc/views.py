@@ -871,3 +871,16 @@ def image_upload_view(request):
     else:
         form = ImageForm()
     return render(request, 'kyc/home.html', {'form': form})
+
+
+def search_val(request):
+    if request.method == "POST":
+        nic_no = request.POST["nic_temp"]
+
+        if Kyc_Info.objects.filter(nics_no_temp=nic_no).exists():
+            messages.warning(request, 'containging kyc')
+            return render(request, 'kyc/index.html')
+        else:
+            messages.success(request, 'no kyc new one')
+    
+    return render(request, 'kyc/search.html')

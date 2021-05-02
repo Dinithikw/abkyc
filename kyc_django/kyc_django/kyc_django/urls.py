@@ -34,6 +34,7 @@ urlpatterns = [
     path('insertkyc', insertkyc),
     #path('insertkyc1', insertkyc1)
     path('upload/', views.image_upload_view),
+    path('search/', views.search_val, name="search")
 ]
 
 if settings.DEBUG:
