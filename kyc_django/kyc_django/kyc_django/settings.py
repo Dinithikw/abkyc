@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'kyc_django.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'kyc2',
+        'NAME': 'kyc3',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
