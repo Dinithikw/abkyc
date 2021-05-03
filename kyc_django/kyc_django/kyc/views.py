@@ -52,15 +52,30 @@ def verify(request):
     # id = format(request.session.get('id'))
 
     # if request.GET[id]:
-    id=request.GET['id']
+    # id=request.GET['id']
+    if request.method == "POST":
+        input_number = request.POST["code"]
+        
+        print(input_number)
+        
+        if Kyc_Infotemp.objects.filter(email_add_verification=input_number).exists():
+            
+            messages.success(request, "verified sucessfully")
+            return render(request, "kyc/search.html")
 
-    dbObj = Kyc_Infotemp.objects.get(id=id)
+        else:
+            messages.error(request, "Invalid code, Please enter the received code")
+
+        
+
+    """dbObj = Kyc_Infotemp.objects.get(id=id)
     dbNum = dbObj.email_add_verification
     emNum = request.GET["ecode"]
     if(dbNum==emNum):
         Kyc_Infotemp.objects.filter(id=id).update(email_add_verification='verifiede')
         print("ok")
-        return render(request,'kyc/ok.html')
+        return render(request,'kyc/ok.html')"""
+    return render(request, "kyc/verify.html")
 
 def verify2(request):
 
@@ -878,7 +893,7 @@ def search_val(request):
         nic_no = request.POST["nic_temp"]
 
         if Kyc_Info.objects.filter(nics_no_temp=nic_no).exists():
-            messages.warning(request, 'containging kyc')
+            messages.success(request, 'Successfully load your data')
 
             
             finded_user = Kyc_Info.objects.filter(nics_no_temp=nic_no)
@@ -891,7 +906,7 @@ def search_val(request):
 
             return render(request, 'kyc/search.html', context)
         else:
-            messages.success(request, 'no kyc new one')
+            messages.success(request, 'Please fill the above details')
             return render(request, 'kyc/index.html')
 
     return render(request, 'kyc/search.html')
