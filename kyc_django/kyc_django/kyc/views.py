@@ -52,15 +52,30 @@ def verify(request):
     # id = format(request.session.get('id'))
 
     # if request.GET[id]:
-    id=request.GET['id']
+    # id=request.GET['id']
+    if request.method == "POST":
+        input_number = request.POST["code"]
+        
+        print(input_number)
+        
+        if Kyc_Infotemp.objects.filter(email_add_verification=input_number).exists():
+            
+            messages.success(request, "verified sucessfully")
+            return render(request, "kyc/search.html")
 
-    dbObj = Kyc_Infotemp.objects.get(id=id)
+        else:
+            messages.error(request, "Invalid code, Please enter the received code")
+
+        
+
+    """dbObj = Kyc_Infotemp.objects.get(id=id)
     dbNum = dbObj.email_add_verification
     emNum = request.GET["ecode"]
     if(dbNum==emNum):
         Kyc_Infotemp.objects.filter(id=id).update(email_add_verification='verifiede')
         print("ok")
-        return render(request,'kyc/ok.html')
+        return render(request,'kyc/ok.html')"""
+    return render(request, "kyc/verify.html")
 
 def verify2(request):
 
