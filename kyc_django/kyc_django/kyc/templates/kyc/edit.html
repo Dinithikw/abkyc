@@ -13,7 +13,10 @@
 
     {% load static %}
     <link rel="stylesheet" href="{% static 'kyc/css/edit.css' %}">
-    <script src="{% static 'kyc/js/index_min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'kyc/js/edit_min.js' %}" type="text/javascript"></script>
+    <script>
+        
+    </script>
 
     <title>edit admin</title>
 </head>
@@ -435,11 +438,71 @@
 
 
                     </table>
-                    
+                    <hr>
+
                     <br>
+                    
+                                
+           
+                    <table class="border" style="width: 100%;">
+
+                        <tr class="border control">
+
+                            <td class="border">
+                                <p>Date and time<br>
+                                    <input id="rej_1" name="date_now_temp" readonly>
+                                </p>
+                                
+
+                                <script type="text/javascript">
+                                document.getElementById('rej_1').value = Date();
+                                </script>
+                            </td>
+
+                            <td class="border">
+                                <p>Staff member<br>
+                                    <input type="text" id="rej_2" name="staff_member_temp" value="{{Kyc_Infotemp.staff_member_temp}}">
+                                </p>
+                            </td>
+                        
+                            <td class="border">
+                                <p>File note<br>
+                                    <input type="text" id="rej_3" name="file_note_temp" value="{{Kyc_Infotemp.file_note_temp}}">
+                                </p>
+                            </td>
+                        
+                            <td class="border">
+                                <p>Reason for rejction<br>
+                                    <input type="text" id="rej_4" name="reason_for_rej_temp" value="{{Kyc_Infotemp.reason_for_rej_temp}}">
+                                </p>
+                            </td>
+
+                            <td class="border">
+                                <p> Verify or Reject record <br>
+                                    <select name="rejected_temp" id="Reject" required="" onChange="select_rejection()">
+                                        <option value="">Select one of a method</option>
+                                        <option value="accept_val">Verify</option>
+                                        <option value="reject_val">Reject</option>
+
+                                    </select>
+                                </p>
+                            </td>
+                      
+                           
+                        </tr>
+
+
+
+                    </table>
+
+                    
+
+                    <br><br>
                     
                     <input type="submit" name="update_db" value="Reject"/> |
                     <input type="submit" name="accept_rec" value="Verify"/> | <a href="{% url 'update' %}">back to summary page</a>
+
+                     
 
                     <br><br>
                     {% if Kyc_Infotemp.blue_flag_temp == "True" %}
@@ -477,6 +540,9 @@
 
                 </form>
 
+                
+
+                <br><br>
 
             </center>
 

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Kyc_Infotemp, Kyc_Info, Image
+from .models import Kyc_Infotemp, Kyc_Info, Image, Kyc_Reject
 
 
 class update_forms(forms.ModelForm):
@@ -19,3 +19,8 @@ class ImageForm(forms.ModelForm):
         model = Image
         fields = ('title', 'image')
 
+class reject_forms(forms.ModelForm):
+    class Meta:
+        model = Kyc_Reject
+        fields ='__all__'
+        
