@@ -276,6 +276,7 @@ def update_data(request, id):
             date_now_temp = request.POST["date_now_temp"]
             staff_member_temp = request.POST["staff_member_temp"]
             file_note_temp = request.POST["file_note_temp"]
+            file_attachment_temp = request.POST["file_attachment_temp"]
             reason_for_rej_temp = request.POST["reason_for_rej_temp"]
             rejected_temp = request.POST["rejected_temp"]
             flag_1 = request.POST["red_flag_temp"]
@@ -311,7 +312,8 @@ def update_data(request, id):
                                         email_add_temp=email_add, red_flag_temp=flag_1,
                                         blue_flagadd_temp=flag_2, blue_flag_temp=flag_3, date_now_temp=date_now_temp,
                                         staff_member_temp=staff_member_temp, file_note_temp=file_note_temp,
-                                        reason_for_rej_temp=reason_for_rej_temp, rejected_temp=rejected_temp)
+                                        reason_for_rej_temp=reason_for_rej_temp, rejected_temp=rejected_temp,
+                                        file_attachment_temp=file_attachment_temp)
 
                     
             submit_kyc_temp.save()

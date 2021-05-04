@@ -171,8 +171,8 @@ class Kyc_Reject(models.Model):
     salutation_temp = models.CharField(max_length=5)
     full_name_temp = models.CharField(max_length=200)
     name_init_temp = models.CharField(max_length=100)
-    profile_pic_temp = models.ImageField(upload_to='temp/images/id_self/%Y/%m/%d/', null=True)
-    live_video_temp = models.FileField(upload_to='temp/videos/liv_vid/%Y/%m/%d/', null=True)
+    profile_pic_temp = models.ImageField(upload_to='rej/images/id_self/%Y/%m/%d/', null=True)
+    live_video_temp = models.FileField(upload_to='rej/videos/liv_vid/%Y/%m/%d/', null=True)
     id_type_temp = models.CharField(max_length=50)
     nics_no_temp = models.CharField(max_length=50)
     date_of_birth_temp = models.CharField(max_length=20)
@@ -183,8 +183,8 @@ class Kyc_Reject(models.Model):
     birth_cernum_temp = models.CharField(max_length=10, blank=True, null=True)
     post_id_temp = models.CharField(max_length=10, blank=True, null=True)
     oafsc_temp = models.CharField(max_length=10, blank=True, null=True)
-    visa_copy_temp = models.ImageField(null=True, blank=True, upload_to="temp/images/visa_copy/%Y/%m/%d/")
-    othe_identity_doc_temp = models.ImageField(null=True, blank=True, upload_to="temp/images/other_doc/%Y/%m/%d/")
+    visa_copy_temp = models.ImageField(null=True, blank=True, upload_to="rej/images/visa_copy/%Y/%m/%d/")
+    othe_identity_doc_temp = models.ImageField(null=True, blank=True, upload_to="rej/images/other_doc/%Y/%m/%d/")
     nationality_temp = models.CharField(max_length=50)
     nationality_other_temp = models.CharField(max_length=50, blank=True, null=True)
     type_of_visa_temp = models.CharField(max_length=20,blank=True)
@@ -193,7 +193,7 @@ class Kyc_Reject(models.Model):
     other_exp_temp = models.CharField(max_length=20, blank=True, null=True)
     foreign_addre_temp = models.CharField(max_length=200, blank=True, null=True)
     vari_doc_type_temp = models.CharField(max_length=200, blank=True, null=True)
-    vari_doc_temp = models.ImageField(null=True, blank=True, upload_to="temp/images/vari_doc/%Y/%m/%d/")
+    vari_doc_temp = models.ImageField(null=True, blank=True, upload_to="rej/images/vari_doc/%Y/%m/%d/")
     pep_person_temp = models.CharField(max_length=200, blank=True, null=True)
     us_city_temp = models.CharField(max_length=200, blank=True, null=True)
 
@@ -227,9 +227,10 @@ class Kyc_Reject(models.Model):
     # rejection acceptance variables
     date_now_temp = models.CharField(max_length=100, null=True, blank= True)
     staff_member_temp = models.CharField(null=True, max_length=50, blank=True)
-    file_note_temp = models.CharField(max_length=200, null=True, blank=True)
+    file_note_temp = models.TextField(max_length=200, null=True, blank=True)
     rejected_temp = models.CharField(max_length=20, null=True, blank=True)
     reason_for_rej_temp = models.CharField(max_length=50, null=True, blank=True)
+    file_attachment_temp = models.FileField(upload_to='rej/videos/liv_vid/%Y/%m/%d/', null=True)
     
 
     class Meta:

@@ -442,7 +442,28 @@
 
                     <br>
                     
-                                
+                    <table class="border" style="width: 100%;">
+                    
+                        <tr class="border control">
+                            <p><b>please select suitable options</b></p>
+                        
+
+                            <td class="border">
+                                <p> Verify or Reject record <br>
+                                    <select name="rejected_temp" id="Reject" required="" onChange="select_rejection()">
+                                        <option value="">Select one of a method</option>
+                                        <option value="accept_val">Verify</option>
+                                        <option value="reject_val">Reject</option>
+
+                                    </select>
+                                </p>
+                            </td>
+
+
+                        </tr>
+                    </table>
+
+                    <br>       
            
                     <table class="border" style="width: 100%;">
 
@@ -465,11 +486,7 @@
                                 </p>
                             </td>
                         
-                            <td class="border">
-                                <p>File note<br>
-                                    <input type="text" id="rej_3" name="file_note_temp" value="{{Kyc_Infotemp.file_note_temp}}">
-                                </p>
-                            </td>
+                            
                         
                             <td class="border">
                                 <p>Reason for rejction<br>
@@ -478,13 +495,8 @@
                             </td>
 
                             <td class="border">
-                                <p> Verify or Reject record <br>
-                                    <select name="rejected_temp" id="Reject" required="" onChange="select_rejection()">
-                                        <option value="">Select one of a method</option>
-                                        <option value="accept_val">Verify</option>
-                                        <option value="reject_val">Reject</option>
-
-                                    </select>
+                                <p>Attachment<br>
+                                    <input type="file" id="rej_5" name="file_attachment_temp" accept=".pdf,.doc,.txt,image/*" >
                                 </p>
                             </td>
                       
@@ -493,6 +505,21 @@
 
 
 
+                    </table>
+
+                    <br>
+
+                    <table class="border" style="width: 100%;">
+                    
+                        <tr class="border control">
+
+                            <td class="border">
+                                <p>File note<br>
+                                    <textarea class="form-control" id="rej_3" name="file_note_temp" value="{{Kyc_Infotemp.file_note_temp}}" rows="5"></textarea>
+                                </p>
+                            </td>
+
+                        </tr>
                     </table>
 
                     
