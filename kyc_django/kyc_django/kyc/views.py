@@ -1076,17 +1076,26 @@ def image_upload_view(request):
 
 def search_val(request):
     if request.method == "POST":
-        nic_no = request.POST["nic_temp"]
+        nic_no = request.POST["nics_no_temp"]
 
         if Kyc_Info.objects.filter(nics_no_temp=nic_no).exists():
             messages.success(request, 'Successfully load your data')
 
             
-            finded_user = Kyc_Info.objects.filter(nics_no_temp=nic_no)
-            print(finded_user)
+            finded_user = Kyc_Info.objects.get(nics_no_temp=nic_no)
+            form = accept_form(request.POST, instance=finded_user)
+
+
+            #print(finded_user)
+            #print(form.errors)
+            if form.is_valid():
+                print(form.is_valid())
+                form.save()
+            
+            
             
             context = {
-                "found_user": finded_user,
+                "Kyc_Infotemp": finded_user,
             }
 
 

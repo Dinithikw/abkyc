@@ -22,8 +22,8 @@
 
         <form method="post" action="{% url 'search' %}">
             {% csrf_token %}
-                <label> Please enter your mobile number : </label>
-                <input type="text" name="nic_temp" required="">
+                <label> Please enter your Id number : </label>
+                <input type="text" name="nics_no_temp" required="">
 
                 <label for="submit"></label><button id="submit" type="submit" class="btn btn-default">Submit</button>
         </form>
@@ -50,14 +50,14 @@
 
             <p>{{Kyc_Infotemp.driv_lic_temp}}</p>
 
-        {% for diplay in found_user %}
+            
+            {% include "kyc/update_main.html"  with Kyc_Infotemp=Kyc_Infotemp %}
 
-            <p>{{display.id}}</p>
             
             
-            {% include "kyc/update_main.html"  with Kyc_Infotemp=diplay %}
-            
-        {% endfor %}
+        
+        <form>
+        {% endif %}
     </div>
 
 </body>
