@@ -124,7 +124,27 @@
 				{
 					window.alert('wrong Date in Date of Birth');
 				}
-			
+
+
+
+//		find 18+
+			var b18Y = birS.slice(0,4);
+			var tem18Y = parseInt(b18Y);
+			var date = new Date();
+			var dateS = date.toString();
+			var dateY = dateS.slice(11,16);
+			var dateYint = parseInt(dateY);
+			var age = dateYint - tem18Y;
+
+
+			if(age<18)
+				{
+					window.alert("You are under 18 years old");
+				}
+
+
+
+
 
 		}
 		
